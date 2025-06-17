@@ -1,6 +1,10 @@
 def output_invoice():
-    return "テストは正常です。"
+    return "関数が正常に実行されました。"
 
-if __name__ == "__main__":
+def main():
     result = output_invoice()
     print(result)
+    print("以上")
+
+if __name__ == "__main__":
+    main()

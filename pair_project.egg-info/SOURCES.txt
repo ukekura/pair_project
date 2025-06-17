@@ -1,0 +1,8 @@
+setup.py
+pair_project.egg-info/PKG-INFO
+pair_project.egg-info/SOURCES.txt
+pair_project.egg-info/dependency_links.txt
+pair_project.egg-info/top_level.txt
+src/__init__.py
+src/main.py
+tests/test_output_invoice.py

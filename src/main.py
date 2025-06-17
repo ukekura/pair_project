@@ -1,13 +1,3 @@
-# 仮の請求書内容
-default_content = """請求書
-株式会社ビッグカンパニー
-・Hamlet（観客数：55人、金額：〇〇円）
-・As You Like It（観客数：35人、金額：△△円）
-・Othello（観客数：40人、金額：□□円）
-合計金額：××円
-獲得ポイント：～pt
-"""
-
 def generate_invoice_content():
     import json
     

@@ -1,7 +1,37 @@
 請求書
-株式会社ビッグカンパニー
-・Hamlet（観客数：55人、金額：〇〇円）
-・As You Like It（観客数：35人、金額：△△円）
-・Othello（観客数：40人、金額：□□円）
-合計金額：××円
-獲得ポイント：～pt
+invoices.jsonの内容:
+[
+  {
+    "customer": "BigCo",
+    "performances": [
+      {
+        "playID": "hamlet",
+        "audience": 55
+      },
+      {
+        "playID": "as-like",
+        "audience": 35
+      },
+      {
+        "playID": "othello",
+        "audience": 40
+      }
+    ]
+  }
+]
+
+plays.jsonの内容:
+{
+  "hamlet": {
+    "name": "Hamlet",
+    "type": "tragedy"
+  },
+  "as-like": {
+    "name": "As You Like It",
+    "type": "comedy"
+  },
+  "othello": {
+    "name": "Othello",
+    "type": "tragedy"
+  }
+}

@@ -15,6 +15,8 @@ def main():
         invoice_content += "・" + performance["playID"] + "（観客数：" + str(performance["audience"]) + "人）\n"
 
         print("plays:", plays[performance["playID"]].get("type"))
+        if plays[performance["playID"]].get("type") == "tragedy":
+            print("ifが実行された")
 
     total_price = "1000"
     total_point = "2000"

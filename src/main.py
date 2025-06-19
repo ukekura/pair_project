@@ -11,6 +11,8 @@ def main():
 
     invoice_content += invoices[0]["customer"] + "\n"
 
+    print(invoices[0]["performances"])
+
     total_price = "1000"
     total_point = "2000"
 

@@ -18,7 +18,7 @@ def main():
     invoice_content += "\n\nplays.jsonの内容:\n"
     invoice_content += json.dumps(plays, ensure_ascii=False, indent=2)"""
 
-    invoice_content += invoices[0]["customer"]
+    invoice_content += invoices[0]["customer"] + "\n"
     invoice_content += "1000"
 
 

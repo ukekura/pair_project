@@ -1,7 +1,7 @@
 請求書
 BigCo
-hamlet
-as-like
-othello
+hamlet観客数：55
+as-like観客数：35
+othello観客数：40
 合計金額：$1000
 獲得ポイント：2000pt

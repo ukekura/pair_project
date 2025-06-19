@@ -7,13 +7,17 @@ def main():
     with open("input/plays.json", "r", encoding="utf-8") as f:
         plays = json.load(f)
 
+    print("invoices:", invoices)
+    print(invoices[0])
     invoice_content = "請求書\n"
 
     # JSONの内容をそのまま文字列に変換
-    invoice_content += "invoices.jsonの内容:\n"
+    """invoice_content += "invoices.jsonの内容:\n"
     invoice_content += json.dumps(invoices, ensure_ascii=False, indent=2)
     invoice_content += "\n\nplays.jsonの内容:\n"
-    invoice_content += json.dumps(plays, ensure_ascii=False, indent=2)
+    invoice_content += json.dumps(plays, ensure_ascii=False, indent=2)"""
+
+    #invoice_content += invoices[0].customer
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

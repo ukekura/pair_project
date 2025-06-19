@@ -11,15 +11,6 @@ def main():
 
     invoice_content += invoices[0]["customer"] + "\n"
 
-    print(invoices[0]["performances"])
-    print(invoices[0]["performances"][0]["playID"])
-
-    for performance in invoices[0]["performances"][0].get("playID"):
-        print("for-------------------", performance)
-
-    for i in range(len(invoices[0]["performances"])):
-        print(invoices[0]["performances"][i]["playID"])
-
     for perfomance in invoices[0]["performances"]:
         print(perfomance["playID"])
 

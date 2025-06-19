@@ -17,7 +17,11 @@ def main():
         print("plays:", plays[performance["playID"]].get("type"))
         if plays[performance["playID"]].get("type") == "tragedy":
             print("ifが実行された")
+            price = 40000
+            if performance["audience"] > 30:
+                price += (performance["audience"] - 30) * 1000 
 
+    print("price:", price)
     total_price = "1000"
     total_point = "2000"
 

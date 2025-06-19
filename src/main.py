@@ -14,8 +14,8 @@ def main():
     total_price = "1000"
     total_point = "2000"
 
-    invoice_content += "合計金額：$" + "1000" +  "\n"
-    invoice_content += "獲得ポイント：" + "200" + "pt"
+    invoice_content += "合計金額：$" + total_price +  "\n"
+    invoice_content += "獲得ポイント：" + total_point + "pt"
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

@@ -14,6 +14,9 @@ def main():
     print(invoices[0]["performances"])
     print(invoices[0]["performances"][0]["playID"])
 
+    for performance in invoices[0]["performances"][0]["playID"]:
+        print("for-------------------", performance)
+
     total_price = "1000"
     total_point = "2000"
 

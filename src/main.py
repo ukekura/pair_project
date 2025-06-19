@@ -14,11 +14,14 @@ def main():
     print(invoices[0]["performances"])
     print(invoices[0]["performances"][0]["playID"])
 
-    for performance in invoices[0]["performances"][0]["playID"]:
+    for performance in invoices[0]["performances"][0].get("playID"):
         print("for-------------------", performance)
 
-    for i in range(3):
+    for i in range(len(invoices[0]["performances"])):
         print(invoices[0]["performances"][i]["playID"])
+
+    for perfomance in invoices[0]["performances"]:
+        print(perfomance["playID"])
 
     total_price = "1000"
     total_point = "2000"

@@ -19,8 +19,8 @@ def main():
     invoice_content += json.dumps(plays, ensure_ascii=False, indent=2)"""
 
     invoice_content += invoices[0]["customer"] + "\n"
-    invoice_content += "1000" + "\n"
-    invoice_content += "200"
+    invoice_content += "合計金額：$" + "1000" +  "\n"
+    invoice_content += "獲得ポイント：" + "200" + "pt"
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

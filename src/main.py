@@ -7,16 +7,7 @@ def main():
     with open("input/plays.json", "r", encoding="utf-8") as f:
         plays = json.load(f)
 
-    print("invoices:", invoices)
-    print(invoices[0])
-    print(invoices[0]["customer"])
     invoice_content = "請求書\n"
-
-    # JSONの内容をそのまま文字列に変換
-    """invoice_content += "invoices.jsonの内容:\n"
-    invoice_content += json.dumps(invoices, ensure_ascii=False, indent=2)
-    invoice_content += "\n\nplays.jsonの内容:\n"
-    invoice_content += json.dumps(plays, ensure_ascii=False, indent=2)"""
 
     invoice_content += invoices[0]["customer"] + "\n"
     invoice_content += "合計金額：$" + "1000" +  "\n"

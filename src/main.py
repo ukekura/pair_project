@@ -9,6 +9,7 @@ def main():
 
     print("invoices:", invoices)
     print(invoices[0])
+    print(invoices[0]["customer"])
     invoice_content = "請求書\n"
 
     # JSONの内容をそのまま文字列に変換

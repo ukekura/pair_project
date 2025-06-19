@@ -12,7 +12,7 @@ def main():
     invoice_content += invoices[0]["customer"] + "\n"
 
     for perfomance in invoices[0]["performances"]:
-        invoice_content += perfomance["playID"] + "観客数：" + str(perfomance["audience"]) + "\n"
+        invoice_content += "・" + perfomance["playID"] + "（観客数：" + str(perfomance["audience"]) + "人）\n"
 
     total_price = "1000"
     total_point = "2000"

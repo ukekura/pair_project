@@ -10,6 +10,10 @@ def main():
     invoice_content = "請求書\n"
 
     invoice_content += invoices[0]["customer"] + "\n"
+
+    total_price = "1000"
+    total_point = "2000"
+
     invoice_content += "合計金額：$" + "1000" +  "\n"
     invoice_content += "獲得ポイント：" + "200" + "pt"
 

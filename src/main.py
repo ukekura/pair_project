@@ -19,6 +19,8 @@ def main():
     invoice_content += json.dumps(plays, ensure_ascii=False, indent=2)"""
 
     invoice_content += invoices[0]["customer"]
+    invoice_content += "1000"
+
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

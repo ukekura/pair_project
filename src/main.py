@@ -7,7 +7,6 @@ def main():
     with open("input/plays.json", "r", encoding="utf-8") as f:
         plays = json.load(f)
 
-    print(performance["playID"])
 
     invoice_content = "請求書\n"
 
@@ -16,6 +15,7 @@ def main():
     total_price = 0
 
     for performance in invoices[0]["performances"]:
+        print("play name ----------------------- ", performance["playID"])
         invoice_content += "・" + performance["playID"] + "（観客数：" + str(performance["audience"]) + "人）\n"
 
         print("plays:", plays[performance["playID"]].get("type"))

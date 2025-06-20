@@ -15,7 +15,6 @@ def main():
     total_price = 0
 
     for performance in invoices[0]["performances"]:
-        print("play name ----------------------- ", plays[performance["playID"]]["name"])
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人）\n"
 
         print("plays:", plays[performance["playID"]].get("type"))

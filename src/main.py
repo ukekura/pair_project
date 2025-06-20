@@ -13,6 +13,7 @@ def main():
     invoice_content += invoices[0]["customer"] + "\n"
 
     total_price = 0
+    total_point = 0
 
     for performance in invoices[0]["performances"]:
 
@@ -29,14 +30,15 @@ def main():
             if performance["audience"] > 20:
                 price += (performance["audience"] - 20) * 500 + 10000
 
+        if performance["audience"]  > 30:
+            total_point += (performance["audience"] - 30)
+
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         print("price:", price)
         total_price += price
 
-    total_point = "2000"
-
     invoice_content += "合計金額：$" + str(total_price) +  "\n"
-    invoice_content += "獲得ポイント：" + total_point + "pt"
+    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

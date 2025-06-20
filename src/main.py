@@ -50,7 +50,7 @@ def main():
     
     print("請求書が正常に出力されました。")
 
-    print(args[0]);
+    print(args[1]);
 
 
 

@@ -29,7 +29,7 @@ def main():
             if performance["audience"] > 20:
                 price += (performance["audience"] - 20) * 500 + 10000
 
-        invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人）\n"
+        invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         print("price:", price)
         total_price += price
 

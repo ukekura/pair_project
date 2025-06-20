@@ -1,7 +1,7 @@
 請求書
 BigCo
-・hamlet（観客数：55人）
-・as-like（観客数：35人）
-・othello（観客数：40人）
+・Hamlet（観客数：55人）
+・As You Like It（観客数：35人）
+・Othello（観客数：40人）
 合計金額：$180000
 獲得ポイント：2000pt

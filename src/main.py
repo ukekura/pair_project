@@ -16,7 +16,7 @@ def main():
 
     for performance in invoices[0]["performances"]:
         print("play name ----------------------- ", plays[performance["playID"]]["name"])
-        invoice_content += "・" + performance["playID"] + "（観客数：" + str(performance["audience"]) + "人）\n"
+        invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人）\n"
 
         print("plays:", plays[performance["playID"]].get("type"))
         if plays[performance["playID"]].get("type") == "tragedy":

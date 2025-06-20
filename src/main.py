@@ -7,6 +7,8 @@ def main():
     with open("input/plays.json", "r", encoding="utf-8") as f:
         plays = json.load(f)
 
+    print(performance["playID"])
+
     invoice_content = "請求書\n"
 
     invoice_content += invoices[0]["customer"] + "\n"

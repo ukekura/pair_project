@@ -17,29 +17,22 @@ def main():
 
     for performance in invoices[0]["performances"]:
 
-        print("plays:", plays[performance["playID"]].get("type"))
         if plays[performance["playID"]].get("type") == "tragedy":
-            print("ifが実行された")
             price = 40000
             if performance["audience"] > 30:
                 price += (performance["audience"] - 30) * 1000 
         
         if plays[performance["playID"]].get("type") == "comedy":
-            print("comedyを通過しました！")
             price = 30000 + performance["audience"] * 300
             if performance["audience"] > 20:
-                price += (performance["audience"] - 20) * 500 + 10000
-
-            print("float ---------------", performance["audience"] / 5)
-            print("int ---------------", performance["audience"] // 5)
-
+                price += (performance["audience"] - 20) * 500 + 10000             
             total_point += performance["audience"] // 5
 
         if performance["audience"]  > 30:
             total_point += (performance["audience"] - 30)
 
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
-        print("price:", price)
+
         total_price += price
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

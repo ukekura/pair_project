@@ -26,9 +26,9 @@ def main():
         
         if plays[performance["playID"]].get("type") == "comedy":
             print("comedyを通過しました！")
-            price = 40000
-            if performance["audience"] > 30:
-                price += (performance["audience"] - 30) * 1000 
+            price = 30000 + performance["audience"] * 300
+            if performance["audience"] > 20:
+                price += (performance["audience"] - 20) * 500 + 10000
 
         print("price:", price)
         total_price += price

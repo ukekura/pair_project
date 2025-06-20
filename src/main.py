@@ -30,6 +30,11 @@ def main():
             if performance["audience"] > 20:
                 price += (performance["audience"] - 20) * 500 + 10000
 
+            print("float ---------------", performance["audience"] / 5)
+            print("int ---------------", performance["audience"] // 5)
+
+            total_point += performance["audience"] // 5
+
         if performance["audience"]  > 30:
             total_point += (performance["audience"] - 30)
 

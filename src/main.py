@@ -1,7 +1,10 @@
 import json
 import os
+import sys
 
 def main():
+    args = sys.argv
+
     with open("input/invoices.json", "r", encoding="utf-8") as f:
         invoices = json.load(f)
     with open("input/plays.json", "r", encoding="utf-8") as f:
@@ -46,6 +49,11 @@ def main():
         f.write(invoice_content)
     
     print("請求書が正常に出力されました。")
+
+    print(args[0]);
+
+
+
 
 if __name__ == "__main__":
     main()

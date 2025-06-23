@@ -52,6 +52,8 @@ def main():
     elif args[1] == "html":
         print("htmlが出力されました")
         with open("output/invoice.html", "w", encoding="utf-8") as f:
+            invoice_content = invoice_content.replace('\n', '<br>')
+            print(invoice_content)
             f.write(invoice_content)
     else:
         print(args[1])

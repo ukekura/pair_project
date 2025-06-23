@@ -45,7 +45,8 @@ def main():
     os.makedirs("output", exist_ok=True)
     
     # ファイルに出力
-    if len(args) == 1:
+    if len(args) == 2:
+        print("引数が一つの時")
         if args[1] == "text":
             print("textが出力されました")
             with open("output/invoice.txt", "w", encoding="utf-8") as f:

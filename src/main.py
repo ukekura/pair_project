@@ -48,9 +48,12 @@ def main():
     with open("output/invoice.txt", "w", encoding="utf-8") as f:
         f.write(invoice_content)
     
+    with open("output/invoice.html", "w", encoding="utf-8") as f:
+        f.write(invoice_content)
+
     print("請求書が正常に出力されました。")
 
-    print(args[1]);
+    print(args[1])
 
 
 

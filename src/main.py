@@ -58,7 +58,8 @@ def main():
                 print(invoice_content)
                 f.write(invoice_content)
         else:
-            print(args[1])
+            print("引数はtextかhtmlを入力してください")
+            print("現在の入力：", args[1])
     else:
         print("引数をひとつだけ入力してください")
 

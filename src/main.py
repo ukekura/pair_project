@@ -45,11 +45,16 @@ def main():
     os.makedirs("output", exist_ok=True)
     
     # ファイルに出力
-    with open("output/invoice.txt", "w", encoding="utf-8") as f:
-        f.write(invoice_content)
-    
-    with open("output/invoice.html", "w", encoding="utf-8") as f:
-        f.write(invoice_content)
+    if args[1] == "text":
+        print("textが出力されました")
+        with open("output/invoice.txt", "w", encoding="utf-8") as f:
+            f.write(invoice_content)
+    elif args[1] == "html":
+        print("htmlが出力されました")
+        with open("output/invoice.html", "w", encoding="utf-8") as f:
+            f.write(invoice_content)
+    else:
+        print(args[1])
 
     print("請求書が正常に出力されました。")
 

@@ -45,18 +45,21 @@ def main():
     os.makedirs("output", exist_ok=True)
     
     # ファイルに出力
-    if args[1] == "text":
-        print("textが出力されました")
-        with open("output/invoice.txt", "w", encoding="utf-8") as f:
-            f.write(invoice_content)
-    elif args[1] == "html":
-        print("htmlが出力されました")
-        with open("output/invoice.html", "w", encoding="utf-8") as f:
-            invoice_content = invoice_content.replace('\n', '<br>')
-            print(invoice_content)
-            f.write(invoice_content)
+    if len(args) == 1:
+        if args[1] == "text":
+            print("textが出力されました")
+            with open("output/invoice.txt", "w", encoding="utf-8") as f:
+                f.write(invoice_content)
+        elif args[1] == "html":
+            print("htmlが出力されました")
+            with open("output/invoice.html", "w", encoding="utf-8") as f:
+                invoice_content = invoice_content.replace('\n', '<br>')
+                print(invoice_content)
+                f.write(invoice_content)
+        else:
+            print(args[1])
     else:
-        print(args[1])
+        print("引数をひとつだけ入力してください")
 
     print("請求書が正常に出力されました。")
 

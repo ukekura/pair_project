@@ -46,16 +46,14 @@ def main():
     
     # ファイルに出力
     if len(args) == 2:
-        print("引数が一つの時")
         if args[1] == "text":
-            print("textが出力されました")
+            print("請求書がテキストファイルで出力されました")
             with open("output/invoice.txt", "w", encoding="utf-8") as f:
                 f.write(invoice_content)
         elif args[1] == "html":
-            print("htmlが出力されました")
+            print("請求書がHTMLファイルで出力されました")
             with open("output/invoice.html", "w", encoding="utf-8") as f:
                 invoice_content = invoice_content.replace('\n', '<br>')
-                print(invoice_content)
                 f.write(invoice_content)
         else:
             print("引数はtextかhtmlを入力してください")
@@ -63,8 +61,6 @@ def main():
     else:
         print("引数をひとつだけ入力してください")
 
-
-    #print(args[1])
 
 
 

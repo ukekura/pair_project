@@ -62,9 +62,8 @@ def main():
     else:
         print("引数をひとつだけ入力してください")
 
-    print("請求書が正常に出力されました。")
 
-    print(args[1])
+    #print(args[1])
 
 
 

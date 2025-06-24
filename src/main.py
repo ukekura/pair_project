@@ -32,17 +32,21 @@ def main():
             total_point += performance["audience"] // 5
 
         if plays[performance["playID"]].get("type") == "tragic-comedy":
+            print("test01")
             price = 35000 + performance["audience"] * 500
-            if performance["audience"] > 20 & performance["audience"] <= 30:
+            if performance["audience"] > 20 and performance["audience"] <= 30:
+                print("test02")
                 total_point += (performance["audience"] - 20)
     
 
         if performance["audience"]  > 30:
+            print("test03")
             total_point += (performance["audience"] - 30)
 
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
         total_price += price
+        print("total_point:", total_point)
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"
     invoice_content += "獲得ポイント：" + str(total_point) + "pt"

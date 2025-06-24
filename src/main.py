@@ -43,9 +43,9 @@ def main():
 
     
     
-    html_invoice_content = "HTML請求書\n"
+    html_invoice_content = "HTML請求書<br>"
 
-    html_invoice_content += invoices[0]["customer"] + "\n"
+    html_invoice_content += invoices[0]["customer"] + "<br>"
 
     total_price = 0
     total_point = 0
@@ -66,11 +66,11 @@ def main():
         if performance["audience"]  > 30:
             total_point += (performance["audience"] - 30)
 
-        html_invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+        html_invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）<br>"
 
         total_price += price
 
-    html_invoice_content += "合計金額：$" + str(total_price) +  "\n"
+    html_invoice_content += "合計金額：$" + str(total_price) +  "<br>"
     html_invoice_content += "獲得ポイント：" + str(total_point) + "pt"
 
 
@@ -86,7 +86,6 @@ def main():
         elif args[1] == "html":
             print("請求書がHTMLファイルで出力されました")
             with open("output/invoice.html", "w", encoding="utf-8") as f:
-                html_invoice_content = html_invoice_content.replace('\n', '<br>')
                 f.write(html_invoice_content)
         else:
             print("引数はtextかhtmlを入力してください")

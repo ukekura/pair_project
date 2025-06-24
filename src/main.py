@@ -43,9 +43,9 @@ def main():
 
     
     
-    html_invoice_content = "<h1>HTML請求書</h1>"
+    html_invoice_content = "<h1>請求書</h1>"
 
-    html_invoice_content += invoices[0]["customer"] + "<br>"
+    html_invoice_content += "<p>" + invoices[0]["customer"] + "</p>"
 
     total_price = 0
     total_point = 0
@@ -74,8 +74,8 @@ def main():
 
     html_invoice_content += "</ul>"
 
-    html_invoice_content += "合計金額：$" + str(total_price) +  "<br>"
-    html_invoice_content += "獲得ポイント：" + str(total_point) + "pt"
+    html_invoice_content += "<p>合計金額：$" + str(total_price) +  "</p>"
+    html_invoice_content += "<p>獲得ポイント：" + str(total_point) + "pt</p>"
 
 
     # 出力ディレクトリの作成（存在しない場合）

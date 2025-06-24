@@ -1,5 +1,10 @@
 import json
+import os
 from src.main import main
+
+def excute_main():
+   os.environ["USE_MOCK"] = "1"
+   main()
 
 # jsonファイルの読み込み
 def load_json():
@@ -23,13 +28,13 @@ def get_all_text_invoice():
 
 # 「請求書」というタイトルがあるか
 def test_invoice_has_title():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    assert invoice[0].strip() == "請求書"
 
 # 会社名があるか
 def test_invoice_has_customer_name():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    assert invoice[1].strip() == "BigCo"
 
@@ -37,28 +42,28 @@ def test_invoice_has_customer_name():
 def test_invoice_has_all_performance_name():
    invoices, plays = load_json()
    performance_name = [plays[performance["playID"]]["name"] for performance in invoices[0]["performances"]]
-   main()
+   excute_main()
    invoice = get_all_text_invoice()
    for i in range(len(performance_name)):
        assert performance_name[i] in invoice
 
 # 各演目の観客数
 def test_hamlet_audience():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    target_line = [line for line in invoice if "Hamlet" in line]
    audience_count = int(target_line[0].split("観客数：")[1].split("人")[0])
    assert audience_count == 55
 
 def test_as_like_audience():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    target_line = [line for line in invoice if "As You Like It" in line]
    audience_count = int(target_line[0].split("観客数：")[1].split("人")[0])
    assert audience_count == 35
 
 def test_othello_audience():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    target_line = [line for line in invoice if "Othello" in line]
    audience_count = int(target_line[0].split("観客数：")[1].split("人")[0])
@@ -66,21 +71,21 @@ def test_othello_audience():
 
 # 各演目の金額
 def test_hamlet_price():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    target_line = [line for line in invoice if "Hamlet" in line]
    price = int(target_line[0].split("金額：$")[1].split("）")[0])
    assert price == 65000
 
 def test_as_like_price():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    target_line = [line for line in invoice if "As You Like It" in line]
    price = int(target_line[0].split("金額：$")[1].split("）")[0])
    assert price == 58000
 
 def test_othello_price():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    target_line = [line for line in invoice if "Othello" in line]
    price = int(target_line[0].split("金額：$")[1].split("）")[0])
@@ -88,7 +93,7 @@ def test_othello_price():
 
 # 合計金額
 def test_total_price():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    total_price_line = invoice[-2].strip()
    total_price = int(total_price_line.split("合計金額：$")[1])
@@ -96,7 +101,7 @@ def test_total_price():
 
 # 獲得ポイント
 def test_total_price():
-   main()
+   excute_main()
    invoice = get_lines_text_invoice()
    total_price_line = invoice[-1].strip()
    total_price = int(total_price_line.split("獲得ポイント：")[1].split("pt")[0])

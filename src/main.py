@@ -2,7 +2,12 @@ import json
 import os
 
 def main():
-    with open("input/invoices.json", "r", encoding="utf-8") as f:
+    # 環境変数で切り替え
+    invoices_path = "input/invoices.json"
+    if os.environ.get("USE_MOCK") == "1":
+        invoices_path = "tests/mock.json"
+
+    with open(invoices_path, "r", encoding="utf-8") as f:
         invoices = json.load(f)
     with open("input/plays.json", "r", encoding="utf-8") as f:
         plays = json.load(f)

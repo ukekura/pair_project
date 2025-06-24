@@ -34,9 +34,9 @@ def main():
         if plays[performance["playID"]].get("type") == "tragic-comedy":
             print("test01")
             price = 35000 + performance["audience"] * 500
-            if performance["audience"] > 20 and performance["audience"] <= 30:
+            if performance["audience"] > 20:
                 print("test02")
-                total_point += (performance["audience"] - 20)
+                total_point += min((performance["audience"] - 20), 10)
     
 
         if performance["audience"]  > 30:

@@ -31,6 +31,11 @@ def main():
                 price += (performance["audience"] - 20) * 500 + 10000             
             total_point += performance["audience"] // 5
 
+        if plays[performance["playID"]].get("type") == "tragic-comedy":
+            print("悲喜劇の場合")
+            price = 35000 + performance["audience"] * 500
+
+
         if performance["audience"]  > 30:
             total_point += (performance["audience"] - 30)
 

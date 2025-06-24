@@ -43,12 +43,14 @@ def main():
 
     
     
-    html_invoice_content = "HTML請求書<br>"
+    html_invoice_content = "<h1>HTML請求書</h1>"
 
     html_invoice_content += invoices[0]["customer"] + "<br>"
 
     total_price = 0
     total_point = 0
+
+    html_invoice_content += "<ul>"
 
     for performance in invoices[0]["performances"]:
 
@@ -66,9 +68,11 @@ def main():
         if performance["audience"]  > 30:
             total_point += (performance["audience"] - 30)
 
-        html_invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）<br>"
+        html_invoice_content += "<li>" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）</li>"
 
         total_price += price
+
+    html_invoice_content += "</ul>"
 
     html_invoice_content += "合計金額：$" + str(total_price) +  "<br>"
     html_invoice_content += "獲得ポイント：" + str(total_point) + "pt"

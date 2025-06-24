@@ -38,58 +38,23 @@ def test_invoice_has_customer_name():
    invoice = get_lines_text_invoice()
    assert invoice[1].strip() == "BigCo"
 
-# invoice.jsonにある劇名が全て請求書に含まれているか
-def test_invoice_has_all_performance_name():
-   invoices, plays = load_json()
-   performance_name = [plays[performance["playID"]]["name"] for performance in invoices[0]["performances"]]
+# Hamlet
+def test_hamlet():
    excute_main()
    invoice = get_all_text_invoice()
-   for i in range(len(performance_name)):
-       assert performance_name[i] in invoice
+   assert '・Hamlet（観客数：55人、金額：$65000）' in invoice
 
-# 各演目の観客数
-def test_hamlet_audience():
+# As You Like It
+def test_as_like():
    excute_main()
-   invoice = get_lines_text_invoice()
-   target_line = [line for line in invoice if "Hamlet" in line]
-   audience_count = int(target_line[0].split("観客数：")[1].split("人")[0])
-   assert audience_count == 55
+   invoice = get_all_text_invoice()
+   assert '・As You Like It（観客数：35人、金額：$58000）' in invoice
 
-def test_as_like_audience():
+# Othello
+def test_othello():
    excute_main()
-   invoice = get_lines_text_invoice()
-   target_line = [line for line in invoice if "As You Like It" in line]
-   audience_count = int(target_line[0].split("観客数：")[1].split("人")[0])
-   assert audience_count == 35
-
-def test_othello_audience():
-   excute_main()
-   invoice = get_lines_text_invoice()
-   target_line = [line for line in invoice if "Othello" in line]
-   audience_count = int(target_line[0].split("観客数：")[1].split("人")[0])
-   assert audience_count == 40
-
-# 各演目の金額
-def test_hamlet_price():
-   excute_main()
-   invoice = get_lines_text_invoice()
-   target_line = [line for line in invoice if "Hamlet" in line]
-   price = int(target_line[0].split("金額：$")[1].split("）")[0])
-   assert price == 65000
-
-def test_as_like_price():
-   excute_main()
-   invoice = get_lines_text_invoice()
-   target_line = [line for line in invoice if "As You Like It" in line]
-   price = int(target_line[0].split("金額：$")[1].split("）")[0])
-   assert price == 58000
-
-def test_othello_price():
-   excute_main()
-   invoice = get_lines_text_invoice()
-   target_line = [line for line in invoice if "Othello" in line]
-   price = int(target_line[0].split("金額：$")[1].split("）")[0])
-   assert price == 50000
+   invoice = get_all_text_invoice()
+   assert '・Othello（観客数：40人、金額：$50000）' in invoice
 
 # 合計金額
 def test_total_price():

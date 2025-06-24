@@ -1,12 +1,15 @@
 import json
 import os
 
-def main():
-    with open("input/invoices.json", "r", encoding="utf-8") as f:
+def load_json():
+   with open("input/invoices.json", "r", encoding="utf-8") as f:
         invoices = json.load(f)
-    with open("input/plays.json", "r", encoding="utf-8") as f:
+   with open("input/plays.json", "r", encoding="utf-8") as f:
         plays = json.load(f)
+   return invoices, plays
 
+def main():
+    invoices, plays = load_json()
 
     invoice_content = "請求書\n"
 

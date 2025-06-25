@@ -1,13 +1,15 @@
-{
-  "customer": "TestCase No.30",
-  "performances": [
-    {
-      "playID": "hamlet",
-      "audience": 29
-    },
-    {
-      "playID": "as-like",
-      "audience": 20
-    }
-  ]
-}
+[
+  {
+    "customer": "TestCase No.30",
+    "performances": [
+      {
+        "playID": "hamlet",
+        "audience": 29
+      },
+      {
+        "playID": "as-like",
+        "audience": 20
+      }
+    ]
+  }
+]

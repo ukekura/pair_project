@@ -62,6 +62,9 @@ def main():
             continue
         with open(os.path.join(INPUT_DIR, fname), encoding='utf-8') as f:
             data = json.load(f)
+        # dataがリスト形式の場合は最初の要素を使う
+        if isinstance(data, list):
+            data = data[0]
         customer = data['customer']
         performances = data['performances']
         invoice_text = format_invoice(customer, performances)

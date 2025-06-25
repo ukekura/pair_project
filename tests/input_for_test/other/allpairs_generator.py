@@ -5,7 +5,7 @@ from allpairspy import AllPairs
 # 各演目の観客数の候補
 parameters = [
     [0, 29, 30, 31],  # Hamlet
-    [0, 5, 18, 19, 20, 21, 30, 31, 35],  # As You Like It
+    [0, 4, 5, 6, 19, 20, 21, 30, 31, 35],  # As You Like It
     [0, 29, 30, 31]  # Othello
 ]
 

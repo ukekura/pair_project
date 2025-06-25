@@ -2,7 +2,7 @@ import os
 import json
 import csv
 
-INPUT_DIR = os.path.join(os.path.dirname(__file__), '../input_for_test')
+INPUT_DIR = os.path.join(os.path.dirname(__file__), '../../input_for_test')
 CSV_PATH = os.path.join(os.path.dirname(__file__), 'invoice_output_pattern.csv')
 OUTPUT_DIR = os.path.dirname(__file__)
 

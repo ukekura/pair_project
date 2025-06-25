@@ -4,7 +4,7 @@ import csv
 
 INPUT_DIR = os.path.join(os.path.dirname(__file__), '../../input_for_test')
 CSV_PATH = os.path.join(os.path.dirname(__file__), 'invoice_output_pattern.csv')
-OUTPUT_DIR = os.path.dirname(__file__)
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '../')
 
 # CSVを辞書化（大文字小文字無視のためlowerで統一）
 def playid_to_fullname(short):

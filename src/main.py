@@ -8,6 +8,9 @@ def load_json():
         plays = json.load(f)
    return invoices, plays
 
+def calc_price_point():
+    return
+
 def main():
     invoices, plays = load_json()
 
@@ -18,8 +21,6 @@ def main():
     total_price = 0
     total_point = 0
 
-    def calc_price_point():
-        return
 
     for performance in invoices[0]["performances"]:
 

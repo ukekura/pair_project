@@ -58,8 +58,6 @@ def main():
     invoice_content += "合計金額：$" + str(total_price) +  "\n"
     invoice_content += "獲得ポイント：" + str(total_point) + "pt"
 
-    # 出力ディレクトリの作成（存在しない場合）
-    os.makedirs("output", exist_ok=True)
     
     output_text(invoice_content)
 

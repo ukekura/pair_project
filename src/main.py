@@ -48,7 +48,7 @@ def main():
 
     invoice_content = "請求書\n"
 
-    invoice_content += invoices[0]["customer"] + "\n"
+    invoice_content += formated_invoices["customer"] + "\n"
 
     total_price = 0
     total_point = 0

@@ -84,6 +84,7 @@ def test_testcase_6(mocker):
 
 # TestCase No.7
 def test_testcase_7(mocker):
+    """喜劇の観客数が「喜劇金額変化観客数」未満であるとき、金額は基本料金と一人当たり$300の合算のみである。"""
     mocker.patch("src.main.load_json", lambda: load_json_for_test("testcase_7.json"))
     main()
     invoice = get_output_invoice()
@@ -93,6 +94,7 @@ def test_testcase_7(mocker):
 
 # TestCase No.8
 def test_testcase_8(mocker):
+    """喜劇の観客数が「喜劇金額変化観客数」であるとき、金額は基本料金と一人当たり$300の合算のままである。"""
     mocker.patch("src.main.load_json", lambda: load_json_for_test("testcase_8.json"))
     main()
     invoice = get_output_invoice()
@@ -102,6 +104,7 @@ def test_testcase_8(mocker):
 
 # TestCase No.9
 def test_testcase_9(mocker):
+    """喜劇の観客数が「喜劇金額変化観客数」を超過している場合、金額は基本料金と一人当たり$300の合算より大きくなる。"""
     mocker.patch("src.main.load_json", lambda: load_json_for_test("testcase_9.json"))
     main()
     invoice = get_output_invoice()
@@ -111,6 +114,7 @@ def test_testcase_9(mocker):
 
 # TestCase No.10
 def test_testcase_10(mocker):
+    """喜劇の観客数が「喜劇ポイント付与観客倍数」以上かつ「ポイント付与観客数」未満である場合、「喜劇ポイント付与観客倍数」分のポイントを獲得する。"""
     mocker.patch("src.main.load_json", lambda: load_json_for_test("testcase_10.json"))
     main()
     invoice = get_output_invoice()

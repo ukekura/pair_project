@@ -58,11 +58,7 @@ def main():
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)
     
-    # ファイルに出力
-    with open("output/invoice.txt", "w", encoding="utf-8") as f:
-        f.write(invoice_content)
-    
-    print("請求書が正常に出力されました。")
+    output_text(invoice_content)
 
 if __name__ == "__main__":
     main()

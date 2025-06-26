@@ -31,6 +31,9 @@ def calc_price_point(invoices, plays, invoice_content, total_price, total_point)
 
     return invoice_content, total_price, total_point
 
+def output_text():
+    return
+
 def main():
     invoices, plays = load_json()
 

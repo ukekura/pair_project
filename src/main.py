@@ -32,7 +32,11 @@ def calc_price_point(invoices, plays, invoice_content, total_price, total_point)
     return invoice_content, total_price, total_point
 
 def output_text():
-    return
+    with open("output/invoice.txt", "w", encoding="utf-8") as f:
+        f.write(invoice_content)
+    
+    print("請求書が正常に出力されました。")
+
 
 def main():
     invoices, plays = load_json()

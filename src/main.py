@@ -44,6 +44,8 @@ def output_text(invoice_content):
 def main():
     invoices, plays = load_json()
 
+    formated_invoices = invoices[0]
+
     invoice_content = "請求書\n"
 
     invoice_content += invoices[0]["customer"] + "\n"

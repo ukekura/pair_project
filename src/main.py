@@ -32,6 +32,9 @@ def calc_price_point(invoices, plays, invoice_content, total_price, total_point)
     return invoice_content, total_price, total_point
 
 def output_text(invoice_content):
+    # 出力ディレクトリの作成（存在しない場合）
+    os.makedirs("output", exist_ok=True)
+
     with open("output/invoice.txt", "w", encoding="utf-8") as f:
         f.write(invoice_content)
     

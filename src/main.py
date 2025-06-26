@@ -8,7 +8,7 @@ def load_json():
         plays = json.load(f)
    return invoices, plays
 
-def calc_price_point():
+def calc_price_point(invoices, plays, invoice_content, total_price, total_point):
     for performance in invoices[0]["performances"]:
 
         if plays[performance["playID"]].get("type") == "tragedy":

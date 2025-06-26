@@ -29,7 +29,7 @@ def calc_price_point(invoices, plays, invoice_content, total_price, total_point)
 
         total_price += price
 
-    return
+    return invoice_content, total_price, total_point
 
 def main():
     invoices, plays = load_json()

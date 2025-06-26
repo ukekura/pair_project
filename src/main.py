@@ -8,8 +8,8 @@ def load_json():
         plays = json.load(f)
    return invoices, plays
 
-def calc_price_point(formated_invoices, plays, invoice_content, total_price, total_point):
-    for performance in formated_invoices["performances"]:
+def calc_price_point(invoices, plays, invoice_content, total_price, total_point):
+    for performance in invoices["performances"]:
 
         if plays[performance["playID"]].get("type") == "tragedy":
             price = 40000
@@ -44,17 +44,17 @@ def output_text(invoice_content):
 def main():
     invoices, plays = load_json()
 
-    formated_invoices = invoices[0]
+    invoices = invoices[0]
 
     invoice_content = "請求書\n"
 
-    invoice_content += formated_invoices["customer"] + "\n"
+    invoice_content += invoices["customer"] + "\n"
 
     total_price = 0
     total_point = 0
 
 
-    invoice_content, total_price, total_point = calc_price_point(formated_invoices, plays, invoice_content, total_price, total_point)
+    invoice_content, total_price, total_point = calc_price_point(invoices, plays, invoice_content, total_price, total_point)
 
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

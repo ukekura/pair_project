@@ -30,7 +30,12 @@ def main():
 
     
     def calc_price_point(invoices, plays, invoice_content):
-        total_price = 0
+        def init_total_price():
+            total_price = 0
+
+            return total_price
+
+        total_price = init_total_price()
         total_point = 0
 
         for performance in invoices["performances"]:
@@ -49,16 +54,22 @@ def main():
             if performance["audience"]  > 30:
                 total_point += (performance["audience"] - 30)
 
-            invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+            
+            def format_invoice_content(invoice_content):
+                invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
+                return invoice_content
+
+            
+            invoice_content = format_invoice_content(invoice_content)
             total_price += price
 
         return invoice_content, total_price, total_point
 
 
 
-    invoice_content, total_price, total_point = calc_price_point(invoices, plays, invoice_content)
 
+    invoice_content, total_price, total_point = calc_price_point(invoices, plays, invoice_content)
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"
     invoice_content += "獲得ポイント：" + str(total_point) + "pt"

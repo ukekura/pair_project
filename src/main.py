@@ -53,7 +53,7 @@ def main():
     def initialize_total_price():
         total_price = 0
 
-        return
+        return total_price
     
     total_price = 0
     total_point = 0

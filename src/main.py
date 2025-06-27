@@ -33,6 +33,11 @@ def main():
 
         return total_price
     
+    def initialize_total_point():
+        total_point = 0
+
+        return total_point
+    
     def calc_price_point(invoices, plays, invoice_content, total_point):
         total_price = initialize_total_price()
 
@@ -60,7 +65,7 @@ def main():
 
     
     total_price = initialize_total_price()
-    total_point = 0
+    total_point = initialize_total_point()
 
 
     invoice_content, total_price, total_point = calc_price_point(invoices, plays, invoice_content, total_point)

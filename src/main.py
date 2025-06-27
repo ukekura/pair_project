@@ -38,8 +38,9 @@ def main():
 
         return total_point
     
-    def calc_price_point(invoices, plays, invoice_content, total_point):
+    def calc_price_point(invoices, plays, invoice_content):
         total_price = initialize_total_price()
+        total_point = initialize_total_point()
 
         for performance in invoices["performances"]:
 
@@ -68,7 +69,7 @@ def main():
     total_point = initialize_total_point()
 
 
-    invoice_content, total_price, total_point = calc_price_point(invoices, plays, invoice_content, total_point)
+    invoice_content, total_price, total_point = calc_price_point(invoices, plays, invoice_content)
 
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

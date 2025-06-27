@@ -33,7 +33,9 @@ def main():
 
         return total_price
     
-    def calc_price_point(invoices, plays, invoice_content, total_price, total_point):    
+    def calc_price_point(invoices, plays, invoice_content, total_price, total_point):
+        total_price = initialize_total_price()
+          
         for performance in invoices["performances"]:
 
             if plays[performance["playID"]].get("type") == "tragedy":

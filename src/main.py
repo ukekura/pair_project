@@ -28,18 +28,14 @@ def main():
 
     invoice_content += invoices["customer"] + "\n"
 
-    def initialize_total_price():
-        total_price = 0
-
-        return total_price
-    
+        
     def initialize_total_point():
         total_point = 0
 
         return total_point
     
     def calc_price_point(invoices, plays, invoice_content):
-        total_price = initialize_total_price()
+        total_price = 0
         total_point = initialize_total_point()
 
         for performance in invoices["performances"]:

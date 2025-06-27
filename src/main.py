@@ -30,12 +30,7 @@ def main():
 
     
     def calc_price_point(invoices, plays, invoice_content):
-        def init_total_price():
-            total_price = 0
-
-            return total_price
-
-        total_price = init_total_price()
+        total_price = 0
         total_point = 0
 
         for performance in invoices["performances"]:

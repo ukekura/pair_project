@@ -51,6 +51,8 @@ def main():
     invoice_content += invoices["customer"] + "\n"
 
     def initialize_total_price():
+        total_price = 0
+
         return
     
     total_price = 0

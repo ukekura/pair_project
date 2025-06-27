@@ -55,7 +55,7 @@ def main():
 
         return total_price
     
-    total_price = 0
+    total_price = initialize_total_price()
     total_point = 0
 
 

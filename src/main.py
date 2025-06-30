@@ -52,7 +52,8 @@ def main():
 
             total_price += price
 
-        invocie_contenta = initialize_invoice_content()
+        invocie_contenta = "請求書\n"
+        invocie_contenta += invoices["customer"] + "\n"
 
         for performance in invoices["performances"]:
 

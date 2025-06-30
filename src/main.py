@@ -8,7 +8,10 @@ def load_json():
         plays = json.load(f)
    return invoices, plays
 
-
+def format_invoice_data(invoices):
+    invoices = invoices[0]
+    return invoices
+    
 def output_text(invoice_content):
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)
@@ -66,10 +69,6 @@ def main():
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
 
-    def format_invoice_data(invoices):
-        invoices = invoices[0]
-        return invoices
-    
     invoices, plays = load_json()
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)

@@ -67,7 +67,7 @@ def main():
         invoices = invoices[0]
         return invoices
     
-    invoices = invoices[0]
+    invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

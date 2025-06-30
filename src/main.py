@@ -52,7 +52,7 @@ def main():
                 total_point += (performance["audience"] - 30)
 
             total_price += price
-            
+            trade_data.append({"name": "", "audeinece": "", "price": ""})
 
         def format_invoice_content(invoice_content):
             for performance in invoices["performances"]:

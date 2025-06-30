@@ -64,11 +64,7 @@ def main():
         invoice_content += "合計金額：$" + str(total_price) +  "\n"
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
-<<<<<<< HEAD
-=======
 
->>>>>>> 0f2efdec21829c5ba6f00b402b546825a93d5e23
-    
     invoices, plays = load_json()
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)

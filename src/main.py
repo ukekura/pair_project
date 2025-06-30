@@ -20,10 +20,6 @@ def output_text(invoice_content):
 
 
 def main():
-    invoices, plays = load_json()
-
-    invoices = invoices[0]
-
     def calc_price_point(invoices, plays):
         total_price = 0
         total_point = 0
@@ -59,17 +55,14 @@ def main():
             if plays[performance["playID"]].get("type") == "comedy":
                 price = 30000 + performance["audience"] * 300
                 if performance["audience"] > 20:
-                    price += (performance["audience"] - 20) * 500 + 10000             
-
+                    price += (performance["audience"] - 20) * 500 + 10000
 
             invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
-
-
+        
         return invocie_contenta, total_price, total_point
 
-
-
-
+    invoices, plays = load_json()
+    invoices = invoices[0]
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

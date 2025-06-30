@@ -29,10 +29,6 @@ def main():
         invoice_content += invoices["customer"] + "\n"
 
         return invoice_content
-
-
-    invoice_content = initialize_invoice_content()
-    
     
     def calc_price_point(invoices, plays):
         total_price = 0

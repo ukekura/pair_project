@@ -62,18 +62,6 @@ def main():
 
         def format_invoice_content(trade_data, invoice_content):            
             for t in trade_data:
-
-                if plays[performance["playID"]].get("type") == "tragedy":
-                    price = 40000
-                    if performance["audience"] > 30:
-                        price += (performance["audience"] - 30) * 1000 
-
-                if plays[performance["playID"]].get("type") == "comedy":
-                    price = 30000 + performance["audience"] * 300
-                    if performance["audience"] > 20:
-                        price += (performance["audience"] - 20) * 500 + 10000             
-
-
                 invoice_content = invoice_content + "・" + t["name"] + "（観客数：" + str(t["audience"]) + "人、金額：$"+ str(t["price"]) + "）\n"
 
             return invoice_content

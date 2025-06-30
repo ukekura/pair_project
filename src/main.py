@@ -50,11 +50,6 @@ def main():
                 total_point += (performance["audience"] - 30)
 
             
-            def format_invoice_content(invoice_content):
-                invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
-
-                return invoice_content
-
             
             invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
             total_price += price

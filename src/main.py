@@ -15,6 +15,10 @@ def output_text(invoice_content):
     print("請求書が正常に出力されました。")
 
 def main():
+    def format_invoice_data(invoices):
+        invoices = invoices[0]
+        return invoices
+    
     def calc_price_point(invoices, plays):
         total_price = 0
         total_point = 0
@@ -60,15 +64,12 @@ def main():
         invoice_content += "合計金額：$" + str(total_price) +  "\n"
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
-
-    def format_invoice_data(invoices):
-        invoices = invoices[0]
-        return invoices
     
     invoices, plays = load_json()
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)
-    invoice_content = add_total_price_point(invoice_content)
+    invoice_content += "合計金額：$" + str(total_price) +  "\n"
+    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
     output_text(invoice_content)
 
 if __name__ == "__main__":

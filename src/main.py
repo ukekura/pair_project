@@ -56,7 +56,7 @@ def main():
                 return invoice_content
 
             
-            invoice_content = format_invoice_content(invoice_content)
+            invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
             total_price += price
 
         return invoice_content, total_price, total_point

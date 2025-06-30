@@ -75,8 +75,7 @@ def main():
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
 
-    invoice_content += "合計金額：$" + str(total_price) +  "\n"
-    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
+    invoice_content = add_total_price_point(invoice_content)
 
     
     output_text(invoice_content)

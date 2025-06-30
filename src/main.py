@@ -33,6 +33,8 @@ def main():
         total_price = 0
         total_point = 0
 
+        trade_data = []
+
         for performance in invoices["performances"]:
 
             if plays[performance["playID"]].get("type") == "tragedy":
@@ -50,6 +52,7 @@ def main():
                 total_point += (performance["audience"] - 30)
 
             total_price += price
+            
 
         def format_invoice_content(invoice_content):
             for performance in invoices["performances"]:

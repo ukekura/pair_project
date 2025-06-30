@@ -24,10 +24,15 @@ def main():
 
     invoices = invoices[0]
 
-    invoice_content = "請求書\n"
+    def initialize_invoice_content():
+        invoice_content = "請求書\n"
+        invoice_content += invoices["customer"] + "\n"
 
-    invoice_content += invoices["customer"] + "\n"
+        return invoice_content
 
+
+    invoice_content = initialize_invoice_content()
+    
     
     def calc_price_point(invoices, plays, invoice_content):
         total_price = 0
@@ -51,6 +56,7 @@ def main():
 
             total_price += price
 
+        invocie_contenta = initialize_invoice_content()
 
         for performance in invoices["performances"]:
 
@@ -65,10 +71,10 @@ def main():
                     price += (performance["audience"] - 20) * 500 + 10000             
 
 
-            invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+            invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
 
-        return invoice_content, total_price, total_point
+        return invocie_contenta, total_price, total_point
 
 
 

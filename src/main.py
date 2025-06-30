@@ -55,7 +55,7 @@ def main():
             trade_data.append(
                 {
                     "name": plays[performance["playID"]]["name"],
-                    "audeinece": performance["audience"],
+                    "audience": performance["audience"],
                     "price": price
                 }
             )
@@ -76,7 +76,7 @@ def main():
 
                 invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
             
-            for performance in invoices["performances"]:
+            for t in trade_data:
 
                 if plays[performance["playID"]].get("type") == "tragedy":
                     price = 40000
@@ -89,7 +89,7 @@ def main():
                         price += (performance["audience"] - 20) * 500 + 10000             
 
 
-                invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+                invoice_content = invoice_content + "・" + t["name"] + "（観客数：" + str(t["audience"]) + "人、金額：$"+ str(t["price"]) + "）\n"
 
             return invoice_content
 

@@ -61,12 +61,12 @@ def main():
         
         return invocie_contenta, total_price, total_point
 
-    invoices, plays = load_json()
 
     def format_invoice_data(invoices):
         invoices = invoices[0]
         return invoices
     
+    invoices, plays = load_json()
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)
 

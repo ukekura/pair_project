@@ -24,12 +24,6 @@ def main():
 
     invoices = invoices[0]
 
-    def initialize_invoice_content():
-        invoice_content = "請求書\n"
-        invoice_content += invoices["customer"] + "\n"
-
-        return invoice_content
-    
     def calc_price_point(invoices, plays):
         total_price = 0
         total_point = 0

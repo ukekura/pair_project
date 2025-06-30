@@ -60,11 +60,6 @@ def main():
         
         return invocie_contenta, total_price, total_point
 
-    def add_total_price_point(invoice_content):
-        invoice_content += "合計金額：$" + str(total_price) +  "\n"
-        invoice_content += "獲得ポイント：" + str(total_point) + "pt"
-        return invoice_content
-
     invoices, plays = load_json()
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)

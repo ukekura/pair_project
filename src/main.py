@@ -70,6 +70,9 @@ def main():
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)
 
+    def add_total_price_point():
+        return
+
     invoice_content += "合計金額：$" + str(total_price) +  "\n"
     invoice_content += "獲得ポイント：" + str(total_point) + "pt"
 

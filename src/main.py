@@ -64,6 +64,7 @@ def main():
     invoices, plays = load_json()
 
     def format_invoice_data():
+        invoices = invoices[0]
         return
     
     invoices = invoices[0]

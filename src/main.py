@@ -8,15 +8,16 @@ def load_json():
         plays = json.load(f)
    return invoices, plays
 
-def format_invoice_data(invoices):
-    invoices = invoices[0]
-    return invoices
-    
+
 def output_text(invoice_content):
+    # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)
+
     with open("output/invoice.txt", "w", encoding="utf-8") as f:
         f.write(invoice_content)
+    
     print("請求書が正常に出力されました。")
+
 
 def main():
     def calc_price_point(invoices, plays):
@@ -65,10 +66,17 @@ def main():
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
 
+    def format_invoice_data(invoices):
+        invoices = invoices[0]
+        return invoices
+    
     invoices, plays = load_json()
     invoices = format_invoice_data(invoices)
     invoice_content, total_price, total_point = calc_price_point(invoices, plays)
+
+
     invoice_content = add_total_price_point(invoice_content)
+
     
     output_text(invoice_content)
 

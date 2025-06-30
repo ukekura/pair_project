@@ -60,7 +60,7 @@ def main():
                 }
             )
 
-        def format_invoice_content(invoice_content):
+        def format_invoice_content(trade_data, invoice_content):
             for performance in invoices["performances"]:
 
                 if plays[performance["playID"]].get("type") == "tragedy":
@@ -77,7 +77,7 @@ def main():
                 invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
             return invoice_content
 
-        invoice_content = format_invoice_content(invoice_content)
+        invoice_content = format_invoice_content(trade_data, invoice_content)
 
         return invoice_content, total_price, total_point
 

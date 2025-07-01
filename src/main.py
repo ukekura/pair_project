@@ -67,9 +67,13 @@ def main():
                 invocie_contenta = invocie_contenta + "・" + PLAYS[md["playID"]]["name"] + "（観客数：" + str(md["audience"]) + "人、金額：$"+ str(md["price"]) + "）\n"
             return invocie_contenta
         
-        mid_data = INVOICES["performances"]
-        for md in mid_data:
-            md["price"] = 0
+        def create_mid_data():
+            mid_data = INVOICES["performances"]
+            for md in mid_data:
+                md["price"] = 0
+            return mid_data
+        
+        mid_data = create_mid_data()
         invocie_contenta = format_faze(mid_data, invocie_contenta)
         
         return invocie_contenta

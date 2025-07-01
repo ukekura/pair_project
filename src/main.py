@@ -81,3 +81,6 @@ class Calculater:
         if performance["audience"] > 20:
             price += (performance["audience"] - 20) * 500 + 10000
         return price
+    
+class Formatter:
+    pass

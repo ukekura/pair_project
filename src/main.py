@@ -61,7 +61,15 @@ def main():
         
         invocie_contenta = create_trade_content(invocie_contenta)
 
-        total_price, total_point = calc_total_price_point(invoices["performances"], total_price, total_point)
+        for performance in invoices["performances"]:
+            if plays[performance["playID"]].get("type") == "tragedy":
+                price = clac_tragedy_price(performance)
+            if plays[performance["playID"]].get("type") == "comedy":
+                price = clac_comedy_price(performance)
+                total_point += performance["audience"] // 5
+            if performance["audience"]  > 30:
+                total_point += (performance["audience"] - 30)
+            total_price += price
         
         return invocie_contenta, total_price, total_point
     

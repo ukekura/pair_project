@@ -14,11 +14,6 @@ def output_text(invoice_content):
         f.write(invoice_content)
     print("請求書が正常に出力されました。")
 
-def initialize_invoice_content(INVOICES):
-    invocie_content = "請求書\n"
-    invocie_content += INVOICES["customer"] + "\n"
-    return invocie_content
-
 def main():
     def format_invoice_data(INVOICES):
         INVOICES = INVOICES[0]

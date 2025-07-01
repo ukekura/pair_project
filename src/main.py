@@ -61,14 +61,14 @@ def main():
     
     def create_trade_content(invocie_contenta):
 
-        def format_faze(mid_data, invocie_contenta):
+        def format_faze(mid_data):
             for performance in INVOICES["performances"]:
                 mid_data["price"] = check_type_calc_price(performance)
-                invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(mid_data["price"]) + "）\n"
-            return invocie_contenta
+                mid_data["invoice_content"] = mid_data["invoice_content"] + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(mid_data["price"]) + "）\n"
+            return mid_data["invoice_content"]
         
-        mid_data = {"price": 0}
-        invocie_contenta = format_faze(mid_data, invocie_contenta)
+        mid_data = {"price": 0, "invoice_content": invocie_contenta}
+        invocie_contenta = format_faze(mid_data)
         
         return invocie_contenta
     

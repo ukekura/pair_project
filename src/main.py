@@ -64,8 +64,8 @@ def main():
         def first_hulf(performance):
             price = check_type_calc_price(performance)
             mid_data = {"name": PLAYS[performance["playID"]]["name"], "audience": performance["audience"], "price": price}
-        
             return mid_data
+        
         def add_trade_item(mid_data, invocie_contenta):
             invocie_contenta = invocie_contenta + "・" + mid_data["name"] + "（観客数：" + str(mid_data["audience"]) + "人、金額：$"+ str(mid_data["price"]) + "）\n"
             return invocie_contenta

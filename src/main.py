@@ -59,10 +59,9 @@ def main():
     
     def new_new_calc_price_point(invoices, plays, total_price, total_point, invocie_contenta):
         
-        total_price, total_point = calc_total_price_point(invoices["performances"], total_price, total_point)
-
-        
         invocie_contenta = create_trade_content(invocie_contenta)
+
+        total_price, total_point = calc_total_price_point(invoices["performances"], total_price, total_point)
         
         return invocie_contenta, total_price, total_point
     

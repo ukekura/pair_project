@@ -61,6 +61,7 @@ def main():
             return invocie_contenta
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
+            mid_data = []
             invocie_contenta = add_trade_item(invocie_contenta)
         return invocie_contenta
     

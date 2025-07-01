@@ -74,7 +74,7 @@ def main():
     invoice_content = initialize_invoice_content()
     invoice_content, total_price, total_point = new_new_calc_price_point(invoices, plays, total_price, total_point, invoice_content)
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
-    
+
     output_text(invoice_content)
 
 if __name__ == "__main__":

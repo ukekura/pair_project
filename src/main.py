@@ -19,6 +19,9 @@ def main():
         invoices = invoices[0]
         return invoices
     
+    def new_calc_price_point(invoices, plays):
+        return
+    
     def calc_price_point(invoices, plays):
         total_price = 0
         total_point = 0

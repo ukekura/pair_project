@@ -84,4 +84,8 @@ class Calculater:
         return price
     
 class Formatter:
+    def initialize_invoice_content(INVOICES):
+        invocie_content = "請求書\n"
+        invocie_content += INVOICES["customer"] + "\n"
+        return invocie_content
     pass

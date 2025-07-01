@@ -49,6 +49,7 @@ def main():
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
+        for performance in INVOICES["performances"]:
             if PLAYS[performance["playID"]].get("type") == "comedy":
                 total_point += performance["audience"] // 5
             if performance["audience"]  > 30:

@@ -24,18 +24,25 @@ def main():
         invocie_content += invoices["customer"] + "\n"
         return invocie_content
     
+    def clac_tragedy_price(performance):
+        price = 40000
+        if performance["audience"] > 30:
+            price += (performance["audience"] - 30) * 1000 
+        return price
+    
+    def clac_comedy_price(performance):
+        price = 30000 + performance["audience"] * 300
+        if performance["audience"] > 20:
+            price += (performance["audience"] - 20) * 500 + 10000
+        return price
+    
     def new_new_calc_price_point(invoices, plays, total_price, total_point, invocie_contenta):
         for performance in invoices["performances"]:
 
             if plays[performance["playID"]].get("type") == "tragedy":
-                price = 40000
-                if performance["audience"] > 30:
-                    price += (performance["audience"] - 30) * 1000 
-
+                price = clac_tragedy_price(performance)
             if plays[performance["playID"]].get("type") == "comedy":
-                price = 30000 + performance["audience"] * 300
-                if performance["audience"] > 20:
-                    price += (performance["audience"] - 20) * 500 + 10000             
+                price = clac_comedy_price(performance)
                 total_point += performance["audience"] // 5
 
             if performance["audience"]  > 30:
@@ -46,14 +53,10 @@ def main():
         for performance in invoices["performances"]:
 
             if plays[performance["playID"]].get("type") == "tragedy":
-                price = 40000
-                if performance["audience"] > 30:
-                    price += (performance["audience"] - 30) * 1000 
+                price = clac_tragedy_price(performance)
 
             if plays[performance["playID"]].get("type") == "comedy":
-                price = 30000 + performance["audience"] * 300
-                if performance["audience"] > 20:
-                    price += (performance["audience"] - 20) * 500 + 10000
+                price = clac_comedy_price(performance)
 
             invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         

@@ -54,6 +54,11 @@ def main():
         
         return invocie_contenta, total_price, total_point
     
+    def initialize_invoice_content():
+        invocie_contenta = "請求書\n"
+        invocie_contenta += invoices["customer"] + "\n"
+        return invocie_contenta
+    
     def new_calc_price_point(invoices, plays, total_price, total_point):
         invocie_contenta = "請求書\n"
         invocie_contenta += invoices["customer"] + "\n"

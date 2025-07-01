@@ -14,15 +14,16 @@ def output_text(invoice_content):
         f.write(invoice_content)
     print("請求書が正常に出力されました。")
 
+def initialize_invoice_content(INVOICES):
+    invocie_content = "請求書\n"
+    invocie_content += INVOICES["customer"] + "\n"
+    return invocie_content
+
 def main():
     def format_invoice_data(INVOICES):
         INVOICES = INVOICES[0]
         return INVOICES
     
-    def initialize_invoice_content():
-        invocie_content = "請求書\n"
-        invocie_content += INVOICES["customer"] + "\n"
-        return invocie_content
     
     def check_type_calc_price(performance):
         if PLAYS[performance["playID"]].get("type") == "tragedy":
@@ -60,7 +61,7 @@ def main():
     
     total_price, total_point = calc_total_price_point(INVOICES)
 
-    invoice_content = initialize_invoice_content()
+    invoice_content = initialize_invoice_content(INVOICES)
     invoice_content = create_trade_content(invoice_content)
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
 

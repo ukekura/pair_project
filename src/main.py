@@ -56,9 +56,6 @@ def main():
             invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         
         return invocie_contenta, total_price, total_point
-    
-    def calc_price_point(invoices, plays):
-        return new_calc_price_point(invoices, plays, total_price, total_point)
 
     invoices, plays = load_json()
     invoices = format_invoice_data(invoices)

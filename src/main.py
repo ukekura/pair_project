@@ -44,7 +44,8 @@ def main():
         return price
     
     def calc_total_price_point(INVOICES):
-        total_price, total_point = initialize_total_price_point()
+        total_price = 0
+        total_point = 0
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
@@ -68,18 +69,11 @@ def main():
 
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
-
-    def initialize_total_price_point():
-        total_price = 0
-        total_point = 0
-        return total_price, total_point
     
     total_price, total_point = calc_total_price_point(INVOICES)
 
     invoice_content = initialize_invoice_content()
-
     invoice_content = create_trade_content(invoice_content)
-    
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
 
     output_text(invoice_content)

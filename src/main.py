@@ -52,15 +52,19 @@ def main():
         
         total_price, total_point = calc_total_price_point(invoices["performances"], total_price, total_point)
 
-        for performance in invoices["performances"]:
+        def create_trade_content(invocie_contenta):
+            for performance in invoices["performances"]:
 
-            if plays[performance["playID"]].get("type") == "tragedy":
-                price = clac_tragedy_price(performance)
+                if plays[performance["playID"]].get("type") == "tragedy":
+                    price = clac_tragedy_price(performance)
 
-            if plays[performance["playID"]].get("type") == "comedy":
-                price = clac_comedy_price(performance)
+                if plays[performance["playID"]].get("type") == "comedy":
+                    price = clac_comedy_price(performance)
 
-            invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+                invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+            return invocie_contenta
+        
+        invocie_contenta = create_trade_content(invocie_contenta)
         
         return invocie_contenta, total_price, total_point
     

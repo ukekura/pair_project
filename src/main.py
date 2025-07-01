@@ -20,7 +20,6 @@ def main():
         return invoices
     
     def calc_price_point(invoices, plays):
-        total_price = 0
         total_point = 0
 
         for performance in invoices["performances"]:

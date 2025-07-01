@@ -66,7 +66,11 @@ def main():
     invoices = format_invoice_data(invoices)
     total_price = 0
     total_point = 0
-    invoice_content, total_price, total_point = new_calc_price_point(invoices, plays, total_price, total_point)
+    
+    invocie_contenta = "請求書\n"
+    invocie_contenta += invoices["customer"] + "\n"
+    invoice_content, total_price, total_point = new_new_calc_price_point(invoices, plays, total_price, total_point, invocie_contenta)
+
     invoice_content += "合計金額：$" + str(total_price) +  "\n"
     invoice_content += "獲得ポイント：" + str(total_point) + "pt"
     output_text(invoice_content)

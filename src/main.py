@@ -70,11 +70,11 @@ def main():
 
     total_price = 0
     total_point = 0
+    total_price, total_point = calc_total_price_point(INVOICES, total_price, total_point)
 
     invoice_content = initialize_invoice_content()
 
     invoice_content = create_trade_content(invoice_content)
-    total_price, total_point = calc_total_price_point(INVOICES, total_price, total_point)
     
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
 

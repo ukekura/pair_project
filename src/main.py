@@ -58,9 +58,6 @@ def main():
         return invocie_contenta, total_price, total_point
     
     def calc_price_point(invoices, plays):
-        total_price = 0
-        total_point = 0
-        
         return new_calc_price_point(invoices, plays, total_price, total_point)
 
     invoices, plays = load_json()

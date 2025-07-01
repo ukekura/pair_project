@@ -19,7 +19,7 @@ def main():
         invoices = invoices[0]
         return invoices
     
-    def new_new_calc_price_point(invoices, plays, total_price, total_point):
+    def new_new_calc_price_point(invoices, plays, total_price, total_point, invocie_contenta):
         for performance in invoices["performances"]:
 
             if plays[performance["playID"]].get("type") == "tragedy":
@@ -37,7 +37,6 @@ def main():
                 total_point += (performance["audience"] - 30)
 
             total_price += price
-
 
         for performance in invoices["performances"]:
 

@@ -24,18 +24,6 @@ def main():
         invocie_content += INVOICES["customer"] + "\n"
         return invocie_content
     
-    def clac_tragedy_price(performance):
-        price = 40000
-        if performance["audience"] > 30:
-            price += (performance["audience"] - 30) * 1000 
-        return price
-    
-    def clac_comedy_price(performance):
-        price = 30000 + performance["audience"] * 300
-        if performance["audience"] > 20:
-            price += (performance["audience"] - 20) * 500 + 10000
-        return price
-    
     def check_type_calc_price(performance):
         if PLAYS[performance["playID"]].get("type") == "tragedy":
             price = Calculater.clac_tragedy_price(performance)

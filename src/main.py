@@ -68,8 +68,12 @@ def main():
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
 
-    total_price = 0
-    total_point = 0
+    def initialize_total_price_point():
+        total_price = 0
+        total_point = 0
+        return total_price, total_point
+    total_price, total_point = initialize_total_price_point()
+    
     total_price, total_point = calc_total_price_point(INVOICES, total_price, total_point)
 
     invoice_content = initialize_invoice_content()

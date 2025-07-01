@@ -82,4 +82,14 @@ if __name__ == "__main__":
     main()
 
 class Calculater:
-    pass
+    def clac_tragedy_price(performance):
+        price = 40000
+        if performance["audience"] > 30:
+            price += (performance["audience"] - 30) * 1000 
+        return price
+    
+    def clac_comedy_price(performance):
+        price = 30000 + performance["audience"] * 300
+        if performance["audience"] > 20:
+            price += (performance["audience"] - 20) * 500 + 10000
+        return price

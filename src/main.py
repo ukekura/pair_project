@@ -38,9 +38,9 @@ def main():
     
     def check_type_calc_price(performance):
         if PLAYS[performance["playID"]].get("type") == "tragedy":
-                price = clac_tragedy_price(performance)
+            price = Calculater.clac_tragedy_price(performance)
         if PLAYS[performance["playID"]].get("type") == "comedy":
-            price = clac_comedy_price(performance)
+            price = Calculater.clac_comedy_price(performance)
         return price
     
     def calc_total_price_point(INVOICES):

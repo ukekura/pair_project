@@ -64,11 +64,15 @@ def main():
         invocie_content += invoices["customer"] + "\n"
         return invocie_content
 
-    invocie_contenta = initialize_invoice_content()
-    invoice_content, total_price, total_point = new_new_calc_price_point(invoices, plays, total_price, total_point, invocie_contenta)
+    invoice_content = initialize_invoice_content()
+    invoice_content, total_price, total_point = new_new_calc_price_point(invoices, plays, total_price, total_point, invoice_content)
+    
+    def finish_invoice_content(invoice_content, total_price, total_point):
+        invoice_content += "合計金額：$" + str(total_price) +  "\n"
+        invoice_content += "獲得ポイント：" + str(total_point) + "pt"
+        return invoice_content
 
-    invoice_content += "合計金額：$" + str(total_price) +  "\n"
-    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
+    invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
     output_text(invoice_content)
 
 if __name__ == "__main__":

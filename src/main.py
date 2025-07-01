@@ -42,6 +42,7 @@ def main():
                 price = clac_tragedy_price(performance)
             if plays[performance["playID"]].get("type") == "comedy":
                 price = clac_comedy_price(performance)
+            if plays[performance["playID"]].get("type") == "comedy":
                 total_point += performance["audience"] // 5
             if performance["audience"]  > 30:
                 total_point += (performance["audience"] - 30)

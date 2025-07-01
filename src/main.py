@@ -30,6 +30,8 @@ def main():
             price = 30000 + performance["audience"] * 300
             if performance["audience"] > 20:
                 price += (performance["audience"] - 20) * 500 + 10000             
+
+        if plays[performance["playID"]].get("type") == "comedy":
             total_point += performance["audience"] // 5
 
         if performance["audience"]  > 30:

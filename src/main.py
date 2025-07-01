@@ -18,6 +18,17 @@ def main():
     total_price = 0
     total_point = 0
 
+    def calc_price():
+        if plays[performance["playID"]].get("type") == "tragedy":
+            price = 40000
+            if performance["audience"] > 30:
+                price += (performance["audience"] - 30) * 1000 
+        
+        if plays[performance["playID"]].get("type") == "comedy":
+            price = 30000 + performance["audience"] * 300
+            if performance["audience"] > 20:
+                price += (performance["audience"] - 20) * 500 + 10000             
+
 
     for performance in invoices[0]["performances"]:
         if plays[performance["playID"]].get("type") == "tragedy":

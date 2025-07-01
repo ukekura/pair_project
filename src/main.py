@@ -61,7 +61,7 @@ def main():
     
     total_price, total_point = calc_total_price_point(INVOICES)
 
-    invoice_content = initialize_invoice_content(INVOICES)
+    invoice_content = Formatter.initialize_invoice_content(INVOICES)
     invoice_content = create_trade_content(invoice_content)
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
 

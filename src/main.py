@@ -19,6 +19,11 @@ def main():
         invoices = invoices[0]
         return invoices
     
+    def initialize_invoice_content():
+        invocie_content = "請求書\n"
+        invocie_content += invoices["customer"] + "\n"
+        return invocie_content
+    
     def new_new_calc_price_point(invoices, plays, total_price, total_point, invocie_contenta):
         for performance in invoices["performances"]:
 
@@ -53,26 +58,23 @@ def main():
             invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         
         return invocie_contenta, total_price, total_point
-
-    invoices, plays = load_json()
-    invoices = format_invoice_data(invoices)
-    total_price = 0
-    total_point = 0
-    
-    def initialize_invoice_content():
-        invocie_content = "請求書\n"
-        invocie_content += invoices["customer"] + "\n"
-        return invocie_content
-
-    invoice_content = initialize_invoice_content()
-    invoice_content, total_price, total_point = new_new_calc_price_point(invoices, plays, total_price, total_point, invoice_content)
     
     def finish_invoice_content(invoice_content, total_price, total_point):
         invoice_content += "合計金額：$" + str(total_price) +  "\n"
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
 
+
+    invoices, plays = load_json()
+    invoices = format_invoice_data(invoices)
+
+    total_price = 0
+    total_point = 0
+
+    invoice_content = initialize_invoice_content()
+    invoice_content, total_price, total_point = new_new_calc_price_point(invoices, plays, total_price, total_point, invoice_content)
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
+    
     output_text(invoice_content)
 
 if __name__ == "__main__":

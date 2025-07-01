@@ -2,11 +2,11 @@ import json
 import os
 
 def load_json():
-   with open("input/invoices.json", "r", encoding="utf-8") as f:
-        invoices = json.load(f)
+   with open("input/INVOICES.json", "r", encoding="utf-8") as f:
+        INVOICES = json.load(f)
    with open("input/PLAYS.json", "r", encoding="utf-8") as f:
         PLAYS = json.load(f)
-   return invoices, PLAYS
+   return INVOICES, PLAYS
 
 def output_text(invoice_content):
     os.makedirs("output", exist_ok=True)
@@ -15,13 +15,13 @@ def output_text(invoice_content):
     print("請求書が正常に出力されました。")
 
 def main():
-    def format_invoice_data(invoices):
-        invoices = invoices[0]
-        return invoices
+    def format_invoice_data(INVOICES):
+        INVOICES = INVOICES[0]
+        return INVOICES
     
     def initialize_invoice_content():
         invocie_content = "請求書\n"
-        invocie_content += invoices["customer"] + "\n"
+        invocie_content += INVOICES["customer"] + "\n"
         return invocie_content
     
     def clac_tragedy_price(performance):
@@ -43,8 +43,8 @@ def main():
             price = clac_comedy_price(performance)
         return price
     
-    def calc_total_price_point(invoices, total_price, total_point):
-        for performance in invoices["performances"]:
+    def calc_total_price_point(INVOICES, total_price, total_point):
+        for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
             if PLAYS[performance["playID"]].get("type") == "comedy":
@@ -54,7 +54,7 @@ def main():
         return total_price, total_point
     
     def create_trade_content(invocie_contenta):
-        for performance in invoices["performances"]:
+        for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         return invocie_contenta
@@ -66,7 +66,7 @@ def main():
 
 
     invoices, PLAYS = load_json()
-    invoices = format_invoice_data(invoices)
+    INVOICES = format_invoice_data(invoices)
 
     total_price = 0
     total_point = 0
@@ -74,7 +74,7 @@ def main():
     invoice_content = initialize_invoice_content()
 
     invoice_content = create_trade_content(invoice_content)
-    total_price, total_point = calc_total_price_point(invoices, total_price, total_point)
+    total_price, total_point = calc_total_price_point(INVOICES, total_price, total_point)
     
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
 

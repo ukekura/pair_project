@@ -73,7 +73,6 @@ def main():
         total_price = 0
         total_point = 0
         return total_price, total_point
-    total_price, total_point = initialize_total_price_point()
     
     total_price, total_point = calc_total_price_point(INVOICES)
 

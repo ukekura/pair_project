@@ -63,8 +63,8 @@ def main():
 
         def format_faze(mid_data, invocie_contenta):
             for performance in mid_data:
-                price = check_type_calc_price(performance)
-                invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+                performance["price"] = check_type_calc_price(performance)
+                invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
         
         mid_data = INVOICES["performances"]

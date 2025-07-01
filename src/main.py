@@ -32,8 +32,6 @@ def main():
 
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
-        total_price += price
-
     for performance in invoices[0]["performances"]:
         if plays[performance["playID"]].get("type") == "tragedy":
             price = 40000
@@ -44,8 +42,6 @@ def main():
             price = 30000 + performance["audience"] * 300
             if performance["audience"] > 20:
                 price += (performance["audience"] - 20) * 500 + 10000             
-
-        invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
         total_price += price
 

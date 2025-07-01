@@ -36,12 +36,16 @@ def main():
             price += (performance["audience"] - 20) * 500 + 10000
         return price
     
+    def check_type_calc_price(performance):
+        if plays[performance["playID"]].get("type") == "tragedy":
+                price = clac_tragedy_price(performance)
+        if plays[performance["playID"]].get("type") == "comedy":
+            price = clac_comedy_price(performance)
+        return price
+    
     def calc_total_price_point(invoices, total_price, total_point):
         for performance in invoices["performances"]:
-            if plays[performance["playID"]].get("type") == "tragedy":
-                price = clac_tragedy_price(performance)
-            if plays[performance["playID"]].get("type") == "comedy":
-                price = clac_comedy_price(performance)
+            price = check_type_calc_price(performance)
             total_price += price
             if plays[performance["playID"]].get("type") == "comedy":
                 total_point += performance["audience"] // 5

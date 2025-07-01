@@ -4,9 +4,9 @@ import os
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
         invoices = json.load(f)
-   with open("input/plays.json", "r", encoding="utf-8") as f:
-        plays = json.load(f)
-   return invoices, plays
+   with open("input/PLAYS.json", "r", encoding="utf-8") as f:
+        PLAYS = json.load(f)
+   return invoices, PLAYS
 
 def output_text(invoice_content):
     os.makedirs("output", exist_ok=True)
@@ -37,9 +37,9 @@ def main():
         return price
     
     def check_type_calc_price(performance):
-        if plays[performance["playID"]].get("type") == "tragedy":
+        if PLAYS[performance["playID"]].get("type") == "tragedy":
                 price = clac_tragedy_price(performance)
-        if plays[performance["playID"]].get("type") == "comedy":
+        if PLAYS[performance["playID"]].get("type") == "comedy":
             price = clac_comedy_price(performance)
         return price
     
@@ -47,7 +47,7 @@ def main():
         for performance in invoices["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
-            if plays[performance["playID"]].get("type") == "comedy":
+            if PLAYS[performance["playID"]].get("type") == "comedy":
                 total_point += performance["audience"] // 5
             if performance["audience"]  > 30:
                 total_point += (performance["audience"] - 30)
@@ -56,7 +56,7 @@ def main():
     def create_trade_content(invocie_contenta):
         for performance in invoices["performances"]:
             price = check_type_calc_price(performance)
-            invocie_contenta = invocie_contenta + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+            invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
         return invocie_contenta
     
     def finish_invoice_content(invoice_content, total_price, total_point):
@@ -65,7 +65,7 @@ def main():
         return invoice_content
 
 
-    invoices, plays = load_json()
+    invoices, PLAYS = load_json()
     invoices = format_invoice_data(invoices)
 
     total_price = 0

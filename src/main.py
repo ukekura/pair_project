@@ -19,17 +19,32 @@ def main():
         INVOICES = INVOICES[0]
         return INVOICES
     
+    def initialize_invoice_content():
+        invocie_content = "請求書\n"
+        invocie_content += INVOICES["customer"] + "\n"
+        return invocie_content
+    
+    def clac_tragedy_price(performance):
+        price = 40000
+        if performance["audience"] > 30:
+            price += (performance["audience"] - 30) * 1000 
+        return price
+    
+    def clac_comedy_price(performance):
+        price = 30000 + performance["audience"] * 300
+        if performance["audience"] > 20:
+            price += (performance["audience"] - 20) * 500 + 10000
+        return price
     
     def check_type_calc_price(performance):
         if PLAYS[performance["playID"]].get("type") == "tragedy":
-            price = Calculater.clac_tragedy_price(performance)
+                price = clac_tragedy_price(performance)
         if PLAYS[performance["playID"]].get("type") == "comedy":
-            price = Calculater.clac_comedy_price(performance)
+            price = clac_comedy_price(performance)
         return price
     
     def calc_total_price_point(INVOICES):
-        total_price = 0
-        total_point = 0
+        total_price, total_point = initialize_total_price_point()
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
@@ -53,34 +68,21 @@ def main():
 
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
+
+    def initialize_total_price_point():
+        total_price = 0
+        total_point = 0
+        return total_price, total_point
     
     total_price, total_point = calc_total_price_point(INVOICES)
 
-    invoice_content = Formatter.initialize_invoice_content(INVOICES)
+    invoice_content = initialize_invoice_content()
+
     invoice_content = create_trade_content(invoice_content)
+    
     invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
 
     output_text(invoice_content)
 
 if __name__ == "__main__":
     main()
-
-class Calculater:
-    def clac_tragedy_price(performance):
-        price = 40000
-        if performance["audience"] > 30:
-            price += (performance["audience"] - 30) * 1000 
-        return price
-    
-    def clac_comedy_price(performance):
-        price = 30000 + performance["audience"] * 300
-        if performance["audience"] > 20:
-            price += (performance["audience"] - 20) * 500 + 10000
-        return price
-    
-class Formatter:
-    def initialize_invoice_content(INVOICES):
-        invocie_content = "請求書\n"
-        invocie_content += INVOICES["customer"] + "\n"
-        return invocie_content
-    pass

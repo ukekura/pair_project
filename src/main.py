@@ -57,11 +57,11 @@ def main():
     
     def create_trade_content(invocie_contenta):
         def add_trade_item(mid_data, invocie_contenta):
-            invocie_contenta = invocie_contenta + "・" + mid_data["name"] + "（観客数：" + str(mid_data["audience"]) + "人、金額：$"+ str(price) + "）\n"
+            invocie_contenta = invocie_contenta + "・" + mid_data["name"] + "（観客数：" + str(mid_data["audience"]) + "人、金額：$"+ str(mid_data["price"]) + "）\n"
             return invocie_contenta
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
-            mid_data = {"name": PLAYS[performance["playID"]]["name"], "audience": performance["audience"]}
+            mid_data = {"name": PLAYS[performance["playID"]]["name"], "audience": performance["audience"], "price": price}
             invocie_contenta = add_trade_item(mid_data, invocie_contenta)
         return invocie_contenta
     

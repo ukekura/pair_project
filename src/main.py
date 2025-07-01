@@ -43,7 +43,7 @@ def main():
             price = clac_comedy_price(performance)
         return price
     
-    def calc_total_price_point(INVOICES, total_price, total_point):
+    def calc_total_price_point(INVOICES):
         total_price, total_point = initialize_total_price_point()
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
@@ -75,7 +75,7 @@ def main():
         return total_price, total_point
     total_price, total_point = initialize_total_price_point()
     
-    total_price, total_point = calc_total_price_point(INVOICES, total_price, total_point)
+    total_price, total_point = calc_total_price_point(INVOICES)
 
     invoice_content = initialize_invoice_content()
 

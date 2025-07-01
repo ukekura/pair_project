@@ -19,10 +19,13 @@ def main():
         invoices = invoices[0]
         return invoices
     
+    def new_new_calc_price_point(invoices, plays, total_price, total_point):
+        return
+    
     def new_calc_price_point(invoices, plays, total_price, total_point):
         invocie_contenta = "請求書\n"
         invocie_contenta += invoices["customer"] + "\n"
-        
+
         for performance in invoices["performances"]:
 
             if plays[performance["playID"]].get("type") == "tragedy":

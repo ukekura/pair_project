@@ -23,17 +23,6 @@ def main():
         invocie_content = "請求書\n"
         invocie_content += INVOICES["customer"] + "\n"
         return invocie_content
-
-    def add_price_key_to():
-
-        def new_add_price_key_to(INVOICES):
-            mid_data = INVOICES["performances"]
-            for performance in mid_data:
-                price = check_type_calc_price(performance)
-                performance["price"] = price
-            return mid_data
-        
-        return new_add_price_key_to(INVOICES)
     
     def clac_tragedy_price(performance):
         price = 40000
@@ -71,7 +60,7 @@ def main():
         
         mid_data = new_add_price_key_to(INVOICES)
         invocie_contenta = format_faze(mid_data, invocie_contenta)
-        
+
         return invocie_contenta
     
     def finish_invoice_content(invoice_content, total_price, total_point):

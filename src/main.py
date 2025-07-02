@@ -90,6 +90,8 @@ def main():
 
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
+
+    mid_data = add_price_to()
     
     total_price, total_point = calc_total_price_point(INVOICES)
 

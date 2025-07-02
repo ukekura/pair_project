@@ -44,13 +44,13 @@ def main():
         return price
     
     def calc_total_price_point(INVOICES):
-        total_price = 0
-        total_point = 0
 
+        total_price = 0
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
 
+        total_point = 0
         for performance in INVOICES["performances"]:
             if PLAYS[performance["playID"]].get("type") == "comedy":
                 total_point += performance["audience"] // 5

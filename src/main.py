@@ -100,7 +100,8 @@ def main():
 
     invoice_content = initialize_invoice_content()
     invoice_content = create_trade_content(invoice_content, mid_data)
-    invoice_content = finish_invoice_content(invoice_content, total_price, total_point)
+    invoice_content += "合計金額：$" + str(total_price) +  "\n"
+    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
 
     output_text(invoice_content)
 

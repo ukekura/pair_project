@@ -61,13 +61,9 @@ def main():
         total_point = 0
         for performance in INVOICES["performances"]:
             if PLAYS[performance["playID"]].get("type") == "comedy":
-                point = 0
-                point = performance["audience"] // 5
-                total_point += point
+                total_point += performance["audience"] // 5
             if performance["audience"]  > 30:
-                point = 0
-                point =  (performance["audience"] - 30)
-                total_point += point
+                total_point += (performance["audience"] - 30)
         return total_price, total_point
     
     def create_trade_content(invocie_contenta, mid_data):

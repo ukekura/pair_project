@@ -47,6 +47,9 @@ def main():
         total_price = 0
         total_point = 0
 
+        def amount_price():
+            return
+
         for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             total_price += price
@@ -65,7 +68,7 @@ def main():
             for performance in mid_data:
                 invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
-            
+
         def add_price_to():
             mid_data = INVOICES["performances"]
             for performance in mid_data:

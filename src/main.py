@@ -74,7 +74,6 @@ def main():
                 return performance["point"]
 
             for performance in new_mid_data:
-                point = 0
                 performance["point"] = 0
                 performance["point"] = check_type_calc_point(performance)
             return new_mid_data

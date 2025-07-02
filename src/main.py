@@ -87,9 +87,9 @@ def main():
     invoice_content += INVOICES["customer"] + "\n"
 
     def new_create_trade_content(invoice_content, mid_data, new_mid_data):
-            for performance in mid_data:
-                invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
-            return invoice_content
+        for performance in mid_data:
+            invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+        return invoice_content
         
     invoice_content = new_create_trade_content(invoice_content, mid_data, new_mid_data)
 

@@ -59,6 +59,7 @@ def main():
                 total_price += price
             return total_price
 
+        mid_data = add_price_to()
         total_price = amoutn_price(mid_data)
 
         total_point = 0
@@ -71,8 +72,14 @@ def main():
         return total_price, total_point
     
     def create_trade_content(invocie_contenta):
-        for performance in mid_data:
-            invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+
+        def format_faze(mid_data, invocie_contenta):
+            for performance in mid_data:
+                invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+            return invocie_contenta
+        
+        mid_data = add_price_to()
+        invocie_contenta = format_faze(mid_data, invocie_contenta)
         return invocie_contenta
     
     def finish_invoice_content(invoice_content, total_price, total_point):
@@ -83,8 +90,6 @@ def main():
 
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
-
-    mid_data = add_price_to()
     
     total_price, total_point = calc_total_price_point(INVOICES)
 

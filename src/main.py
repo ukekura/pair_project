@@ -71,7 +71,7 @@ def main():
             for performance in mid_data:
                 invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
-        mid_data = add_price_key_to(INVOICES)
+        print(mid_data)
         invocie_contenta = format_faze(mid_data, invocie_contenta)
         return invocie_contenta
     

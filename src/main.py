@@ -61,17 +61,21 @@ def main():
         
         total_price = amoutn_price(mid_data)
 
-        new_mid_data = mid_data
-        for performance in new_mid_data:
-            point = 0
-            performance["point"] = 0
-            if PLAYS[performance["playID"]].get("type") == "comedy":
-                point = performance["audience"] // 5
-                performance["point"] += point
-            if performance["audience"]  > 30:
-                point = (performance["audience"] - 30)
-                performance["point"] += point
-
+        def add_point_key_value_to(mid_data):
+            new_mid_data = mid_data
+            for performance in new_mid_data:
+                point = 0
+                performance["point"] = 0
+                if PLAYS[performance["playID"]].get("type") == "comedy":
+                    point = performance["audience"] // 5
+                    performance["point"] += point
+                if performance["audience"]  > 30:
+                    point = (performance["audience"] - 30)
+                    performance["point"] += point
+            return new_mid_data
+        
+        new_mid_data = add_point_key_value_to(mid_data)
+        
         def amount_point(new_mid_data):
             total_point = 0
             for performance in new_mid_data:

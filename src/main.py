@@ -51,14 +51,14 @@ def main():
                 invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
         
-        def new_add_price_key_to(INVOICES):
+        def add_price_key_to(INVOICES):
             mid_data = INVOICES["performances"]
             for performance in mid_data:
                 price = check_type_calc_price(performance)
                 performance["price"] = price
             return mid_data
         
-        mid_data = new_add_price_key_to(INVOICES)
+        mid_data = add_price_key_to(INVOICES)
         invocie_contenta = format_faze(mid_data, invocie_contenta)
 
         return invocie_contenta
@@ -72,14 +72,14 @@ def main():
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
 
-    def new_add_price_key_to(INVOICES):
+    def add_price_key_to(INVOICES):
             mid_data = INVOICES["performances"]
             for performance in mid_data:
                 price = check_type_calc_price(performance)
                 performance["price"] = price
             return mid_data
         
-    mid_data = new_add_price_key_to(INVOICES)
+    mid_data = add_price_key_to(INVOICES)
 
     def new_calc_total_price_point():
         def amoutn_price(mid_data):

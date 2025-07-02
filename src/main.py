@@ -62,8 +62,16 @@ def main():
                 invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
         
-        mid_data = add_price_key_to()
+        def new_add_price_key_to(INVOICES):
+            mid_data = INVOICES["performances"]
+            for performance in mid_data:
+                price = check_type_calc_price(performance)
+                performance["price"] = price
+            return mid_data
+        
+        mid_data = new_add_price_key_to(INVOICES)
         invocie_contenta = format_faze(mid_data, invocie_contenta)
+        
         return invocie_contenta
     
     def finish_invoice_content(invoice_content, total_price, total_point):

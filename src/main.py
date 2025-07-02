@@ -72,10 +72,8 @@ def main():
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)    
     mid_data = add_price_key_to(INVOICES)
-
-    def new_calc_total_price_point():
-
-        def new_new_calc_total_price_point(mid_data):
+    
+    def new_new_calc_total_price_point(mid_data):
             def amoutn_price(mid_data):
                 total_price = 0
                 for performance in mid_data:
@@ -91,11 +89,8 @@ def main():
                     total_point += (performance["audience"] - 30)
 
             return total_price, total_point
-        
-        return new_new_calc_total_price_point(mid_data)
-    
-    total_price, total_point = new_calc_total_price_point()
-    
+
+    total_price, total_point = new_new_calc_total_price_point(mid_data)
 
     invoice_content = initialize_invoice_content()
     invoice_content = create_trade_content(invoice_content)

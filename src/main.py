@@ -65,6 +65,19 @@ def main():
             performance["point"] = 0
             performance["point"] = check_type_calc_point(performance)
         return new_mid_data
+    
+    def amoutn_price(mid_data):
+        total_price = 0
+        for performance in mid_data:
+            price = check_type_calc_price(performance)
+            total_price += price
+        return total_price
+        
+    def amount_point(new_mid_data):
+        total_point = 0
+        for performance in new_mid_data:
+            total_point += performance["point"]
+        return total_point
 
     def create_trade_content(invocie_contenta, mid_data):
         for performance in mid_data:
@@ -76,27 +89,11 @@ def main():
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
 
-
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
         
     mid_data = add_price_key_to(INVOICES)
     new_mid_data = add_point_key_value_to(mid_data)
-
-    def amoutn_price(mid_data):
-        total_price = 0
-        for performance in mid_data:
-            price = check_type_calc_price(performance)
-            total_price += price
-        return total_price
-        
-        
-        
-    def amount_point(new_mid_data):
-        total_point = 0
-        for performance in new_mid_data:
-            total_point += performance["point"]
-        return total_point
 
     total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)

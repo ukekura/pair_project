@@ -58,8 +58,7 @@ def main():
                 price = check_type_calc_price(performance)
                 total_price += price
             return total_price
-
-        mid_data = add_price_to()
+            
         total_price = amoutn_price(mid_data)
 
         total_point = 0

@@ -51,6 +51,8 @@ def main():
         return price
     
     def calc_total_price_point(INVOICES):
+        
+        mid_data = add_price_to()
 
         def amoutn_price(mid_data):
             total_price = 0
@@ -59,7 +61,6 @@ def main():
                 total_price += price
             return total_price
 
-        mid_data = add_price_to()
         total_price = amoutn_price(mid_data)
 
         total_point = 0

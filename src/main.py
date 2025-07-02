@@ -68,6 +68,10 @@ def main():
 
 
         def add_price_to():
+            mid_data = INVOICES["performances"]
+            for performance in mid_data:
+                price = check_type_calc_price(performance)
+                performance["price"] = price
             return
         
         mid_data = INVOICES["performances"]

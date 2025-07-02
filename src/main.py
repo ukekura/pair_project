@@ -50,46 +50,6 @@ def main():
             price = clac_comedy_price(performance)
         return price
     
-    def calc_total_price_point(mid_data):
-
-        def amoutn_price(mid_data):
-            total_price = 0
-            for performance in mid_data:
-                price = check_type_calc_price(performance)
-                total_price += price
-            return total_price
-        
-        total_price = amoutn_price(mid_data)
-
-        def add_point_key_value_to(mid_data):
-            new_mid_data = mid_data
-
-            def check_type_calc_point(peformance):
-                if PLAYS[performance["playID"]].get("type") == "comedy":
-                    point = performance["audience"] // 5
-                    performance["point"] += point
-                if performance["audience"]  > 30:
-                    point = (performance["audience"] - 30)
-                    performance["point"] += point
-                return performance["point"]
-
-            for performance in new_mid_data:
-                performance["point"] = 0
-                performance["point"] = check_type_calc_point(performance)
-            return new_mid_data
-        
-        new_mid_data = add_point_key_value_to(mid_data)
-        
-        def amount_point(new_mid_data):
-            total_point = 0
-            for performance in new_mid_data:
-                total_point += performance["point"]
-            return total_point
-
-        total_point = amount_point(new_mid_data)
-
-        return total_price, total_point
-    
     def create_trade_content(invocie_contenta, mid_data):
         for performance in mid_data:
             invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
@@ -106,7 +66,41 @@ def main():
         
     mid_data = add_price_key_to(INVOICES)
 
-    total_price, total_point = calc_total_price_point(mid_data)
+    def amoutn_price(mid_data):
+        total_price = 0
+        for performance in mid_data:
+            price = check_type_calc_price(performance)
+            total_price += price
+        return total_price
+        
+    total_price = amoutn_price(mid_data)
+
+    def add_point_key_value_to(mid_data):
+        new_mid_data = mid_data
+
+        def check_type_calc_point(peformance):
+            if PLAYS[performance["playID"]].get("type") == "comedy":
+                point = performance["audience"] // 5
+                performance["point"] += point
+            if performance["audience"]  > 30:
+                point = (performance["audience"] - 30)
+                performance["point"] += point
+            return performance["point"]
+
+        for performance in new_mid_data:
+            performance["point"] = 0
+            performance["point"] = check_type_calc_point(performance)
+        return new_mid_data
+        
+    new_mid_data = add_point_key_value_to(mid_data)
+        
+    def amount_point(new_mid_data):
+        total_point = 0
+        for performance in new_mid_data:
+            total_point += performance["point"]
+        return total_point
+
+    total_point = amount_point(new_mid_data)
 
     invoice_content = initialize_invoice_content()
     invoice_content = create_trade_content(invoice_content, mid_data)

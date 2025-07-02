@@ -58,7 +58,7 @@ def main():
                 price = check_type_calc_price(performance)
                 total_price += price
             return total_price
-            
+
         total_price = amoutn_price(mid_data)
 
         total_point = 0
@@ -77,7 +77,6 @@ def main():
                 invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
         
-        mid_data = add_price_to()
         invocie_contenta = format_faze(mid_data, invocie_contenta)
         return invocie_contenta
     

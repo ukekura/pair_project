@@ -23,6 +23,13 @@ def main():
         invocie_content = "請求書\n"
         invocie_content += INVOICES["customer"] + "\n"
         return invocie_content
+
+    def add_price_to():
+        mid_data = INVOICES["performances"]
+        for performance in mid_data:
+            price = check_type_calc_price(performance)
+            performance["price"] = price
+        return mid_data
     
     def clac_tragedy_price(performance):
         price = 40000

@@ -95,7 +95,26 @@ def main():
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
     
-    total_price, total_point = calc_total_price_point(INVOICES)
+    mid_data = add_price_to()
+
+    def new_calc_total_price_point():
+        def amoutn_price(mid_data):
+            total_price = 0
+            for performance in mid_data:
+                price = check_type_calc_price(performance)
+                total_price += price
+            return total_price
+        total_price = amoutn_price(mid_data)
+        total_point = 0
+        for performance in INVOICES["performances"]:
+            if PLAYS[performance["playID"]].get("type") == "comedy":
+                total_point += performance["audience"] // 5
+            if performance["audience"]  > 30:
+                total_point += (performance["audience"] - 30)
+            
+        return total_price, total_point
+    
+    total_price, total_point = new_calc_total_price_point()
 
     invoice_content = initialize_invoice_content()
     invoice_content = create_trade_content(invoice_content)

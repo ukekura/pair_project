@@ -81,6 +81,7 @@ def main():
     INVOICES = format_invoice_data(invoices)
         
     mid_data = add_price_key_to(INVOICES)
+    new_mid_data = add_point_key_value_to(mid_data)
 
     def amoutn_price(mid_data):
         total_price = 0
@@ -89,9 +90,7 @@ def main():
             total_price += price
         return total_price
         
-    total_price = amoutn_price(mid_data)
         
-    new_mid_data = add_point_key_value_to(mid_data)
         
     def amount_point(new_mid_data):
         total_point = 0
@@ -99,6 +98,7 @@ def main():
             total_point += performance["point"]
         return total_point
 
+    total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)
 
     invoice_content = initialize_invoice_content()

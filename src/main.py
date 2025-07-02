@@ -53,9 +53,7 @@ def main():
                 total_price += price
             return total_price
 
-        for performance in INVOICES["performances"]:
-            price = check_type_calc_price(performance)
-            total_price += price
+        total_price = amount_price(INVOICES)
 
         for performance in INVOICES["performances"]:
             if PLAYS[performance["playID"]].get("type") == "comedy":

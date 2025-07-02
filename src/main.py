@@ -67,8 +67,10 @@ def main():
                 total_point += performance["audience"] // 5
             if performance["audience"]  > 30:
                 total_point += (performance["audience"] - 30)
-                
-        return total_price, total_point
+
+        new_total_point = total_point
+
+        return total_price, new_total_point
     
     def create_trade_content(invocie_contenta, mid_data):
         for performance in mid_data:

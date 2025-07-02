@@ -54,8 +54,7 @@ def main():
         def amoutn_price(mid_data):
             total_price = 0
             for performance in mid_data:
-                price = check_type_calc_price(performance)
-                total_price += price
+                total_price += performance["price"]
             return total_price
         total_price = amoutn_price(mid_data)
         total_point = 0

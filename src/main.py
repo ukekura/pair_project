@@ -19,11 +19,6 @@ def main():
         INVOICES = INVOICES[0]
         return INVOICES
     
-    def initialize_invoice_content():
-        invocie_content = "請求書\n"
-        invocie_content += INVOICES["customer"] + "\n"
-        return invocie_content
-    
     def clac_tragedy_price(performance):
         price = 40000
         if performance["audience"] > 30:

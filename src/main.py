@@ -62,6 +62,7 @@ def main():
         total_price = amoutn_price(mid_data)
 
         total_point = 0
+        new_total_point = 0
         for performance in INVOICES["performances"]:
             if PLAYS[performance["playID"]].get("type") == "comedy":
                 total_point += performance["audience"] // 5

@@ -70,15 +70,7 @@ def main():
 
 
     invoices, PLAYS = load_json()
-    INVOICES = format_invoice_data(invoices)
-
-    def add_price_key_to(INVOICES):
-            mid_data = INVOICES["performances"]
-            for performance in mid_data:
-                price = check_type_calc_price(performance)
-                performance["price"] = price
-            return mid_data
-        
+    INVOICES = format_invoice_data(invoices)    
     mid_data = add_price_key_to(INVOICES)
 
     def new_calc_total_price_point():

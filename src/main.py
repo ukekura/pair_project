@@ -24,13 +24,6 @@ def main():
         invocie_content += INVOICES["customer"] + "\n"
         return invocie_content
     
-    def add_price_key_to(INVOICES):
-        mid_data = INVOICES["performances"]
-        for performance in mid_data:
-            price = check_type_calc_price(performance)
-            performance["price"] = price
-        return mid_data
-    
     def clac_tragedy_price(performance):
         price = 40000
         if performance["audience"] > 30:
@@ -59,6 +52,20 @@ def main():
             performance["point"] += point
         return performance["point"]
     
+    def add_price_key_to(INVOICES):
+        mid_data = INVOICES["performances"]
+        for performance in mid_data:
+            price = check_type_calc_price(performance)
+            performance["price"] = price
+        return mid_data
+    
+    def add_point_key_value_to(mid_data):
+        new_mid_data = mid_data
+        for performance in new_mid_data:
+            performance["point"] = 0
+            performance["point"] = check_type_calc_point(performance)
+        return new_mid_data
+
     def create_trade_content(invocie_contenta, mid_data):
         for performance in mid_data:
             invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
@@ -83,13 +90,6 @@ def main():
         return total_price
         
     total_price = amoutn_price(mid_data)
-
-    def add_point_key_value_to(mid_data):
-        new_mid_data = mid_data
-        for performance in new_mid_data:
-            performance["point"] = 0
-            performance["point"] = check_type_calc_point(performance)
-        return new_mid_data
         
     new_mid_data = add_point_key_value_to(mid_data)
         

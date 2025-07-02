@@ -61,9 +61,11 @@ def main():
         total_point = 0
         for performance in INVOICES["performances"]:
             if PLAYS[performance["playID"]].get("type") == "comedy":
+                point = 0
                 point = performance["audience"] // 5
                 total_point += point
             if performance["audience"]  > 30:
+                point = 0
                 point =  (performance["audience"] - 30)
                 total_point += point
         return total_price, total_point

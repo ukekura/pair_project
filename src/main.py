@@ -71,13 +71,8 @@ def main():
         return total_price, total_point
     
     def create_trade_content(invocie_contenta):
-
-        def format_faze(mid_data, invocie_contenta):
-            for performance in mid_data:
-                invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
-            return invocie_contenta
-        
-        invocie_contenta = format_faze(mid_data, invocie_contenta)
+        for performance in mid_data:
+            invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
         return invocie_contenta
     
     def finish_invoice_content(invoice_content, total_price, total_point):

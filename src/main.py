@@ -25,11 +25,15 @@ def main():
         return invocie_content
 
     def add_price_key_to():
-        mid_data = INVOICES["performances"]
-        for performance in mid_data:
-            price = check_type_calc_price(performance)
-            performance["price"] = price
-        return mid_data
+
+        def new_add_price_key_to(INVOICES):
+            mid_data = INVOICES["performances"]
+            for performance in mid_data:
+                price = check_type_calc_price(performance)
+                performance["price"] = price
+            return mid_data
+        
+        return new_add_price_key_to(INVOICES)
     
     def clac_tragedy_price(performance):
         price = 40000

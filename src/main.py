@@ -45,7 +45,7 @@ def main():
     
     def check_type_calc_price(performance):
         if PLAYS[performance["playID"]].get("type") == "tragedy":
-                price = clac_tragedy_price(performance)
+            price = clac_tragedy_price(performance)
         if PLAYS[performance["playID"]].get("type") == "comedy":
             price = clac_comedy_price(performance)
         return price
@@ -63,15 +63,20 @@ def main():
 
         def add_point_key_value_to(mid_data):
             new_mid_data = mid_data
-            for performance in new_mid_data:
-                point = 0
-                performance["point"] = 0
+
+            def check_type_calc_point(peformance):
                 if PLAYS[performance["playID"]].get("type") == "comedy":
                     point = performance["audience"] // 5
                     performance["point"] += point
                 if performance["audience"]  > 30:
                     point = (performance["audience"] - 30)
                     performance["point"] += point
+                return performance["point"]
+
+            for performance in new_mid_data:
+                point = 0
+                performance["point"] = 0
+                performance["point"] = check_type_calc_point(performance)
             return new_mid_data
         
         new_mid_data = add_point_key_value_to(mid_data)

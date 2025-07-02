@@ -65,6 +65,10 @@ def main():
             for performance in mid_data:
                 invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
             return invocie_contenta
+
+
+        def add_price_to():
+            return
         
         mid_data = INVOICES["performances"]
         for performance in mid_data:

@@ -52,12 +52,14 @@ def main():
                 total_price += price
             return total_price
 
-        mid_data = INVOICES["performances"]
-        for performance in mid_data:
-            price = check_type_calc_price(performance)
-            performance["price"] = price
+        def add_price_to():
+            mid_data = INVOICES["performances"]
+            for performance in mid_data:
+                price = check_type_calc_price(performance)
+                performance["price"] = price
+            return mid_data
 
-
+        mid_data = add_price_to()
         total_price = amoutn_price(mid_data)
 
         total_point = 0

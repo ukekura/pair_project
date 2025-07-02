@@ -50,6 +50,15 @@ def main():
             price = clac_comedy_price(performance)
         return price
     
+    def check_type_calc_point(performance):
+        if PLAYS[performance["playID"]].get("type") == "comedy":
+            point = performance["audience"] // 5
+            performance["point"] += point
+        if performance["audience"]  > 30:
+            point = (performance["audience"] - 30)
+            performance["point"] += point
+        return performance["point"]
+    
     def create_trade_content(invocie_contenta, mid_data):
         for performance in mid_data:
             invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
@@ -74,15 +83,6 @@ def main():
         return total_price
         
     total_price = amoutn_price(mid_data)
-
-    def check_type_calc_point(performance):
-        if PLAYS[performance["playID"]].get("type") == "comedy":
-            point = performance["audience"] // 5
-            performance["point"] += point
-        if performance["audience"]  > 30:
-            point = (performance["audience"] - 30)
-            performance["point"] += point
-        return performance["point"]
 
     def add_point_key_value_to(mid_data):
         new_mid_data = mid_data

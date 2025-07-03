@@ -1,6 +1,15 @@
 import json
 import os
 
+class Performances:
+    def __init__(self, data):
+        self.data = data
+    def get_performances(self):
+        return self.data[0]["performances"]
+    def set_performances(self, arg):
+        self.data[0]["performances"] = arg
+    
+
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
         invoices = json.load(f)
@@ -35,6 +44,8 @@ def main():
         return invoices[0]["performances"]
     def set_invoices_performances(arg):
         invoices[0]["performances"] = arg
+
+    performances = Performances(invoices)
 
     for performance in get_invoices_performances():
         price = calc_price(performance)

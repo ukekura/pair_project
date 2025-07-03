@@ -75,8 +75,6 @@ def main():
         return total_point
 
     def create_trade_content(invocie_contenta, mid_data):
-        print("\n-----create_trade_content内-----\n")
-        print("mid_data : ", mid_data)
         for performance in mid_data:
             invocie_contenta = invocie_contenta + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
         return invocie_contenta
@@ -85,14 +83,7 @@ def main():
     INVOICES = format_invoice_data(invoices)
         
     mid_data = add_price_key_to(INVOICES)
-
-    print("mid_data : ", mid_data)
-
     new_mid_data = add_point_key_value_to(mid_data)
-
-    print("mid_data : ", mid_data)
-    print("new_mid_data : ", new_mid_data)
-    if mid_data == new_mid_data: print("mid_dataとnew_mid_dataは同じ")
 
     total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)

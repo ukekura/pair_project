@@ -33,16 +33,7 @@ def main():
 
 
     for performance in invoices[0]["performances"]:
-        if plays[performance["playID"]].get("type") == "tragedy":
-            price = 40000
-            if performance["audience"] > 30:
-                price += (performance["audience"] - 30) * 1000 
-        
-        if plays[performance["playID"]].get("type") == "comedy":
-            price = 30000 + performance["audience"] * 300
-            if performance["audience"] > 20:
-                price += (performance["audience"] - 20) * 500 + 10000             
-
+        price = calc_price(performance)
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in invoices[0]["performances"]:

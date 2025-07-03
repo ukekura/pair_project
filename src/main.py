@@ -40,11 +40,6 @@ def main():
         
         return price
 
-    def get_invoices_performances():
-        return invoices[0]["performances"]
-    def set_invoices_performances(arg):
-        invoices[0]["performances"] = arg
-
     performances = Performances(invoices)
 
     for performance in performances.get_performances():

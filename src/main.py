@@ -85,6 +85,10 @@ def main():
     mid_data = add_price_key_to(INVOICES)
     new_mid_data = add_point_key_value_to(mid_data)
 
+    print("mid_data : ", mid_data)
+    print("new_mid_data : ", new_mid_data)
+    if mid_data == new_mid_data: print("mid_dataとnew_mid_dataは同じ")
+
     total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)
 

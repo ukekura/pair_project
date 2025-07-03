@@ -83,15 +83,19 @@ def main():
     total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)
 
-    invoice_content = "請求書\n"
-    invoice_content += INVOICES["customer"] + "\n"
+    def create_invoice_content_from(mid_data, total_price, total_point):
+        invoice_content = "請求書\n"
+        invoice_content += INVOICES["customer"] + "\n"
 
-    for performance in mid_data:
-        invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+        for performance in mid_data:
+            invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+
+        invoice_content += "合計金額：$" + str(total_price) +  "\n"
+        invoice_content += "獲得ポイント：" + str(total_point) + "pt"
+        return invoice_content
+
+    invoice_content = create_invoice_content_from(mid_data, total_price, total_point)
     
-    invoice_content += "合計金額：$" + str(total_price) +  "\n"
-    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
-
     output_text(invoice_content)
 
 if __name__ == "__main__":

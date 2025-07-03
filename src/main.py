@@ -4,10 +4,17 @@ import os
 class Performances:
     def __init__(self, data):
         self.data = data
+        self.temp_data = [Performance(performance) for performance in self.data[0]["performances"]]
     def get_performances(self):
-        return self.data[0]["performances"]
+        return [performance.get_performance() for performance in self.temp_data]
     def set_performances(self, arg):
         self.data[0]["performances"] = arg
+
+class Performance:
+    def __init__(self, data):
+        self.data = data
+    def get_performance(self):
+        return self.data
     
 
 def load_json():

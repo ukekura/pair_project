@@ -74,15 +74,6 @@ def main():
             total_point += performance["point"]
         return total_point
 
-    invoices, PLAYS = load_json()
-    INVOICES = format_invoice_data(invoices)
-        
-    mid_data = add_price_key_to(INVOICES)
-    new_mid_data = add_point_key_value_to(mid_data)
-
-    total_price = amoutn_price(mid_data)
-    total_point = amount_point(new_mid_data)
-
     def create_invoice_content_from(mid_data, total_price, total_point):
         invoice_content = "請求書\n"
         invoice_content += INVOICES["customer"] + "\n"
@@ -93,6 +84,16 @@ def main():
         invoice_content += "合計金額：$" + str(total_price) +  "\n"
         invoice_content += "獲得ポイント：" + str(total_point) + "pt"
         return invoice_content
+    
+    invoices, PLAYS = load_json()
+    INVOICES = format_invoice_data(invoices)
+        
+    mid_data = add_price_key_to(INVOICES)
+    new_mid_data = add_point_key_value_to(mid_data)
+
+    total_price = amoutn_price(mid_data)
+    total_point = amount_point(new_mid_data)
+
 
     invoice_content = create_invoice_content_from(mid_data, total_price, total_point)
     

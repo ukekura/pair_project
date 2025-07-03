@@ -83,6 +83,9 @@ def main():
     INVOICES = format_invoice_data(invoices)
         
     mid_data = add_price_key_to(INVOICES)
+
+    print("mid_data : ", mid_data)
+
     new_mid_data = add_point_key_value_to(mid_data)
 
     print("mid_data : ", mid_data)

@@ -47,16 +47,16 @@ def main():
 
     performances = Performances(invoices)
 
-    for performance in get_invoices_performances():
+    for performance in performances.get_performances():
         price = calc_price(performance)
         invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
-    for performance in get_invoices_performances():
+    for performance in performances.get_performances():
         price = calc_price(performance)
         total_price += price
 
 
-    for performance in get_invoices_performances():
+    for performance in performances.get_performances():
         if plays[performance["playID"]].get("type") == "comedy":
             total_point += performance["audience"] // 5
 

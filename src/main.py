@@ -93,6 +93,7 @@ def main():
 
     new_new_mid_data = mid_data
     for performance in new_new_mid_data:
+        performance["point"] = 0
         performance["point"] = check_type_calc_point(performance)
 
     invoice_content = create_invoice_content_from(new_new_mid_data, total_price, total_point)

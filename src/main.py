@@ -95,6 +95,8 @@ def main():
     total_point = amount_point(new_mid_data)
 
     new_new_mid_data = mid_data
+    for datum in new_new_mid_data:
+        datum["point"] = check_type_calc_point(datum)
 
     invoice_content = create_invoice_content_from(new_new_mid_data, total_price, total_point)
     

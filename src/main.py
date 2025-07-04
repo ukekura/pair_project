@@ -2,20 +2,25 @@ import json
 import os
 
 class Performances:
-    def __init__(self, data):
+    def __init__(self, data, plays):
         self.data = data
         #self.performances = [Performance(performance) for performance in self.data[0]["performances"]]
-        self.performances = [Performance(performance) for performance in self.data[0]["performances"]]
+        self.performances = [Performance(performance, plays) for performance in self.data[0]["performances"]]
     def get_performances(self):
         return self.performances
     
 class Performance:
-    def __init__(self, data):
+    def __init__(self, data, plays):
         self.data = data
+
         self.audience = data["audience"]
         self.play_id = data["playID"]
+        self.name = plays[self.get_play_id()]["name"]
+
     def get_performance(self):
         return self.data
+    def get_name(self):
+        return self.name
     def get_audience(self):
         return self.audience
     def get_play_id(self):
@@ -53,12 +58,12 @@ def main():
         return price
 
 
-    performances = Performances(invoices)
+    performances = Performances(invoices, plays)
     print("performances:", performances.get_performances())
 
     for performance in performances.get_performances():
         price = calc_price(performance.get_performance())
-        invoice_content += "・" + plays[performance.get_play_id()]["name"] + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
+        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in performances.get_performances():
         price = calc_price(performance.get_performance())

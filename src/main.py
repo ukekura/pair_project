@@ -5,7 +5,7 @@ class Performances:
     def __init__(self, data):
         self.data = data
     def get_performances(self):
-        return [performance for performance in self.data[0]["performances"]]
+        return [Performance(performance).get_performance() for performance in self.data[0]["performances"]]
     def set_performances(self, arg):
         self.data[0]["performances"] = arg
     

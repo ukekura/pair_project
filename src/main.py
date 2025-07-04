@@ -4,10 +4,9 @@ import os
 class Performances:
     def __init__(self, data):
         self.data = data
+        self.performances = [Performance(performance) for performance in self.data[0]["performances"]]
     def get_performances(self):
-        return [Performance(performance).get_performance() for performance in self.data[0]["performances"]]
-    def set_performances(self, arg):
-        self.data[0]["performances"] = arg
+        return self.performances
     
 class Performance:
     def __init__(self, data):
@@ -50,20 +49,20 @@ def main():
     print("performances:", performances.get_performances())
 
     for performance in performances.get_performances():
-        price = calc_price(performance)
-        invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
+        price = calc_price(performance.get_performance())
+        invoice_content += "・" + plays[performance.get_performance()["playID"]]["name"] + "（観客数：" + str(performance.get_performance()["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in performances.get_performances():
-        price = calc_price(performance)
+        price = calc_price(performance.get_performance())
         total_price += price
 
 
     for performance in performances.get_performances():
-        if plays[performance["playID"]].get("type") == "comedy":
-            total_point += performance["audience"] // 5
+        if plays[performance.get_performance()["playID"]].get("type") == "comedy":
+            total_point += performance.get_performance()["audience"] // 5
 
-        if performance["audience"]  > 30:
-            total_point += (performance["audience"] - 30)
+        if performance.get_performance()["audience"]  > 30:
+            total_point += (performance.get_performance()["audience"] - 30)
 
 
 

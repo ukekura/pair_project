@@ -74,6 +74,11 @@ def main():
             total_point += performance["point"]
         return total_point
 
+    def calc_total_price_point(mid_data, new_mid_data):
+        total_price = amoutn_price(mid_data)
+        total_point = amount_point(new_mid_data)
+        return total_price, total_point
+    
     def create_invoice_content_from(mid_data, total_price, total_point):
         invoice_content = "請求書\n"
         invoice_content += INVOICES["customer"] + "\n"
@@ -90,11 +95,6 @@ def main():
         
     mid_data = add_price_key_to(INVOICES)
     new_mid_data = add_point_key_value_to(mid_data)
-
-    def calc_total_price_point(mid_data, new_mid_data):
-        total_price = amoutn_price(mid_data)
-        total_point = amount_point(new_mid_data)
-        return total_price, total_point
 
     total_price, total_point = calc_total_price_point(mid_data, new_mid_data)
 

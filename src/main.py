@@ -94,11 +94,11 @@ def main():
     total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)
 
-    new_new_mid_data = mid_data
-    for performance in new_new_mid_data:
+    new_mid_data = mid_data
+    for performance in new_mid_data:
         performance["point"] = check_type_calc_point(performance)
 
-    invoice_content = create_invoice_content_from(new_new_mid_data, total_price, total_point)
+    invoice_content = create_invoice_content_from(new_mid_data, total_price, total_point)
     
     output_text(invoice_content)
 

@@ -10,7 +10,7 @@ class Performances:
         return self.performances
     
     def _format_obj(self, performance, plays):
-        return {'audience':performance["audience"], 'playID':performance["playID"], 'name':plays[performance["playID"]]["name"]}
+        return {'audience':performance["audience"], 'playID':performance["playID"], 'name':plays[performance["playID"]]["name"], 'type':plays[performance["playID"]]["type"]}
     
 class Performance:
     def __init__(self, data, plays):
@@ -19,7 +19,7 @@ class Performance:
         self.audience = data["audience"]
         self.play_id = data["playID"]
         self.name = data["name"]
-        self.type = plays[self.get_play_id()].get("type")
+        self.type = data["type"]
 
     def get_performance(self):
         return self.data

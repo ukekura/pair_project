@@ -5,7 +5,7 @@ class Performances:
     def __init__(self, data):
         self.data = data
     def get_performances(self):
-        return self.data[0]["performances"]
+        return [performance for performance in self.data[0]["performances"]]
     def set_performances(self, arg):
         self.data[0]["performances"] = arg
     
@@ -47,6 +47,7 @@ def main():
 
 
     performances = Performances(invoices)
+    print("performances:", performances.get_performances())
 
     for performance in performances.get_performances():
         price = calc_price(performance)

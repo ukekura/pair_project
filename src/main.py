@@ -66,11 +66,11 @@ def main():
 
 
     for performance in performances.get_performances():
-        if plays[performance.get_performance()["playID"]].get("type") == "comedy":
-            total_point += performance.get_performance()["audience"] // 5
+        if plays[performance.get_play_id()].get("type") == "comedy":
+            total_point += performance.get_audience() // 5
 
-        if performance.get_performance()["audience"]  > 30:
-            total_point += (performance.get_performance()["audience"] - 30)
+        if performance.get_audience()  > 30:
+            total_point += (performance.get_audience() - 30)
 
 
 

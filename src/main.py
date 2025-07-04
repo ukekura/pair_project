@@ -30,6 +30,20 @@ class Performance:
     def get_type(self):
         return self.type
 
+    def calc_price(self):
+        if self.get_type() == "tragedy":
+            price = 40000
+            if self.get_audience() > 30:
+                price += (self.get_audience() - 30) * 1000 
+        
+        if self.get_type() == "comedy":
+            price = 30000 + self.get_audience() * 300
+            if self.get_audience() > 20:
+                price += (self.get_audience() - 20) * 500 + 10000
+        
+        return price
+
+
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
@@ -48,29 +62,15 @@ def main():
     total_price = 0
     total_point = 0
 
-    def calc_price(performance):
-        if plays[performance["playID"]].get("type") == "tragedy":
-            price = 40000
-            if performance["audience"] > 30:
-                price += (performance["audience"] - 30) * 1000 
-        
-        if plays[performance["playID"]].get("type") == "comedy":
-            price = 30000 + performance["audience"] * 300
-            if performance["audience"] > 20:
-                price += (performance["audience"] - 20) * 500 + 10000
-        
-        return price
-
 
     performances = Performances(invoices, plays)
     print("performances:", performances.get_performances())
 
     for performance in performances.get_performances():
-        price = calc_price(performance.get_performance())
-        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
+        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
     for performance in performances.get_performances():
-        price = calc_price(performance.get_performance())
+        price = performance.calc_price()
         total_price += price
 
 

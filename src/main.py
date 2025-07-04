@@ -9,6 +9,11 @@ class Performances:
     def set_performances(self, arg):
         self.data[0]["performances"] = arg
     
+class Performance:
+    def __init__(self, data):
+        self.data = data
+    def get_performance(self):
+        return self.data
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:

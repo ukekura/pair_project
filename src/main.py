@@ -25,16 +25,16 @@ class Performance:
     def get_type(self):
         return self.type
     
-    def class_calc_price(performance):
-        if performance.get_type() == "tragedy":
+    def class_calc_price(self):
+        if self.get_type() == "tragedy":
             price = 40000
-            if performance.get_audience() > 30:
-                price += (performance.get_audience() - 30) * 1000 
+            if self.get_audience() > 30:
+                price += (self.get_audience() - 30) * 1000 
         
-        if performance.get_type() == "comedy":
-            price = 30000 + performance.get_audience() * 300
-            if performance.get_audience() > 20:
-                price += (performance.get_audience() - 20) * 500 + 10000
+        if self.get_type() == "comedy":
+            price = 30000 + self.get_audience() * 300
+            if self.get_audience() > 20:
+                price += (self.get_audience() - 20) * 500 + 10000
         
         return price
 
@@ -57,18 +57,7 @@ def main():
     total_point = 0
 
     def calc_price(performance):
-        if performance.get_type() == "tragedy":
-            price = 40000
-            if performance.get_audience() > 30:
-                price += (performance.get_audience() - 30) * 1000 
-        
-        if performance.get_type() == "comedy":
-            price = 30000 + performance.get_audience() * 300
-            if performance.get_audience() > 20:
-                price += (performance.get_audience() - 20) * 500 + 10000
-        
-        return price
-
+        return performance.class_calc_price()
 
     performances = Performances(invoices, plays)
 

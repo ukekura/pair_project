@@ -2,48 +2,18 @@ import json
 import os
 
 class Performances:
-    def __init__(self, data, plays):
-        #self.data = data
-        #self.performances = [Performance(performance) for performance in self.data[0]["performances"]]
-        self.performances = [Performance(self._format_obj(performance, plays)) for performance in data[0]["performances"]]
+    def __init__(self, data):
+        self.data = data
     def get_performances(self):
-        return self.performances
-    
-    def _format_obj(self, performance, plays):
-        
-        return {'audience':performance["audience"], 'playID':performance["playID"], 'name':plays[performance["playID"]]["name"], 'type':plays[performance["playID"]]["type"]}
+        return self.data[0]["performances"]
+    def set_performances(self, arg):
+        self.data[0]["performances"] = arg
     
 class Performance:
     def __init__(self, data):
         self.data = data
-
-        self.audience = data["audience"]
-        self.name = data["name"]
-        self.type = data["type"]
-
     def get_performance(self):
         return self.data
-    def get_name(self):
-        return self.name
-    def get_audience(self):
-        return self.audience
-    def get_type(self):
-        return self.type
-
-    def calc_price(self):
-        if self.get_type() == "tragedy":
-            price = 40000
-            if self.get_audience() > 30:
-                price += (self.get_audience() - 30) * 1000 
-        
-        if self.get_type() == "comedy":
-            price = 30000 + self.get_audience() * 300
-            if self.get_audience() > 20:
-                price += (self.get_audience() - 20) * 500 + 10000
-        
-        return price
-
-
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
@@ -62,24 +32,37 @@ def main():
     total_price = 0
     total_point = 0
 
+    def calc_price(performance):
+        if plays[performance["playID"]].get("type") == "tragedy":
+            price = 40000
+            if performance["audience"] > 30:
+                price += (performance["audience"] - 30) * 1000 
+        
+        if plays[performance["playID"]].get("type") == "comedy":
+            price = 30000 + performance["audience"] * 300
+            if performance["audience"] > 20:
+                price += (performance["audience"] - 20) * 500 + 10000
+        
+        return price
 
-    performances = Performances(invoices, plays)
-    print("performances:", performances.get_performances())
+
+    performances = Performances(invoices)
 
     for performance in performances.get_performances():
-        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
+        price = calc_price(performance)
+        invoice_content += "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in performances.get_performances():
-        price = performance.calc_price()
+        price = calc_price(performance)
         total_price += price
 
 
     for performance in performances.get_performances():
-        if performance.get_type() == "comedy":
-            total_point += performance.get_audience() // 5
+        if plays[performance["playID"]].get("type") == "comedy":
+            total_point += performance["audience"] // 5
 
-        if performance.get_audience()  > 30:
-            total_point += (performance.get_audience() - 30)
+        if performance["audience"]  > 30:
+            total_point += (performance["audience"] - 30)
 
 
 

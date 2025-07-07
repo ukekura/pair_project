@@ -56,17 +56,15 @@ def main():
     total_price = 0
     total_point = 0
 
-    def calc_price(performance):
-        return performance.class_calc_price()
 
     performances = Performances(invoices, plays)
 
     for performance in performances.get_performances():
-        price = calc_price(performance)
+        price = performance.class_calc_price()
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in performances.get_performances():
-        price = calc_price(performance)
+        price = performance.class_calc_price()
         total_price += price
 
 

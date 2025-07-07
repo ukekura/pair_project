@@ -25,7 +25,7 @@ class Performance:
     def get_type(self):
         return self.type
     
-    def class_calc_price(self):
+    def calc_price(self):
         if self.get_type() == "tragedy":
             price = 40000
             if self.get_audience() > 30:
@@ -60,11 +60,11 @@ def main():
     performances = Performances(invoices, plays)
 
     for performance in performances.get_performances():
-        price = performance.class_calc_price()
+        price = performance.calc_price()
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in performances.get_performances():
-        price = performance.class_calc_price()
+        price = performance.calc_price()
         total_price += price
 
 

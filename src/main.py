@@ -24,6 +24,20 @@ class Performance:
         return self.audience
     def get_type(self):
         return self.type
+    
+    def class_calc_price(performance):
+        if performance.get_type() == "tragedy":
+            price = 40000
+            if performance.get_audience() > 30:
+                price += (performance.get_audience() - 30) * 1000 
+        
+        if performance.get_type() == "comedy":
+            price = 30000 + performance.get_audience() * 300
+            if performance.get_audience() > 20:
+                price += (performance.get_audience() - 20) * 500 + 10000
+        
+        return price
+
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:

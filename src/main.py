@@ -6,8 +6,6 @@ class Performances:
         self.performances = [Performance(self._format_obj(performance, plays)) for performance in data[0]["performances"]]
     def get_performances(self):
         return self.performances
-    def set_performances(self, arg):
-        self.data[0]["performances"] = arg
     def _format_obj(self, performance, plays):
         return {"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"], "type":plays[performance["playID"]]["type"]}
     

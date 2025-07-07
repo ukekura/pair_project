@@ -16,6 +16,7 @@ class Performance:
         self.play_id = data["playID"]
         self.name = plays[self.get_play_id()]["name"]
         self.audience = data["audience"]
+        self.type = plays[self.get_play_id()]["type"]
 
     def get_performance(self):
         return self.data
@@ -25,6 +26,8 @@ class Performance:
         return self.name
     def get_audience(self):
         return self.audience
+    def get_type(self):
+        return self.type
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
@@ -69,7 +72,7 @@ def main():
 
 
     for performance in performances.get_performances():
-        if plays[performance.get_play_id()].get("type") == "comedy":
+        if performance.get_type() == "comedy":
             total_point += performance.get_audience() // 5
 
         if performance.get_audience() > 30:

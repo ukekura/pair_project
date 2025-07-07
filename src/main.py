@@ -3,21 +3,21 @@ import os
 
 class Performances:
     def __init__(self, data, plays):
-        self.performances = [Performance(self._format_obj(performance, plays), plays) for performance in data[0]["performances"]]
+        self.performances = [Performance(self._format_obj(performance, plays)) for performance in data[0]["performances"]]
     def get_performances(self):
         return self.performances
     def set_performances(self, arg):
         self.data[0]["performances"] = arg
     def _format_obj(self, performance, plays):
-        return {"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"]}
+        return {"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"], "type":plays[performance["playID"]]["type"]}
     
 class Performance:
-    def __init__(self, data, plays):
+    def __init__(self, data):
         self.data = data
         self.play_id = data["playID"]
         self.name = data["name"]
         self.audience = data["audience"]
-        self.type = plays[self.get_play_id()]["type"]
+        self.type = data["type"]
 
     def get_performance(self):
         return self.data

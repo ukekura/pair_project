@@ -3,8 +3,7 @@ import os
 
 class Performances:
     def __init__(self, data, plays):
-        self.data = data
-        self.performances = [Performance(performance, plays) for performance in self.data[0]["performances"]]
+        self.performances = [Performance({"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"]}, plays) for performance in data[0]["performances"]]
     def get_performances(self):
         return self.performances
     def set_performances(self, arg):
@@ -14,7 +13,7 @@ class Performance:
     def __init__(self, data, plays):
         self.data = data
         self.play_id = data["playID"]
-        self.name = plays[self.get_play_id()]["name"]
+        self.name = data["name"]
         self.audience = data["audience"]
         self.type = plays[self.get_play_id()]["type"]
 

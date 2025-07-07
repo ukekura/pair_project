@@ -15,6 +15,7 @@ class Performance:
         self.data = data
         self.play_id = data["playID"]
         self.name = plays[self.get_play_id()]["name"]
+        self.audience = data["audience"]
 
     def get_performance(self):
         return self.data
@@ -22,6 +23,8 @@ class Performance:
         return self.play_id
     def get_name(self):
         return self.name
+    def get_audience(self):
+        return self.audience
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
@@ -58,7 +61,7 @@ def main():
 
     for performance in performances.get_performances():
         price = calc_price(performance.get_performance())
-        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_performance()["audience"]) + "人、金額：$"+ str(price) + "）\n"
+        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
 
     for performance in performances.get_performances():
         price = calc_price(performance.get_performance())
@@ -67,10 +70,10 @@ def main():
 
     for performance in performances.get_performances():
         if plays[performance.get_play_id()].get("type") == "comedy":
-            total_point += performance.get_performance()["audience"] // 5
+            total_point += performance.get_audience() // 5
 
-        if performance.get_performance()["audience"]  > 30:
-            total_point += (performance.get_performance()["audience"] - 30)
+        if performance.get_audience() > 30:
+            total_point += (performance.get_audience() - 30)
 
 
 

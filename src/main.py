@@ -60,12 +60,10 @@ def main():
     performances = Performances(invoices, plays)
 
     for performance in performances.get_performances():
-        price = performance.calc_price()
-        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(price) + "）\n"
+        invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
     for performance in performances.get_performances():
-        price = performance.calc_price()
-        total_price += price
+        total_price += performance.calc_price()
 
 
     for performance in performances.get_performances():

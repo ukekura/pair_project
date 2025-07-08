@@ -81,14 +81,7 @@ def main():
                 total_point += (performance.get_audience() - 30)
         return total_point
         
-    total_point = 0
-    for performance in performances.get_performances():
-        if performance.get_type() == "comedy":
-            total_point += performance.get_audience() // 5
-
-        if performance.get_audience() > 30:
-            total_point += (performance.get_audience() - 30)
-
+    total_point = calc_total_point(performances)
 
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

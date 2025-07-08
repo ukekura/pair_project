@@ -71,7 +71,16 @@ def main():
 
     total_price = performances.calc_total_price()
 
+    def calc_total_point(performances):
+        total_point = 0
+        for performance in performances.get_performances():
+            if performance.get_type() == "comedy":
+                total_point += performance.get_audience() // 5
 
+            if performance.get_audience() > 30:
+                total_point += (performance.get_audience() - 30)
+        return total_point
+        
     total_point = 0
     for performance in performances.get_performances():
         if performance.get_type() == "comedy":

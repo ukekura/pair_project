@@ -69,13 +69,10 @@ def main():
     for performance in performances.get_performances():
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
-    def calc_total_price():
-        total_price = 0
-        for performance in performances.get_performances():
-            total_price += performance.calc_price()
-        return total_price
+    def calc_total_price(performances):
+        return performances.class_calc_total_price()
 
-    total_price = calc_total_price()
+    total_price = calc_total_price(performances)
 
 
     for performance in performances.get_performances():

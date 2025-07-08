@@ -53,7 +53,6 @@ def main():
 
     invoice_content += invoices[0]["customer"] + "\n"
 
-    total_price = 0
     total_point = 0
 
 
@@ -62,6 +61,7 @@ def main():
     for performance in performances.get_performances():
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
+    total_price = 0
     for performance in performances.get_performances():
         total_price += performance.calc_price()
 

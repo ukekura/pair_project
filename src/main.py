@@ -10,7 +10,7 @@ class Performances:
     def _format_obj(self, performance, plays):
         return {"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"], "type":plays[performance["playID"]]["type"]}
 
-    def class_calc_total_price(self):
+    def calc_total_price(self):
         total_price = 0
         for performance in self.get_performances():
             total_price += performance.calc_price()
@@ -69,10 +69,8 @@ def main():
     for performance in performances.get_performances():
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
-    def calc_total_price(performances):
-        return performances.class_calc_total_price()
 
-    total_price = calc_total_price(performances)
+    total_price = performances.calc_total_price()
 
 
     for performance in performances.get_performances():

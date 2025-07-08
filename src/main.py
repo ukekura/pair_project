@@ -77,12 +77,12 @@ def main():
 
     invoice_content = "請求書\n"
 
-    invoice_content += invoices[0]["customer"] + "\n"
 
 
 
     performances = Performances(invoices, plays)
 
+    invoice_content += invoices[0]["customer"] + "\n"
     for performance in performances.get_performances():
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 

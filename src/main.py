@@ -19,8 +19,7 @@ class Performances:
     def calc_total_point(self):
         total_point = 0
         for performance in self.get_performances():
-            point = self.calc_point(performance)
-            total_point += point
+            total_point += self.calc_point(performance)
         return total_point
     
     def calc_point(self, performance):

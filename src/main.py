@@ -15,6 +15,16 @@ class Performances:
         for performance in self.get_performances():
             total_price += performance.calc_price()
         return total_price
+    
+    def class_calc_total_point(self):
+        total_point = 0
+        for performance in self.get_performances():
+            if performance.get_type() == "comedy":
+                total_point += performance.get_audience() // 5
+
+            if performance.get_audience() > 30:
+                total_point += (performance.get_audience() - 30)
+        return total_point
 
 
 class Performance:

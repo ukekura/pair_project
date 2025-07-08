@@ -61,7 +61,6 @@ def main():
 
     invoice_content += invoices[0]["customer"] + "\n"
 
-    total_point = 0
 
 
     performances = Performances(invoices, plays)
@@ -73,6 +72,7 @@ def main():
     total_price = performances.calc_total_price()
 
 
+    total_point = 0
     for performance in performances.get_performances():
         if performance.get_type() == "comedy":
             total_point += performance.get_audience() // 5

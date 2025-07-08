@@ -75,18 +75,13 @@ def load_json():
 def main():
     invoices, plays = load_json()
 
-    invoice_content = "請求書\n"
-
-
-
-
     performances = Performances(invoices, plays)
 
+    invoice_content = "請求書\n"
     invoice_content += invoices[0]["customer"] + "\n"
+    
     for performance in performances.get_performances():
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
-
-
 
     invoice_content += "合計金額：$" + str(performances.calc_total_price()) +  "\n"
     invoice_content += "獲得ポイント：" + str(performances.calc_total_point()) + "pt"

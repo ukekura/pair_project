@@ -23,14 +23,7 @@ class Performances:
         return total_point
     
     def calc_point(self, performance):
-        point = 0
-        if performance.get_type() == "comedy":
-            point = performance.get_audience() // 5
-            
-        if performance.get_audience() > 30:
-            point += (performance.get_audience() - 30)
-        return point
-
+        return performance.calc_point()
 
 
 

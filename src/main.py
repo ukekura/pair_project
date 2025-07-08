@@ -67,9 +67,7 @@ def main():
             total_price += performance.calc_price()
         return total_price
 
-    total_price = 0
-    for performance in performances.get_performances():
-        total_price += performance.calc_price()
+    total_price = calc_total_price()
 
 
     for performance in performances.get_performances():

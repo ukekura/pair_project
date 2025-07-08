@@ -4,11 +4,19 @@ import os
 class Performances:
     def __init__(self, data, plays):
         self.performances = [Performance(self._format_obj(performance, plays)) for performance in data[0]["performances"]]
+
     def get_performances(self):
         return self.performances
     def _format_obj(self, performance, plays):
         return {"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"], "type":plays[performance["playID"]]["type"]}
-    
+
+    def class_calc_total_price(self):
+        total_price = 0
+        for performance in self.get_performances():
+            total_price += performance.calc_price()
+        return total_price
+
+
 class Performance:
     def __init__(self, data):
         self.data = data

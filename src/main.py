@@ -16,7 +16,7 @@ class Performances:
             total_price += performance.calc_price()
         return total_price
     
-    def class_calc_total_point(self):
+    def calc_total_point(self):
         total_point = 0
         for performance in self.get_performances():
             if performance.get_type() == "comedy":
@@ -80,11 +80,8 @@ def main():
 
 
     total_price = performances.calc_total_price()
-
-    def calc_total_point(performances):
-        return performances.class_calc_total_point()
         
-    total_point = calc_total_point(performances)
+    total_point = performances.calc_total_point()
 
 
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

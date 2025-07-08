@@ -19,11 +19,14 @@ class Performances:
     def calc_total_point(self):
         total_point = 0
         for performance in self.get_performances():
+            point = 0
             if performance.get_type() == "comedy":
-                total_point += performance.get_audience() // 5
-
+                point = performance.get_audience() // 5
+                
             if performance.get_audience() > 30:
-                total_point += (performance.get_audience() - 30)
+                point += (performance.get_audience() - 30)
+
+            total_point += point
         return total_point
 
 

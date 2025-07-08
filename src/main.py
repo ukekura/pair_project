@@ -87,12 +87,11 @@ def main():
         invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
 
-    total_price = performances.calc_total_price()
         
     total_point = performances.calc_total_point()
 
 
-    invoice_content += "合計金額：$" + str(total_price) +  "\n"
+    invoice_content += "合計金額：$" + str(performances.calc_total_price()) +  "\n"
     invoice_content += "獲得ポイント：" + str(total_point) + "pt"
 
     # 出力ディレクトリの作成（存在しない場合）

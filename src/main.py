@@ -92,13 +92,8 @@ def main():
 
     new_mid_data = add_price_point_to(invoice_data)
 
-    print("new_mid_data-----------------------", new_mid_data)
-
     total_price = amount_price(new_mid_data)
     total_point = amount_point(new_mid_data)
-
-    print(INVOICES)
-    print(new_mid_data)
     
     invoice_content = create_invoice_content_from(new_mid_data, total_price, total_point)
     

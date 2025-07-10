@@ -101,11 +101,11 @@ def main():
     new_mid_data = invoice_data["performances"]
 
     total_price = 0
-    for performance in new_mid_data:
+    for performance in invoice_data["performances"]:
         total_price += performance["price"]
 
     total_point = 0
-    for performance in new_mid_data:
+    for performance in invoice_data["performances"]:
         total_point += performance["point"]
     
     invoice_content = create_invoice_content_from(new_mid_data, total_price, total_point)

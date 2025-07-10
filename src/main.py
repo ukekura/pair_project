@@ -101,11 +101,7 @@ def main():
     })
     
     
-
-    def format_invoice_content():
-        return invoice.class_format_invoice_content()
-
-    invoice_content = format_invoice_content()
+    invoice_content = invoice.class_format_invoice_content()
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

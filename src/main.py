@@ -104,32 +104,32 @@ def main():
 if __name__ == "__main__":
     main()
 
-class InvoiceData:
-    def __init__(self, invoices):
-        self._trade_items = invoices
-        self._total_price = 0
-        self._total_point = 0
+# class InvoiceData:
+#     def __init__(self, invoices):
+#         self._trade_items = invoices
+#         self._total_price = 0
+#         self._total_point = 0
 
-    @property
-    def trade_items(self):
-        return self._trade_items 
+#     @property
+#     def trade_items(self):
+#         return self._trade_items 
     
-    @trade_items.setter
-    def trade_items(self, arg):
-        self._trade_items = arg
+#     @trade_items.setter
+#     def trade_items(self, arg):
+#         self._trade_items = arg
     
-    @property
-    def total_price(self):
-        return self._total_price 
+#     @property
+#     def total_price(self):
+#         return self._total_price 
     
-    @trade_items.setter
-    def total_price(self, arg):
-        self._total_price = arg
+#     @trade_items.setter
+#     def total_price(self, arg):
+#         self._total_price = arg
     
-    @property
-    def total_point(self):
-        return self._total_point
+#     @property
+#     def total_point(self):
+#         return self._total_point
 
-    @trade_items.setter
-    def total_point(self, arg):
-        self._total_point = arg 
+#     @trade_items.setter
+#     def total_point(self, arg):
+#         self._total_point = arg 

@@ -71,6 +71,19 @@ class Invoice:
         return self.performances
     def get_customer(self):
         return self.customer
+    
+    def format_invoice_content():
+        invoice_content = "請求書\n"
+        invoice_content += customer + "\n"
+        
+        for performance in performances.get_performances():
+            invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
+
+        invoice_content += "合計金額：$" + str(performances.calc_total_price()) +  "\n"
+        invoice_content += "獲得ポイント：" + str(performances.calc_total_point()) + "pt"
+
+        return invoice_content
+
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:

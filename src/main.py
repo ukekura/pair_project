@@ -72,7 +72,7 @@ class Invoice:
     def get_customer(self):
         return self.customer
     
-    def class_format_invoice_content(self):
+    def format_invoice_content(self):
         invoice_content = "請求書\n"
         invoice_content += self.get_customer() + "\n"
         
@@ -101,7 +101,7 @@ def main():
     })
     
     
-    invoice_content = invoice.class_format_invoice_content()
+    invoice_content = invoice.format_invoice_content()
 
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)

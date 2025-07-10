@@ -62,8 +62,17 @@ def main():
         return new_mid_data
     
     def add_price_point_to(INVOICES):
-        mid_data = add_price_key_to(INVOICES)
-        new_mid_data = add_point_key_value_to(mid_data)
+
+        mid_data = INVOICES["performances"]
+        for performance in mid_data:
+            price = check_type_calc_price(performance)
+            performance["price"] = price
+
+        new_mid_data = mid_data
+        for performance in new_mid_data:
+            performance["point"] = 0
+            performance["point"] = check_type_calc_point(performance)
+            
         return new_mid_data
     
     def amoutn_price(new_mid_data):

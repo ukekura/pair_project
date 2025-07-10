@@ -65,7 +65,6 @@ class Performance:
 
 class Invoice:
     def __init__(self, data):
-        self.data = data
         self.performances = data["performances"]
         self.customer = data["customer"]
     def get_performances(self):
@@ -87,8 +86,6 @@ def main():
         "performances": Performances(invoices[0]["performances"], plays),
         "customer": invoices[0]["customer"]
     })
-    def get_data_of_invoice():
-        return invoice.data
     
     def get_invoice():
         return invoice

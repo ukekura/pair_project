@@ -66,6 +66,9 @@ class Performance:
 class Invoice:
     def __init__(self, data):
         self.data = data
+        self.performances = data["performances"]
+    def get_performances(self):
+        return self.performances
 
 def load_json():
    with open("input/invoices.json", "r", encoding="utf-8") as f:
@@ -87,7 +90,7 @@ def main():
     def get_invoice():
         return invoice
     
-    performances = get_invoice().data["performances"]
+    performances = invoice.get_performances()
     customer = get_invoice().data["customer"]
 
     def format_invoice_content():

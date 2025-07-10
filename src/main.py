@@ -91,12 +91,12 @@ def main():
 
     invoice_data = deep_copy(INVOICES)
 
-    total_price = 0
     
     for performance in invoice_data["performances"]:
         price = check_type_calc_price(performance)
         performance["price"] = price
 
+    total_price = 0
     for performance in invoice_data["performances"]:
         total_price += performance["price"]
 

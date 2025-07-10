@@ -3,7 +3,7 @@ import os
 
 class Performances:
     def __init__(self, data, plays):
-        self.performances = [Performance(self._format_obj(performance, plays)) for performance in data[0]["performances"]]
+        self.performances = [Performance(self._format_obj(performance, plays)) for performance in data]
 
     def get_performances(self):
         return self.performances
@@ -75,7 +75,7 @@ def load_json():
 def main():
     invoices, plays = load_json()
 
-    performances = Performances(invoices, plays)
+    performances = Performances(invoices[0]["performances"], plays)
 
     invoice_content = "請求書\n"
     invoice_content += invoices[0]["customer"] + "\n"

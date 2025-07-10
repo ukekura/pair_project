@@ -90,7 +90,15 @@ def main():
 
     invoice_data = deep_copy(INVOICES)
 
-    new_mid_data = add_price_point_to(invoice_data)
+    for performance in invoice_data["performances"]:
+        price = check_type_calc_price(performance)
+        performance["price"] = price
+
+    for performance in invoice_data["performances"]:
+        performance["point"] = 0
+        performance["point"] = check_type_calc_point(performance)
+
+    new_mid_data = invoice_data["performances"]
 
     total_price = amount_price(new_mid_data)
     total_point = amount_point(new_mid_data)

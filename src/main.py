@@ -109,7 +109,7 @@ def main():
         total_point += performance["point"]
     
     invoice_content = "請求書\n"
-    invoice_content += INVOICES["customer"] + "\n"
+    invoice_content += invoice_data["customer"] + "\n"
     for performance in new_mid_data:
         invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
     invoice_content += "合計金額：$" + str(total_price) +  "\n"

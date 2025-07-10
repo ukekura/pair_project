@@ -88,8 +88,12 @@ def main():
         
     mid_data = add_price_key_to(INVOICES)
     new_mid_data = add_point_key_value_to(mid_data)
+
+    total_price = 0
+    for performance in mid_data:
+        price = check_type_calc_price(performance)
+        total_price += price
     
-    total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)
     
     

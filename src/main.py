@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 
@@ -83,7 +84,14 @@ def main():
     
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
-    new_mid_data = add_price_point_to(INVOICES)
+
+    def deep_copy(arg):
+        result = arg
+        return result
+
+    invoice_data = deep_copy(INVOICES)
+
+    new_mid_data = add_price_point_to(invoice_data)
 
     total_price = amoutn_price(new_mid_data)
     total_point = amount_point(new_mid_data)
@@ -95,3 +103,33 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+class InvoiceData:
+    def __init__(self, invoices):
+        self._trade_items = invoices
+        self._total_price = 0
+        self._total_point = 0
+
+    @property
+    def trade_items(self):
+        return self._trade_items 
+    
+    @trade_items.setter
+    def trade_items(self, arg):
+        self._trade_items = arg
+    
+    @property
+    def total_price(self):
+        return self._total_price 
+    
+    @trade_items.setter
+    def total_price(self, arg):
+        self._total_price = arg
+    
+    @property
+    def total_point(self):
+        return self._total_point
+
+    @trade_items.setter
+    def total_point(self, arg):
+        self._total_point = arg 

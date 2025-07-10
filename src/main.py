@@ -63,17 +63,24 @@ def main():
     
     def add_price_point_to(INVOICES):
 
+        print("invoices1----------------", INVOICES)
+
         mid_data = INVOICES["performances"]
         for performance in mid_data:
             price = check_type_calc_price(performance)
             performance["price"] = price
 
-        new_mid_data = mid_data
-        for performance in new_mid_data:
+        print("invoices2----------------", INVOICES)
+
+        mid_data = mid_data
+        for performance in mid_data:
             performance["point"] = 0
             performance["point"] = check_type_calc_point(performance)
-            
-        return new_mid_data
+
+        print("invoices3----------------", INVOICES)
+
+
+        return mid_data
     
     def amoutn_price(new_mid_data):
         total_price = 0

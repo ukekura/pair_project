@@ -72,7 +72,7 @@ class Invoice:
     def get_customer(self):
         return self.customer
     
-    def format_invoice_content():
+    def class_format_invoice_content():
         invoice_content = "請求書\n"
         invoice_content += customer + "\n"
         

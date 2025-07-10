@@ -96,9 +96,6 @@ def main():
         price = check_type_calc_price(performance)
         performance["price"] = price
 
-    total_price = 0
-    for performance in invoice_data["performances"]:
-        total_price += performance["price"]
 
     for performance in invoice_data["performances"]:
         performance["point"] = 0
@@ -108,6 +105,9 @@ def main():
 
     print("new_mid_data-----------------------", new_mid_data)
 
+    total_price = 0
+    for performance in invoice_data["performances"]:
+        total_price += performance["price"]
     total_point = amount_point(new_mid_data)
 
     print(INVOICES)

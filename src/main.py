@@ -88,11 +88,10 @@ def main():
     })
     
     
-    customer = invoice.get_customer()
 
     def format_invoice_content():
         invoice_content = "請求書\n"
-        invoice_content += customer + "\n"
+        invoice_content += invoice.get_customer() + "\n"
         
         for performance in invoice.get_performances().get_performances():
             invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"

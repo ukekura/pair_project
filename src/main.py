@@ -75,11 +75,16 @@ def load_json():
 def main():
     invoices, plays = load_json()
 
-    performances = Performances(invoices[0]["performances"], plays)
+    invoice = {
+        "performances": Performances(invoices[0]["performances"], plays),
+        "customer": invoices[0]["customer"]
+    }
+    performances = invoice["performances"]
+    customer = invoice["customer"]
 
     def format_invoice_content():
         invoice_content = "請求書\n"
-        invoice_content += invoices[0]["customer"] + "\n"
+        invoice_content += customer + "\n"
         
         for performance in performances.get_performances():
             invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
@@ -90,7 +95,7 @@ def main():
         return invoice_content
 
     invoice_content = format_invoice_content()
-    
+
     # 出力ディレクトリの作成（存在しない場合）
     os.makedirs("output", exist_ok=True)
     

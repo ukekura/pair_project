@@ -79,11 +79,11 @@ def main():
         "performances": Performances(invoices[0]["performances"], plays),
         "customer": invoices[0]["customer"]
     }
-    def get_invoice():
+    def get_data_of_invoice():
         return invoice
     
-    performances = get_invoice()["performances"]
-    customer = get_invoice()["customer"]
+    performances = get_data_of_invoice()["performances"]
+    customer = get_data_of_invoice()["customer"]
 
     def format_invoice_content():
         invoice_content = "請求書\n"

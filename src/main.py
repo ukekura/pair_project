@@ -65,22 +65,22 @@ def main():
 
         print("invoices1----------------", INVOICES)
 
-        mid_data = INVOICES["performances"]
-        for performance in mid_data:
+        INVOICES["performances"] = INVOICES["performances"]
+        for performance in INVOICES["performances"]:
             price = check_type_calc_price(performance)
             performance["price"] = price
 
         print("invoices2----------------", INVOICES)
 
-        mid_data = mid_data
-        for performance in mid_data:
+        INVOICES["performances"] = INVOICES["performances"]
+        for performance in INVOICES["performances"]:
             performance["point"] = 0
             performance["point"] = check_type_calc_point(performance)
 
         print("invoices3----------------", INVOICES)
 
 
-        return mid_data
+        return INVOICES["performances"]
     
     def amoutn_price(new_mid_data):
         total_price = 0

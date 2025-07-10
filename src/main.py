@@ -89,12 +89,22 @@ def main():
     INVOICES = format_invoice_data(invoices)
         
     mid_data = add_price_key_to(INVOICES)
-    new_mid_data = add_point_key_value_to(mid_data)
+
+    new_mid_data = mid_data
+    for performance in new_mid_data:
+        performance["point"] = 0
+        performance["point"] = check_type_calc_point(performance)
 
     total_price = amoutn_price(mid_data)
     total_point = amount_point(new_mid_data)
-
-    invoice_content = create_invoice_content_from(new_mid_data, total_price, total_point)
+    
+    
+    invoice_content = "請求書\n"
+    invoice_content += INVOICES["customer"] + "\n"
+    for performance in new_mid_data:
+        invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+    invoice_content += "合計金額：$" + str(total_price) +  "\n"
+    invoice_content += "獲得ポイント：" + str(total_point) + "pt"
     
     output_text(invoice_content)
 

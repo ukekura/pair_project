@@ -66,7 +66,7 @@ def main():
         new_mid_data = add_point_key_value_to(mid_data)
         return new_mid_data
     
-    def amoutn_price(mid_data):
+    def amoutn_price(new_mid_data):
         total_price = 0
         for performance in new_mid_data:
             price = check_type_calc_price(performance)

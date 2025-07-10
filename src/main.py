@@ -106,7 +106,7 @@ def main():
     print("new_mid_data-----------------------", new_mid_data)
 
     total_price = 0
-    for performance in invoice_data["performances"]:
+    for performance in new_mid_data:
         total_price += performance["price"]
     total_point = amount_point(new_mid_data)
 

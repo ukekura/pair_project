@@ -86,7 +86,7 @@ def main():
     INVOICES = format_invoice_data(invoices)
 
     def deep_copy(arg):
-        result = arg
+        result = copy.deepcopy(arg)
         return result
 
     invoice_data = deep_copy(INVOICES)

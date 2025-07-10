@@ -27,13 +27,10 @@ class Performances:
 
 class Performance:
     def __init__(self, data):
-        self.data = data
         self.name = data["name"]
         self.audience = data["audience"]
         self.type = data["type"]
 
-    def get_performance(self):
-        return self.data
     def get_name(self):
         return self.name
     def get_audience(self):

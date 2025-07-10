@@ -94,7 +94,7 @@ def main():
         performance["point"] = check_type_calc_point(performance)
 
     total_price = 0
-    for performance in mid_data:
+    for performance in new_mid_data:
         price = check_type_calc_price(performance)
         total_price += price
     

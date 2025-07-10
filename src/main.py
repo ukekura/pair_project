@@ -72,15 +72,15 @@ class Invoice:
     def get_customer(self):
         return self.customer
     
-    def class_format_invoice_content():
+    def class_format_invoice_content(self):
         invoice_content = "請求書\n"
-        invoice_content += invoice.get_customer() + "\n"
+        invoice_content += self.get_customer() + "\n"
         
-        for performance in invoice.get_performances().get_performances():
+        for performance in self.get_performances().get_performances():
             invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
 
-        invoice_content += "合計金額：$" + str(invoice.get_performances().calc_total_price()) +  "\n"
-        invoice_content += "獲得ポイント：" + str(invoice.get_performances().calc_total_point()) + "pt"
+        invoice_content += "合計金額：$" + str(self.get_performances().calc_total_price()) +  "\n"
+        invoice_content += "獲得ポイント：" + str(self.get_performances().calc_total_point()) + "pt"
 
         return invoice_content
 

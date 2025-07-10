@@ -87,8 +87,6 @@ def main():
         "customer": invoices[0]["customer"]
     })
     
-    def get_invoice():
-        return invoice
     
     performances = invoice.get_performances()
     customer = invoice.get_customer()

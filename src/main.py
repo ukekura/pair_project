@@ -85,9 +85,13 @@ def main():
     
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
-        
-    mid_data = add_price_key_to(INVOICES)
-    new_mid_data = add_point_key_value_to(mid_data)
+
+    def add_price_point_to(INVOICES):
+        mid_data = add_price_key_to(INVOICES)
+        new_mid_data = add_point_key_value_to(mid_data)
+        return new_mid_data
+    
+    new_mid_data = add_price_point_to(INVOICES)
 
     total_price = amoutn_price(new_mid_data)
     total_point = amount_point(new_mid_data)

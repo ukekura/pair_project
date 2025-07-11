@@ -17,7 +17,7 @@ def output_text(invoice_content):
 
 def main():
     def preperate_invoice_data(invoices, plays):
-        def format_invoice_data(invoices):
+        def format_invoices(invoices):
             invoices = invoices[0]
             return invoices
         
@@ -31,7 +31,7 @@ def main():
                 performance["name"] = plays[performance["playID"]]["name"]
             return invoice_data
         
-        invoices = format_invoice_data(invoices)
+        invoices = format_invoices(invoices)
         invoice_data = deep_copy(invoices)
         integrated_invoice_data = integrate(invoice_data, plays)
 

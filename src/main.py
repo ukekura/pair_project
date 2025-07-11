@@ -78,15 +78,20 @@ def main():
             
             invoice_data = calc_point(invoice_data)
 
-            total_price = 0
-            for performance in invoice_data["performances"]:
-                total_price += performance["price"]
-            invoice_data["total_price"] = total_price
+            def calc_total_price_point(invoice_data):
+                total_price = 0
+                for performance in invoice_data["performances"]:
+                    total_price += performance["price"]
+                invoice_data["total_price"] = total_price
 
-            total_point = 0
-            for performance in invoice_data["performances"]:
-                total_point += performance["point"]
-            invoice_data["total_point"] = total_point
+                total_point = 0
+                for performance in invoice_data["performances"]:
+                    total_point += performance["point"]
+                invoice_data["total_point"] = total_point
+
+                return invoice_data
+            
+            invoice_data = calc_total_price_point(invoice_data)
 
             return invoice_data
 

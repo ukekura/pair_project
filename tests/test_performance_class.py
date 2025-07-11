@@ -90,3 +90,20 @@ class TestCalcPoint:
         })
     point = performance.calc_point()
     assert point == 4
+
+  def test_comedy_over_thirty(self):
+    performance = Performance({
+          "name": "As You Like It",
+          "audience": 31,
+          "type": "comedy"
+        })
+    point = performance.calc_point()
+    assert point == 7
+
+    performance = Performance({
+          "name": "As You Like It",
+          "audience": 40,
+          "type": "comedy"
+        })
+    point = performance.calc_point()
+    assert point == 18

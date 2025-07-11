@@ -77,11 +77,11 @@ class TestCalcPoint:
   def test_comedy_thirty_or_under(self):
     performance = Performance({
           "name": "As You Like It",
-          "audience": 29,
+          "audience": 30,
           "type": "comedy"
         })
     point = performance.calc_point()
-    assert point == 5
+    assert point == 6
 
     performance = Performance({
           "name": "As You Like It",

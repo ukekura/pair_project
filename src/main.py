@@ -41,9 +41,10 @@ def main():
 
     invoice_data = deep_copy(INVOICES)
     
+    for performance in invoice_data["performances"]:
+        performance["type"] = PLAYS[performance["playID"]].get("type")
+    
     def create_invoice_content(invoice_data):
-        for performance in invoice_data["performances"]:
-            performance["type"] = PLAYS[performance["playID"]].get("type")
 
         for performance in invoice_data["performances"]:
             if performance["type"] == "tragedy":

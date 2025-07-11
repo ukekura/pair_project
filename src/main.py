@@ -16,10 +16,6 @@ def output_text(invoice_content):
     print("請求書が正常に出力されました。")
 
 def main():
-    def format_invoice_data(INVOICES):
-        INVOICES = INVOICES[0]
-        return INVOICES
-    
     def clac_tragedy_price(performance):
         price = 40000
         if performance["audience"] > 30:
@@ -33,17 +29,26 @@ def main():
         return price
     
     invoices, PLAYS = load_json()
-    INVOICES = format_invoice_data(invoices)
-
-    def deep_copy(arg):
-        result = copy.deepcopy(arg)
-        return result
-
-    invoice_data = deep_copy(INVOICES)
     
-    for performance in invoice_data["performances"]:
-        performance["type"] = PLAYS[performance["playID"]].get("type")
-        performance["name"] = PLAYS[performance["playID"]]["name"]
+    def preperate_invoice_data():
+        def format_invoice_data(INVOICES):
+            INVOICES = INVOICES[0]
+            return INVOICES
+
+        def deep_copy(arg):
+            result = copy.deepcopy(arg)
+            return result
+
+        INVOICES = format_invoice_data(invoices)
+        invoice_data = deep_copy(INVOICES)
+
+        for performance in invoice_data["performances"]:
+            performance["type"] = PLAYS[performance["playID"]].get("type")
+            performance["name"] = PLAYS[performance["playID"]]["name"]
+
+        return invoice_data
+    
+    invoice_data = preperate_invoice_data()
     
     def create_invoice_content(invoice_data):
 

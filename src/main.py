@@ -16,29 +16,15 @@ def output_text(invoice_content):
     print("請求書が正常に出力されました。")
 
 def main():
-    def clac_tragedy_price(performance):
-        price = 40000
-        if performance["audience"] > 30:
-            price += (performance["audience"] - 30) * 1000 
-        return price
-    
-    def clac_comedy_price(performance):
-        price = 30000 + performance["audience"] * 300
-        if performance["audience"] > 20:
-            price += (performance["audience"] - 20) * 500 + 10000
-        return price
-    
-    
     def preperate_invoice_data(invoices, plays):
-
         def format_invoice_data(invoices):
             invoices = invoices[0]
             return invoices
-
+        
         def deep_copy(arg):
             result = copy.deepcopy(arg)
             return result
-
+        
         def integrate(invoice_data, plays):
             for performance in invoice_data["performances"]:
                 performance["type"] = plays[performance["playID"]].get("type")
@@ -54,6 +40,18 @@ def main():
     
     def create_invoice_content(invoice_data):
         def calc_invoice_data(invoice_data):
+            def clac_tragedy_price(performance):
+                price = 40000
+                if performance["audience"] > 30:
+                    price += (performance["audience"] - 30) * 1000 
+                return price
+
+            def clac_comedy_price(performance):
+                price = 30000 + performance["audience"] * 300
+                if performance["audience"] > 20:
+                    price += (performance["audience"] - 20) * 500 + 10000
+                return price
+            
             for performance in invoice_data["performances"]:
                 if performance["type"] == "tragedy":
                     price = clac_tragedy_price(performance)

@@ -77,9 +77,6 @@ def main():
         invoice_data["total_point"] = total_point
 
         return invoice_data
-
-    invoice_material = calc_invoice_data(invoice_data)
-
     
     def format_invoice_content(invoice_data):
         invoice_content = "請求書\n"
@@ -90,6 +87,7 @@ def main():
         invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
         return invoice_content
     
+    invoice_material = calc_invoice_data(invoice_data)
     invoice_content = format_invoice_content(invoice_material)
     
     output_text(invoice_content)

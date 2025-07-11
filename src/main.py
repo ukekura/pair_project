@@ -41,33 +41,36 @@ def main():
 
     invoice_data = deep_copy(INVOICES)
 
-    for performance in invoice_data["performances"]:
-        if PLAYS[performance["playID"]].get("type") == "tragedy":
-            price = clac_tragedy_price(performance)
-        if PLAYS[performance["playID"]].get("type") == "comedy":
-            price = clac_comedy_price(performance)
-        performance["price"] = price
-    
-    for performance in invoice_data["performances"]:
-        performance["point"] = 0
-        if PLAYS[performance["playID"]].get("type") == "comedy":
-            point = performance["audience"] // 5
-            performance["point"] += point
-        if performance["audience"]  > 30:
-            point = (performance["audience"] - 30)
-            performance["point"] += point
-    
-    total_price = 0
-    for performance in invoice_data["performances"]:
-        total_price += performance["price"]
-    invoice_data["total_price"] = total_price
-    
-    total_point = 0
-    for performance in invoice_data["performances"]:
-        total_point += performance["point"]
-    invoice_data["total_point"] = total_point
+    def create_invoice_material(invoice_data):
+        for performance in invoice_data["performances"]:
+            if PLAYS[performance["playID"]].get("type") == "tragedy":
+                price = clac_tragedy_price(performance)
+            if PLAYS[performance["playID"]].get("type") == "comedy":
+                price = clac_comedy_price(performance)
+            performance["price"] = price
 
-    invoice_material = invoice_data
+        for performance in invoice_data["performances"]:
+            performance["point"] = 0
+            if PLAYS[performance["playID"]].get("type") == "comedy":
+                point = performance["audience"] // 5
+                performance["point"] += point
+            if performance["audience"]  > 30:
+                point = (performance["audience"] - 30)
+                performance["point"] += point
+
+        total_price = 0
+        for performance in invoice_data["performances"]:
+            total_price += performance["price"]
+        invoice_data["total_price"] = total_price
+
+        total_point = 0
+        for performance in invoice_data["performances"]:
+            total_point += performance["point"]
+        invoice_data["total_point"] = total_point
+
+        return invoice_data
+    
+    invoice_material = create_invoice_material(invoice_data)
     
     def format_invoice_content(invoice_data):
         invoice_content = "請求書\n"

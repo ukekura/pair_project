@@ -55,4 +55,20 @@ class TestCalcPrice:
     assert price == 33000
 
 
+  def test_comedy_over_twenty(self):
+    performance = Performance({
+          "name": "As You Like It",
+          "audience": 21,
+          "type": "comedy"
+        })
+    price = performance.calc_price()
+    assert price == 46800
+
+    performance = Performance({
+          "name": "As You Like It",
+          "audience": 30,
+          "type": "comedy"
+        })
+    price = performance.calc_price()
+    assert price == 54000
 

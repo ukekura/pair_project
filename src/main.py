@@ -62,8 +62,6 @@ def main():
 
                 return invoice_data
             
-            invoice_data = calc_price(invoice_data)
-
             def calc_point(invoice_data):
                 for performance in invoice_data["performances"]:
                     performance["point"] = 0
@@ -76,8 +74,6 @@ def main():
 
                 return invoice_data
             
-            invoice_data = calc_point(invoice_data)
-
             def calc_total_price_point(invoice_data):
                 total_price = 0
                 for performance in invoice_data["performances"]:
@@ -91,6 +87,8 @@ def main():
 
                 return invoice_data
             
+            invoice_data = calc_price(invoice_data)
+            invoice_data = calc_point(invoice_data)
             invoice_data = calc_total_price_point(invoice_data)
 
             return invoice_data

@@ -46,15 +46,15 @@ def main():
     
     def create_invoice_material(invoice_data):
         for performance in invoice_data["performances"]:
-            if PLAYS[performance["playID"]].get("type") == "tragedy":
+            if performance["type"] == "tragedy":
                 price = clac_tragedy_price(performance)
-            if PLAYS[performance["playID"]].get("type") == "comedy":
+            if performance["type"] == "comedy":
                 price = clac_comedy_price(performance)
             performance["price"] = price
 
         for performance in invoice_data["performances"]:
             performance["point"] = 0
-            if PLAYS[performance["playID"]].get("type") == "comedy":
+            if performance["type"] == "comedy":
                 point = performance["audience"] // 5
                 performance["point"] += point
             if performance["audience"]  > 30:

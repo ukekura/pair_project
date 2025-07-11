@@ -37,7 +37,6 @@ def main():
 
         return integrated_invoice_data
     
-    
     def create_invoice_content(invoice_data):
         def calc_invoice_data(invoice_data):
             def calc_price(invoice_data):
@@ -100,7 +99,7 @@ def main():
 
             return invoice_data
 
-        def format_invoice_content(invoice_material):
+        def format_invoice_content(invoice_data):
             invoice_content = "請求書\n"
             invoice_content += invoice_data["customer"] + "\n"
             for performance in invoice_data["performances"]:

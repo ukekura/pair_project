@@ -30,7 +30,7 @@ def main():
     
     invoices, PLAYS = load_json()
     
-    def preperate_invoice_data():
+    def preperate_invoice_data(INVOICES, PLAYS):
         def format_invoice_data(INVOICES):
             INVOICES = INVOICES[0]
             return INVOICES
@@ -48,7 +48,7 @@ def main():
 
         return invoice_data
     
-    invoice_data = preperate_invoice_data()
+    invoice_data = preperate_invoice_data(invoices, PLAYS)
     
     def create_invoice_content(invoice_data):
 

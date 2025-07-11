@@ -72,3 +72,21 @@ class TestCalcPrice:
     price = performance.calc_price()
     assert price == 54000
 
+
+class TestCalcPoint:
+  def test_comedy_thirty_or_under(self):
+    performance = Performance({
+          "name": "As You Like It",
+          "audience": 29,
+          "type": "comedy"
+        })
+    point = performance.calc_point()
+    assert point == 5
+
+    performance = Performance({
+          "name": "As You Like It",
+          "audience": 20,
+          "type": "comedy"
+        })
+    point = performance.calc_point()
+    assert point == 4

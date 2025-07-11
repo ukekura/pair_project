@@ -88,7 +88,7 @@ def main():
     for performance in invoice_data["performances"]:
         performance["point"] = 0
         performance["point"] = check_type_calc_point(performance)
-        
+
     total_price = 0
     for performance in invoice_data["performances"]:
         total_price += performance["price"]
@@ -99,7 +99,7 @@ def main():
         total_point += performance["point"]
     invoice_data["total_point"] = total_point
     
-    def create_invoice_content_from(invoice_data):
+    def format_invoice_content(invoice_data):
         invoice_content = "請求書\n"
         invoice_content += invoice_data["customer"] + "\n"
         for performance in invoice_data["performances"]:
@@ -108,7 +108,7 @@ def main():
         invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
         return invoice_content
     
-    invoice_content = create_invoice_content_from(invoice_data)
+    invoice_content = format_invoice_content(invoice_data)
     
     output_text(invoice_content)
 

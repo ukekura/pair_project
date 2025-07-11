@@ -57,23 +57,29 @@ def main():
 
     invoice_data = deep_copy(INVOICES)
 
-    for performance in invoice_data["performances"]:
-        price = check_type_calc_price(performance)
-        performance["price"] = price
+    def calc_invoice_data(invoice_data):
+        for performance in invoice_data["performances"]:
+            price = check_type_calc_price(performance)
+            performance["price"] = price
 
-    for performance in invoice_data["performances"]:
-        performance["point"] = 0
-        performance["point"] = check_type_calc_point(performance)
+        for performance in invoice_data["performances"]:
+            performance["point"] = 0
+            performance["point"] = check_type_calc_point(performance)
 
-    total_price = 0
-    for performance in invoice_data["performances"]:
-        total_price += performance["price"]
-    invoice_data["total_price"] = total_price
+        total_price = 0
+        for performance in invoice_data["performances"]:
+            total_price += performance["price"]
+        invoice_data["total_price"] = total_price
 
-    total_point = 0
-    for performance in invoice_data["performances"]:
-        total_point += performance["point"]
-    invoice_data["total_point"] = total_point
+        total_point = 0
+        for performance in invoice_data["performances"]:
+            total_point += performance["point"]
+        invoice_data["total_point"] = total_point
+
+        return invoice_data
+
+    invoice_material = calc_invoice_data(invoice_data)
+
     
     def format_invoice_content(invoice_data):
         invoice_content = "請求書\n"
@@ -84,7 +90,7 @@ def main():
         invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
         return invoice_content
     
-    invoice_content = format_invoice_content(invoice_data)
+    invoice_content = format_invoice_content(invoice_material)
     
     output_text(invoice_content)
 

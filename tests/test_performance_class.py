@@ -73,6 +73,7 @@ class TestCalcPrice:
     assert price == 54000
 
 
+
 class TestCalcPoint:
   def test_comedy_thirty_or_under(self):
     performance = Performance({
@@ -126,3 +127,21 @@ class TestCalcPoint:
         })
     point = performance.calc_point()
     assert point == 0
+
+
+  def test_exception_comedy_thirty_or_under(self):
+    performance = Performance({
+          "name": "Hamlet",
+          "audience": 31,
+          "type": "tragedy"
+        })
+    point = performance.calc_point()
+    assert point == 1
+
+    performance = Performance({
+          "name": "Hamlet",
+          "audience": 40,
+          "type": "tragedy"
+        })
+    point = performance.calc_point()
+    assert point == 10

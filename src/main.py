@@ -48,30 +48,6 @@ def main():
             performance["point"] += point
         return performance["point"]
     
-    def add_price_point_to(INVOICES):
-
-        for performance in INVOICES["performances"]:
-            price = check_type_calc_price(performance)
-            performance["price"] = price
-
-        for performance in INVOICES["performances"]:
-            performance["point"] = 0
-            performance["point"] = check_type_calc_point(performance)
-
-        return INVOICES["performances"]
-    
-    def amount_price(new_mid_data):
-        total_price = 0
-        for performance in new_mid_data:
-            total_price += performance["price"]
-        return total_price
-        
-    def amount_point(new_mid_data):
-        total_point = 0
-        for performance in new_mid_data:
-            total_point += performance["point"]
-        return total_point
-    
     invoices, PLAYS = load_json()
     INVOICES = format_invoice_data(invoices)
 

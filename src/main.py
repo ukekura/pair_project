@@ -4,10 +4,10 @@ import os
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
-        invoices = json.load(f)
+        INVOICES = json.load(f)
    with open("input/PLAYS.json", "r", encoding="utf-8") as f:
-        plays = json.load(f)
-   return invoices, plays
+        PLAYS = json.load(f)
+   return INVOICES, PLAYS
 
 def output_text(invoice_content):
     os.makedirs("output", exist_ok=True)
@@ -16,6 +16,10 @@ def output_text(invoice_content):
     print("請求書が正常に出力されました。")
 
 def main():
+    def format_invoice_data(INVOICES):
+        INVOICES = INVOICES[0]
+        return INVOICES
+    
     def clac_tragedy_price(performance):
         price = 40000
         if performance["audience"] > 30:
@@ -29,14 +33,14 @@ def main():
         return price
     
     def check_type_calc_price(performance):
-        if plays[performance["playID"]].get("type") == "tragedy":
+        if PLAYS[performance["playID"]].get("type") == "tragedy":
             price = clac_tragedy_price(performance)
-        if plays[performance["playID"]].get("type") == "comedy":
+        if PLAYS[performance["playID"]].get("type") == "comedy":
             price = clac_comedy_price(performance)
         return price
     
     def check_type_calc_point(performance):
-        if plays[performance["playID"]].get("type") == "comedy":
+        if PLAYS[performance["playID"]].get("type") == "comedy":
             point = performance["audience"] // 5
             performance["point"] += point
         if performance["audience"]  > 30:
@@ -44,55 +48,48 @@ def main():
             performance["point"] += point
         return performance["point"]
     
-    def format_invoice_data(invoices):
-        invoices = invoices[0]
-        return invoices
+    invoices, PLAYS = load_json()
+    INVOICES = format_invoice_data(invoices)
 
     def deep_copy(arg):
         result = copy.deepcopy(arg)
         return result
 
-    invoices, plays = load_json()
-    invoices = format_invoice_data(invoices)
-    invoice_data = deep_copy(invoices)
+    invoice_data = deep_copy(INVOICES)
 
-    def create_invoice_content(invoice_data):
-        def calc_invoice_data(invoice_data):
-            for performance in invoice_data["performances"]:
-                price = check_type_calc_price(performance)
-                performance["price"] = price
+    def calc_invoice_data(invoice_data):
+        for performance in invoice_data["performances"]:
+            price = check_type_calc_price(performance)
+            performance["price"] = price
 
-            for performance in invoice_data["performances"]:
-                performance["point"] = 0
-                performance["point"] = check_type_calc_point(performance)
+        for performance in invoice_data["performances"]:
+            performance["point"] = 0
+            performance["point"] = check_type_calc_point(performance)
 
-            total_price = 0
-            for performance in invoice_data["performances"]:
-                total_price += performance["price"]
-            invoice_data["total_price"] = total_price
+        total_price = 0
+        for performance in invoice_data["performances"]:
+            total_price += performance["price"]
+        invoice_data["total_price"] = total_price
 
-            total_point = 0
-            for performance in invoice_data["performances"]:
-                total_point += performance["point"]
-            invoice_data["total_point"] = total_point
+        total_point = 0
+        for performance in invoice_data["performances"]:
+            total_point += performance["point"]
+        invoice_data["total_point"] = total_point
 
-            return invoice_data
-
-        def format_invoice_content(invoice_data):
-            invoice_content = "請求書\n"
-            invoice_content += invoice_data["customer"] + "\n"
-            for performance in invoice_data["performances"]:
-                invoice_content = invoice_content + "・" + plays[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
-            invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
-            invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
-            return invoice_content
-
-        invoice_material = calc_invoice_data(invoice_data)
-        invoice_content = format_invoice_content(invoice_material)
+        return invoice_data
     
+    def format_invoice_content(invoice_data):
+        invoice_content = "請求書\n"
+        invoice_content += invoice_data["customer"] + "\n"
+        for performance in invoice_data["performances"]:
+            invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+        invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
+        invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
         return invoice_content
     
-    invoice_content = create_invoice_content(invoice_data)
+    invoice_material = calc_invoice_data(invoice_data)
+    invoice_content = format_invoice_content(invoice_material)
+    
     output_text(invoice_content)
 
 if __name__ == "__main__":

@@ -28,7 +28,6 @@ def main():
             price += (performance["audience"] - 20) * 500 + 10000
         return price
     
-    invoices, plays = load_json()
     
     def preperate_invoice_data(invoices, plays):
 
@@ -52,7 +51,6 @@ def main():
 
         return integrated_invoice_data
     
-    invoice_data = preperate_invoice_data(invoices, plays)
     
     def create_invoice_content(invoice_data):
         def calc_invoice_data(invoice_data):
@@ -99,6 +97,8 @@ def main():
 
         return invoice_content
 
+    invoices, plays = load_json()
+    invoice_data = preperate_invoice_data(invoices, plays)
     invoice_content = create_invoice_content(invoice_data)
     output_text(invoice_content)
 

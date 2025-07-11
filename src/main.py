@@ -40,24 +40,29 @@ def main():
     
     def create_invoice_content(invoice_data):
         def calc_invoice_data(invoice_data):
-            def clac_tragedy_price(performance):
-                price = 40000
-                if performance["audience"] > 30:
-                    price += (performance["audience"] - 30) * 1000 
-                return price
+            def calc_price_into(invoice_data):
+                def clac_tragedy_price(performance):
+                    price = 40000
+                    if performance["audience"] > 30:
+                        price += (performance["audience"] - 30) * 1000 
+                    return price
 
-            def clac_comedy_price(performance):
-                price = 30000 + performance["audience"] * 300
-                if performance["audience"] > 20:
-                    price += (performance["audience"] - 20) * 500 + 10000
-                return price
+                def clac_comedy_price(performance):
+                    price = 30000 + performance["audience"] * 300
+                    if performance["audience"] > 20:
+                        price += (performance["audience"] - 20) * 500 + 10000
+                    return price
+
+                for performance in invoice_data["performances"]:
+                    if performance["type"] == "tragedy":
+                        price = clac_tragedy_price(performance)
+                    if performance["type"] == "comedy":
+                        price = clac_comedy_price(performance)
+                    performance["price"] = price
+
+                return invoice_data
             
-            for performance in invoice_data["performances"]:
-                if performance["type"] == "tragedy":
-                    price = clac_tragedy_price(performance)
-                if performance["type"] == "comedy":
-                    price = clac_comedy_price(performance)
-                performance["price"] = price
+            invoice_data = calc_price_into(invoice_data)
 
             for performance in invoice_data["performances"]:
                 performance["point"] = 0

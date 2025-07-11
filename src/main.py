@@ -31,6 +31,7 @@ def main():
     invoices, plays = load_json()
     
     def preperate_invoice_data(invoices, plays):
+        
         def format_invoice_data(invoices):
             invoices = invoices[0]
             return invoices
@@ -39,14 +40,17 @@ def main():
             result = copy.deepcopy(arg)
             return result
 
+        def integrate(invoice_data, plays):
+            for performance in invoice_data["performances"]:
+                performance["type"] = plays[performance["playID"]].get("type")
+                performance["name"] = plays[performance["playID"]]["name"]
+            return invoice_data
+        
         invoices = format_invoice_data(invoices)
         invoice_data = deep_copy(invoices)
+        integrated_invoice_data = integrate(invoice_data, plays)
 
-        for performance in invoice_data["performances"]:
-            performance["type"] = plays[performance["playID"]].get("type")
-            performance["name"] = plays[performance["playID"]]["name"]
-
-        return invoice_data
+        return integrated_invoice_data
     
     invoice_data = preperate_invoice_data(invoices, plays)
     

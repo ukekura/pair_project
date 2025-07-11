@@ -58,7 +58,10 @@ def main():
     invoice_data = deep_copy(INVOICES)
 
     for performance in invoice_data["performances"]:
-        price = check_type_calc_price(performance)
+        if PLAYS[performance["playID"]].get("type") == "tragedy":
+            price = clac_tragedy_price(performance)
+        if PLAYS[performance["playID"]].get("type") == "comedy":
+            price = clac_comedy_price(performance)
         performance["price"] = price
     
     for performance in invoice_data["performances"]:

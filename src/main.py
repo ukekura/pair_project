@@ -66,7 +66,12 @@ def main():
     
     for performance in invoice_data["performances"]:
         performance["point"] = 0
-        performance["point"] = check_type_calc_point(performance)
+        if PLAYS[performance["playID"]].get("type") == "comedy":
+            point = performance["audience"] // 5
+            performance["point"] += point
+        if performance["audience"]  > 30:
+            point = (performance["audience"] - 30)
+            performance["point"] += point
     
     total_price = 0
     for performance in invoice_data["performances"]:

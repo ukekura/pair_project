@@ -4,10 +4,10 @@ import os
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
-        INVOICES = json.load(f)
+        invoices = json.load(f)
    with open("input/PLAYS.json", "r", encoding="utf-8") as f:
-        PLAYS = json.load(f)
-   return INVOICES, PLAYS
+        plays = json.load(f)
+   return invoices, plays
 
 def output_text(invoice_content):
     os.makedirs("output", exist_ok=True)
@@ -28,27 +28,27 @@ def main():
             price += (performance["audience"] - 20) * 500 + 10000
         return price
     
-    invoices, PLAYS = load_json()
+    invoices, plays = load_json()
     
-    def preperate_invoice_data(INVOICES, PLAYS):
-        def format_invoice_data(INVOICES):
-            INVOICES = INVOICES[0]
-            return INVOICES
+    def preperate_invoice_data(invoices, plays):
+        def format_invoice_data(invoices):
+            invoices = invoices[0]
+            return invoices
 
         def deep_copy(arg):
             result = copy.deepcopy(arg)
             return result
 
-        INVOICES = format_invoice_data(invoices)
-        invoice_data = deep_copy(INVOICES)
+        invoices = format_invoice_data(invoices)
+        invoice_data = deep_copy(invoices)
 
         for performance in invoice_data["performances"]:
-            performance["type"] = PLAYS[performance["playID"]].get("type")
-            performance["name"] = PLAYS[performance["playID"]]["name"]
+            performance["type"] = plays[performance["playID"]].get("type")
+            performance["name"] = plays[performance["playID"]]["name"]
 
         return invoice_data
     
-    invoice_data = preperate_invoice_data(invoices, PLAYS)
+    invoice_data = preperate_invoice_data(invoices, plays)
     
     def create_invoice_content(invoice_data):
 

@@ -40,7 +40,7 @@ def main():
     
     def create_invoice_content(invoice_data):
         def calc_invoice_data(invoice_data):
-            def calc_price_into(invoice_data):
+            def calc_price(invoice_data):
                 def clac_tragedy_price(performance):
                     price = 40000
                     if performance["audience"] > 30:
@@ -62,16 +62,21 @@ def main():
 
                 return invoice_data
             
-            invoice_data = calc_price_into(invoice_data)
+            invoice_data = calc_price(invoice_data)
 
-            for performance in invoice_data["performances"]:
-                performance["point"] = 0
-                if performance["type"] == "comedy":
-                    point = performance["audience"] // 5
-                    performance["point"] += point
-                if performance["audience"]  > 30:
-                    point = (performance["audience"] - 30)
-                    performance["point"] += point
+            def calc_point(invoice_data):
+                for performance in invoice_data["performances"]:
+                    performance["point"] = 0
+                    if performance["type"] == "comedy":
+                        point = performance["audience"] // 5
+                        performance["point"] += point
+                    if performance["audience"]  > 30:
+                        point = (performance["audience"] - 30)
+                        performance["point"] += point
+
+                return invoice_data
+            
+            invoice_data = calc_point(invoice_data)
 
             total_price = 0
             for performance in invoice_data["performances"]:

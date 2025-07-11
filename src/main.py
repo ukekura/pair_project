@@ -104,13 +104,13 @@ def main():
     def create_invoice_content_from(invoice_data):
         invoice_content = "請求書\n"
         invoice_content += invoice_data["customer"] + "\n"
-        for performance in new_mid_data:
+        for performance in invoice_data["performances"]:
             invoice_content = invoice_content + "・" + PLAYS[performance["playID"]]["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
         invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
         invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
         return invoice_content
     
-    invoice_content = create_invoice_content_from(invoice_data, total_price, total_point)
+    invoice_content = create_invoice_content_from(invoice_data)
     
     output_text(invoice_content)
 

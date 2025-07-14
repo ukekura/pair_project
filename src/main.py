@@ -117,7 +117,7 @@ class Performances:
         self.performances = invoice_data["performances"]
 
     def getPerformances(self):
-        return self.performances
+        return [performance for performance in self.performances]
     
 def main():
     args = sys.argv

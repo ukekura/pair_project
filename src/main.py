@@ -147,12 +147,9 @@ def main():
 if __name__ == "__main__":
     main()
 
-class InvoiceManager:
+class Performances:
     def __init__(self, invoice_data):
-        self.invoice_data = invoice_data
+        self.performances = invoice_data["performances"]
 
     def getDefaultPerformances(self):
-        return self.invoice_data["performances"]
-    
-    def setDefaultPerformances(self, arg):
-        self.invoice_data["performances"] = arg
+        return self.performances

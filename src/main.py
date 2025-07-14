@@ -101,8 +101,8 @@ def format_invoice_content(invoice_data):
     return invoice_content
 
 def format_to_html(invoice_data):
-    invoice_content = "請求書\n"
-    invoice_content += invoice_data["customer"] + "\n"
+    invoice_content = "<h1>請求書</h1>"
+    invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
     for performance in invoice_data["performances"]:
         invoice_content = invoice_content + "・" + performance["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
     invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"

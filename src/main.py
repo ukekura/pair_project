@@ -36,8 +36,8 @@ def preperate_invoice_data(invoices, plays):
     integrated_invoice_data = integrate(invoice_data, plays)
     return integrated_invoice_data
 
-def calc_invoice_data(invoice_data, performances):
-    def calc_price(invoice_data, performances):
+def calc_invoice_data(invoice_data):
+    def calc_price(invoice_data):
         def clac_tragedy_price(performance):
             price = 40000
             if performance["audience"] > 30:
@@ -48,7 +48,7 @@ def calc_invoice_data(invoice_data, performances):
             if performance["audience"] > 20:
                 price += (performance["audience"] - 20) * 500 + 10000
             return price
-        for performance in performances.getPerformances():
+        for performance in invoice_data["performances"]:
             if performance["type"] == "tragedy":
                 price = clac_tragedy_price(performance)
             if performance["type"] == "comedy":
@@ -87,7 +87,7 @@ def calc_invoice_data(invoice_data, performances):
         
         return invoice_data
     
-    invoice_data = calc_price(invoice_data, performances)
+    invoice_data = calc_price(invoice_data)
     invoice_data = calc_point(invoice_data)
     invoice_data = calc_total_price_point(invoice_data)
     return invoice_data
@@ -112,23 +112,13 @@ def format_to_html(invoice_data):
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
     return invoice_content
 
-class Performances:
-    def __init__(self, invoice_data):
-        self.performances = invoice_data["performances"]
-
-    def getPerformances(self):
-        return self.performances
-    
 def main():
     args = sys.argv
-
 
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
 
-    performances = Performances(invoice_data)
-
-    invoice_material = calc_invoice_data(invoice_data, performances)
+    invoice_material = calc_invoice_data(invoice_data)
     
     invoice_content = format_invoice_content(invoice_material)
     html_invoice_content = format_to_html(invoice_material)

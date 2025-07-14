@@ -116,7 +116,8 @@ class Performance:
     def __init__(self, data):
         self.data = data
 
-    
+    def getPerformance(self):
+        return self.data
 
 class Performances:
     def __init__(self, invoice_data):

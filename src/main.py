@@ -49,11 +49,11 @@ def calc_invoice_data(invoice_data, performances):
                 price += (performance["audience"] - 20) * 500 + 10000
             return price
         for performance in performances.getPerformances():
-            if performance.getPerformance()["type"] == "tragedy":
-                price = clac_tragedy_price(performance.getPerformance())
-            if performance.getPerformance()["type"] == "comedy":
-                price = clac_comedy_price(performance.getPerformance())
-            performance.getPerformance()["price"] = price
+            if performance["type"] == "tragedy":
+                price = clac_tragedy_price(performance)
+            if performance["type"] == "comedy":
+                price = clac_comedy_price(performance)
+            performance["price"] = price
         return invoice_data
     
     def calc_point(invoice_data):
@@ -112,23 +112,13 @@ def format_to_html(invoice_data):
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
     return invoice_content
 
-class Performance:
-    def __init__(self, data):
-        self.data= data
-    
-    def getPerformance(self):
-        return self.data
-
 class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]
 
     def getPerformances(self):
-        return [Performance(performance) for performance in self.performances]
+        return self.performances
     
-    
-    
-
 def main():
     args = sys.argv
 

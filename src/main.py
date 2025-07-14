@@ -25,16 +25,9 @@ def preperate_invoice_data(invoices, plays):
         result = copy.deepcopy(arg)
         return result
     
-    def integrate(invoice_data, plays):
-        for performance in invoice_data["performances"]:
-            performance["type"] = plays[performance["playID"]].get("type")
-            performance["name"] = plays[performance["playID"]]["name"]
-        return invoice_data
-    
     invoices = format_invoices(invoices)
     invoice_data = deep_copy(invoices)
-    integrated_invoice_data = integrate(invoice_data, plays)
-    return integrated_invoice_data
+    return invoice_data
 
 def calc_invoice_data(invoice_data, performances):
     def calc_price(invoice_data, performances):

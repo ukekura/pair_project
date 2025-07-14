@@ -32,6 +32,11 @@ def test_testcase_1(mocker):
     mocker.patch("src.main.load_json", lambda: load_json_for_test("testcase_1.json"))
     mocker.patch.object(sys, "argv", ["src/main.py", "html"])
     main()
+
+    # outputディレクトリにinvoice.html以外のファイルがないことを確認
+    output_files = os.listdir("output")
+    assert output_files == ["invoice.html"], f"outputディレクトリの内容: {output_files}"
+    
     invoice = get_output_invoice()
     with open("tests/html_output_for_test/testcase_1.html", "r", encoding="utf-8") as f:
         expected = f.read()

@@ -120,7 +120,7 @@ def main():
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
 
-    manager = InvoiceManager(invoice_data)
+    Performances = Performances(invoice_data)
 
     invoice_material = calc_invoice_data(invoice_data)
     

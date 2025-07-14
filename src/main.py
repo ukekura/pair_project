@@ -112,11 +112,15 @@ def format_to_html(invoice_data):
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
     return invoice_content
 
+    
 def main():
     args = sys.argv
 
+
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
+
+    manager = InvoiceManager(invoice_data)
 
     invoice_material = calc_invoice_data(invoice_data)
     
@@ -142,3 +146,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+class InvoiceManager:
+    def __init__(self, invoice_data):
+        self.invoice_data = invoice_data
+
+    def getDefaultPerformances(self):
+        return self.invoice_data["performances"]
+    
+    def setDefaultPerformances(self, arg):
+        self.invoice_data["performances"] = arg

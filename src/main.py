@@ -143,6 +143,7 @@ def main():
     invoice_data = preperate_invoice_data(invoices, plays)
 
     performances = Performances(invoice_data)
+    performances.integrate(plays)
 
     invoice_material = calc_invoice_data(invoice_data, performances)
     

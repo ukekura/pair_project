@@ -56,8 +56,8 @@ def calc_invoice_data(invoice_data, performances):
             performance["price"] = price
         return invoice_data
     
-    def calc_point(invoice_data):
-        for performance in invoice_data["performances"]:
+    def calc_point(invoice_data, performances):
+        for performance in performances.getPerformances():
             performance["point"] = 0
             if performance["type"] == "comedy":
                 point = performance["audience"] // 5
@@ -67,45 +67,45 @@ def calc_invoice_data(invoice_data, performances):
                 performance["point"] += point
         return invoice_data
     
-    def calc_total_price_point(invoice_data):
-        def calc_total_price(invoice_data):
+    def calc_total_price_point(invoice_data, performances):
+        def calc_total_price(invoice_data, performances):
             total_price = 0
-            for performance in invoice_data["performances"]:
+            for performance in performances.getPerformances():
                 total_price += performance["price"]
             invoice_data["total_price"] = total_price
             return invoice_data
             
-        def calc_total_point(invoice_data):
+        def calc_total_point(invoice_data, performances):
             total_point = 0
-            for performance in invoice_data["performances"]:
+            for performance in performances.getPerformances():
                 total_point += performance["point"]
             invoice_data["total_point"] = total_point
             return invoice_data
         
-        invoice_data = calc_total_price(invoice_data)
-        invoice_data = calc_total_point(invoice_data)
+        invoice_data = calc_total_price(invoice_data, performances)
+        invoice_data = calc_total_point(invoice_data, performances)
         
         return invoice_data
     
     invoice_data = calc_price(invoice_data, performances)
-    invoice_data = calc_point(invoice_data)
-    invoice_data = calc_total_price_point(invoice_data)
+    invoice_data = calc_point(invoice_data, performances)
+    invoice_data = calc_total_price_point(invoice_data, performances)
     return invoice_data
 
-def format_invoice_content(invoice_data):
+def format_invoice_content(invoice_data, performances):
     invoice_content = "請求書\n"
     invoice_content += invoice_data["customer"] + "\n"
-    for performance in invoice_data["performances"]:
+    for performance in performances.getPerformances():
         invoice_content = invoice_content + "・" + performance["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
     invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
     invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
     return invoice_content
 
-def format_to_html(invoice_data):
+def format_to_html(invoice_data, performances):
     invoice_content = "<h1>請求書</h1>"
     invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
     invoice_content += "<ul>"
-    for performance in invoice_data["performances"]:
+    for performance in performances.getPerformances():
         invoice_content = invoice_content + "<li>" + performance["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）</li>"
     invoice_content += "</ul>"
     invoice_content += "<p>" + "合計金額：$" + str(invoice_data["total_price"]) +  "</p>"
@@ -130,8 +130,8 @@ def main():
 
     invoice_material = calc_invoice_data(invoice_data, performances)
     
-    invoice_content = format_invoice_content(invoice_material)
-    html_invoice_content = format_to_html(invoice_material)
+    invoice_content = format_invoice_content(invoice_material, performances)
+    html_invoice_content = format_to_html(invoice_material, performances)
     # output_text(invoice_content)
 
     # ファイルに出力

@@ -130,6 +130,11 @@ class Performances:
             result.append(performance_instance)
         return result
     
+    def integrate(self, plays):
+        for performance in self.performances:
+            performance["type"] = plays[performance["playID"]]["type"]
+            performance["name"] = plays[performance["playID"]]["name"]
+    
 def main():
     args = sys.argv
 

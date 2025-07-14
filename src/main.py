@@ -100,11 +100,25 @@ def format_invoice_content(invoice_data):
     invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
     return invoice_content
 
+def format_to_html(invoice_data):
+    invoice_content = "請求書\n"
+    invoice_content += invoice_data["customer"] + "\n"
+    for performance in invoice_data["performances"]:
+        invoice_content = invoice_content + "・" + performance["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
+    invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
+    invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
+    return invoice_content
+
 def main():
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
+    print("========== invoice_data ==========\n", invoice_data, "\n")
+
     invoice_material = calc_invoice_data(invoice_data)
+    print("========== invoice_material ==========\n", invoice_material)
+    
     invoice_content = format_invoice_content(invoice_material)
+    invoice_html_content = format_to_html(invoice_material)
     output_text(invoice_content)
 
 if __name__ == "__main__":

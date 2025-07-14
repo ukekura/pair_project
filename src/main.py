@@ -112,7 +112,7 @@ def format_to_html(invoice_data, performances):
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
     return invoice_content
 
-class performance:
+class Performance:
     def __init__(self, data):
         self.data = data
 
@@ -123,7 +123,10 @@ class Performances:
         self.performances = invoice_data["performances"]
 
     def getPerformances(self):
-        return [performance for performance in self.performances]
+        result = []
+        for performance in self.performances:
+            result.append(performance)
+        return result
     
 def main():
     args = sys.argv

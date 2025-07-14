@@ -1,6 +1,7 @@
 import copy
 import json
 import os
+import sys
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
@@ -103,25 +104,24 @@ def format_invoice_content(invoice_data):
 def format_to_html(invoice_data):
     invoice_content = "<h1>請求書</h1>"
     invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
+    invoice_content += "<ul>"
     for performance in invoice_data["performances"]:
-        invoice_content = invoice_content + "・" + performance["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）\n"
-    invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
-    invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
+        invoice_content = invoice_content + "<li>" + performance["name"] + "（観客数：" + str(performance["audience"]) + "人、金額：$"+ str(performance["price"]) + "）</li>"
+    invoice_content += "</ul>"
+    invoice_content += "<p>" + "合計金額：$" + str(invoice_data["total_price"]) +  "</p>"
+    invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
     return invoice_content
 
 def main():
-
-    
+    args = sys.argv
 
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
-    print("========== invoice_data ==========\n", invoice_data, "\n")
 
     invoice_material = calc_invoice_data(invoice_data)
-    print("========== invoice_material ==========\n", invoice_material)
     
     invoice_content = format_invoice_content(invoice_material)
-    invoice_html_content = format_to_html(invoice_material)
+    html_invoice_content = format_to_html(invoice_material)
     output_text(invoice_content)
 
     # ファイルに出力

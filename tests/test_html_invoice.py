@@ -1,5 +1,7 @@
 import json
 from src.main import main
+import sys
+import os
 
 def load_json_for_test(testcase_file):
     """指定されたテストケースファイルを読み込む"""
@@ -15,12 +17,22 @@ def get_output_invoice():
         result = f.read()
     return result
 
+def cleanup_output_dir():
+    """outputディレクトリ内のファイルをすべて削除"""
+    output_dir = "output"
+    for filename in os.listdir(output_dir):
+        file_path = os.path.join(output_dir, filename)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+
 # TestCase No.1
 def test_testcase_1(mocker):
     """悲劇の観客数が「悲劇金額変化観客数」未満であるとき、金額は基本料金のみである。"""
+    cleanup_output_dir()  # ここでクリーンアップ
     mocker.patch("src.main.load_json", lambda: load_json_for_test("testcase_1.json"))
+    mocker.patch.object(sys, "argv", ["src/main.py", "html"])
     main()
     invoice = get_output_invoice()
-    # with open("tests/html_output_for_test/testcase_1.html", "r", encoding="utf-8") as f:
-    #     expected = f.read()
-    # assert invoice == expected
+    with open("tests/html_output_for_test/testcase_1.html", "r", encoding="utf-8") as f:
+        expected = f.read()
+    assert invoice == expected

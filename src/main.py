@@ -122,7 +122,7 @@ def main():
     
     invoice_content = format_invoice_content(invoice_material)
     html_invoice_content = format_to_html(invoice_material)
-    output_text(invoice_content)
+    # output_text(invoice_content)
 
     # ファイルに出力
     if len(args) == 2:

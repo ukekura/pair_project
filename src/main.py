@@ -59,6 +59,7 @@ class Performance:
             self.data["point"] += self.comedy_point()
         if self.get_audience()  > 30:
             self.data["point"] += self.common_point()
+        return self.data["point"]
 
 class Performances:
     def __init__(self, invoice_data):

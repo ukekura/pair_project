@@ -54,7 +54,7 @@ class Performance:
         return self.data["point"]
     
     def set_point(self, arg):
-        self.get_performance()["point"] += arg
+        self.get_performance()["point"] = arg
         pass
 
 class Performances:

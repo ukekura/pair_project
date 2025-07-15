@@ -89,7 +89,7 @@ def format_invoice_content(invoice_data, performances):
     invoice_content = "請求書\n"
     invoice_content += invoice_data["customer"] + "\n"
     for performance in performances.getPerformances():
-        invoice_content = invoice_content + "・" + performance.getPerformance()["name"] + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.getPerformance()["price"]) + "）\n"
+        invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.getPerformance()["price"]) + "）\n"
     invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
     invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
     return invoice_content
@@ -120,7 +120,7 @@ class Performance:
     def get_audience(self):
         return self.audience
     
-    def get_mame(self):
+    def get_name(self):
         return self.data["name"]
 
 class Performances:

@@ -118,7 +118,7 @@ class Performance:
         return self.type
 
     def get_audience(self):
-        return self.data["audience"]
+        return self.audience
 
 class Performances:
     def __init__(self, invoice_data):

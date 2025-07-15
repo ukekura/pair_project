@@ -83,13 +83,12 @@ def preperate_invoice_data(invoices, plays):
     invoice_data = deep_copy(invoices)
     return invoice_data
 
-def get_price(performances):
-    for performance in performances.get_performances():
-        if performance.get_type() == "tragedy":
-            price = performance.tragedy_price()
-        if performance.get_type() == "comedy":
-            price = performance.comedy_price()
-        performance.get_performance()["price"] = price
+def get_price(performance):
+    if performance.get_type() == "tragedy":
+        price = performance.tragedy_price()
+    if performance.get_type() == "comedy":
+        price = performance.comedy_price()
+    return price
 
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):

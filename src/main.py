@@ -54,7 +54,7 @@ class Performance:
         return self.data["point"]
     
     def set_point(self, arg):
-        self.get_performance()["point"] = arg
+        self.data["point"] += arg
         pass
 
 class Performances:
@@ -109,9 +109,9 @@ def calc_invoice_data(invoice_data, performances):
         for performance in performances.get_performances():
             performance.get_performance()["point"] = 0
             if performance.get_type() == "comedy":
-                performance.get_performance()["point"] += performance.comedy_point()
+                performance.set_point(performance.comedy_point())
             if performance.get_audience()  > 30:
-                performance.get_performance()["point"] += performance.common_point()
+                performance.set_point(performance.common_point())
         return invoice_data
     
     # この関数をどうするべきか悩む

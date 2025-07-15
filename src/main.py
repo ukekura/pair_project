@@ -119,6 +119,9 @@ class Performance:
 
     def get_audience(self):
         return self.audience
+    
+    def get_mame(self):
+        return self.data["name"]
 
 class Performances:
     def __init__(self, invoice_data):

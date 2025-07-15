@@ -52,6 +52,10 @@ class Performance:
     
     def point(self):
         return self.data["point"]
+    
+    def set_point(self, arg):
+        self.get_performance()["point"] += arg
+        pass
 
 class Performances:
     def __init__(self, invoice_data):

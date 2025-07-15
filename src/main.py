@@ -109,6 +109,7 @@ class Performance:
     def __init__(self, data):
         self.data = data
         self.type = data["type"]
+        self.audience = data["audience"]
 
     def getPerformance(self):
         return self.data

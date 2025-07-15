@@ -3,6 +3,8 @@ import json
 import os
 import sys
 
+
+
 class Performance:
     def __init__(self, data):
         self.data = data
@@ -40,9 +42,13 @@ class Performance:
     def common_point(self):
         point = (self.audience - 30)
         return point
-
+    
     def price(self):
-        return self.data["price"]
+        if self.get_type() == "tragedy":
+            price = self.tragedy_price()
+        if self.get_type() == "comedy":
+            price = self.comedy_price()
+        return price
     
     def point(self):
         return self.data["point"]
@@ -89,22 +95,12 @@ def preperate_invoice_data(invoices, plays):
     invoice_data = deep_copy(invoices)
     return invoice_data
 
-def get_price(performance):
-    if performance.get_type() == "tragedy":
-        price = performance.tragedy_price()
-    if performance.get_type() == "comedy":
-        price = performance.comedy_price()
-    return price
+
 
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):
 
     # 以下２つの関数定義はどこでするべき？
-    def calc_price(invoice_data, performances):
-        for performance in performances.get_performances():
-            performance.get_performance()["price"] = get_price(performance)
-        return invoice_data
-    
     def calc_point(invoice_data, performances):
         for performance in performances.get_performances():
             performance.get_performance()["point"] = 0
@@ -138,7 +134,6 @@ def calc_invoice_data(invoice_data, performances):
         return invoice_data
 
     # この呼び出し自体はどこでするべき？
-    invoice_data = calc_price(invoice_data, performances)
     invoice_data = calc_point(invoice_data, performances)
     invoice_data = calc_total_price_point(invoice_data, performances)
     return invoice_data

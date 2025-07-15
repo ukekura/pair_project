@@ -42,9 +42,9 @@ def calc_invoice_data(invoice_data, performances):
                 price += (performance["audience"] - 20) * 500 + 10000
             return price
         for performance in performances.getPerformances():
-            if performance.getPerformance()["type"] == "tragedy":
+            if performance.getType() == "tragedy":
                 price = clac_tragedy_price(performance.getPerformance())
-            if performance.getPerformance()["type"] == "comedy":
+            if performance.getType() == "comedy":
                 price = clac_comedy_price(performance.getPerformance())
             performance.getPerformance()["price"] = price
         return invoice_data
@@ -108,9 +108,13 @@ def format_to_html(invoice_data, performances):
 class Performance:
     def __init__(self, data):
         self.data = data
+        self.type = data["type"]
 
     def getPerformance(self):
         return self.data
+    
+    def getType(self):
+        return self.type
 
 class Performances:
     def __init__(self, invoice_data):
@@ -137,6 +141,7 @@ def main():
 
     performances = Performances(invoice_data)
     performances.integrate(plays)
+    print("performances-----", [p.getPerformance() for p in performances.getPerformances()])
 
     invoice_material = calc_invoice_data(invoice_data, performances)
     

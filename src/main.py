@@ -52,12 +52,8 @@ class Performance:
     
     def point(self):
         return self.data["point"]
-    
-    def set_point(self, arg):
-        self.data["point"] += arg
-        pass
 
-    def new_set_point(self):
+    def set_point(self):
         self.data["point"] = 0
         if self.get_type() == "comedy":
             self.data["point"] += self.comedy_point()
@@ -114,7 +110,7 @@ def calc_invoice_data(invoice_data, performances):
     # 以下２つの関数定義はどこでするべき？
     def calc_point(invoice_data, performances):
         for performance in performances.get_performances():
-            performance.new_set_point()
+            performance.set_point()
         return invoice_data
     
     # この関数をどうするべきか悩む

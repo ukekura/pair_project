@@ -108,12 +108,6 @@ def preperate_invoice_data(invoices, plays):
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):
 
-    # 以下２つの関数定義はどこでするべき？
-    def calc_point(invoice_data, performances):
-        for performance in performances.get_performances():
-            performance.set_point()
-        return invoice_data
-    
     # この関数をどうするべきか悩む
     # もしクラスに移動するならInvoiceクラスだと思
     def calc_total_price_point(invoice_data, performances):
@@ -138,7 +132,6 @@ def calc_invoice_data(invoice_data, performances):
         return invoice_data
 
     # この呼び出し自体はどこでするべき？
-    invoice_data = calc_point(invoice_data, performances)
     invoice_data = calc_total_price_point(invoice_data, performances)
     return invoice_data
 

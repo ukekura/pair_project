@@ -43,11 +43,9 @@ def calc_invoice_data(invoice_data, performances):
         for performance in performances.getPerformances():
             performance.getPerformance()["point"] = 0
             if performance.getType() == "comedy":
-                point = performance.get_audience() // 5
-                performance.getPerformance()["point"] += point
+                performance.getPerformance()["point"] += performance.comedy_point()
             if performance.get_audience()  > 30:
-                point = (performance.get_audience() - 30)
-                performance.getPerformance()["point"] += point
+                performance.getPerformance()["point"] += performance.common_point()
         return invoice_data
     
     def calc_total_price_point(invoice_data, performances):
@@ -124,6 +122,14 @@ class Performance:
         if self.audience > 20:
             price += (self.audience - 20) * 500 + 10000
         return price
+    
+    def comedy_point(self):
+        point = self.audience // 5
+        return point
+
+    def common_point(self):
+        point = (self.audience - 30)
+        return point
 
 class Performances:
     def __init__(self, invoice_data):

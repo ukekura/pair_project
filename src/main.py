@@ -116,6 +116,9 @@ class Performance:
     def getType(self):
         return self.type
 
+    def get_audience(self):
+        return self.data["audience"]
+
 class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]

@@ -123,6 +123,18 @@ class Performance:
     def get_name(self):
         return self.data["name"]
 
+    def tragedy_price(self):
+        price = 40000
+        if self.audience() > 30:
+            price += (self.audience() - 30) * 1000 
+        return price
+    
+    def comedy_price(self):
+        price = 30000 + self.audience() * 300
+        if self.audience() > 20:
+            price += (self.audience() - 20) * 500 + 10000
+        return price
+
 class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]
@@ -146,11 +158,12 @@ def main():
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
 
+
     performances = Performances(invoice_data)
     performances.integrate(plays)
-    print("performances-----", [p.getPerformance() for p in performances.getPerformances()])
 
     invoice_material = calc_invoice_data(invoice_data, performances)
+    print("========== invoice_material ==========", invoice_material)
     
     invoice_content = format_invoice_content(invoice_material, performances)
     html_invoice_content = format_to_html(invoice_material, performances)

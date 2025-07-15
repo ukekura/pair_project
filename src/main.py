@@ -43,9 +43,9 @@ def calc_invoice_data(invoice_data, performances):
             return price
         for performance in performances.getPerformances():
             if performance.getType() == "tragedy":
-                price = clac_tragedy_price()
+                price = performance.tragedy_price()
             if performance.getType() == "comedy":
-                price = clac_comedy_price()
+                price = performance.comedy_price()
             performance.getPerformance()["price"] = price
         return invoice_data
     
@@ -125,14 +125,14 @@ class Performance:
 
     def tragedy_price(self):
         price = 40000
-        if self.audience() > 30:
-            price += (self.audience() - 30) * 1000 
+        if self.audience > 30:
+            price += (self.audience - 30) * 1000 
         return price
     
     def comedy_price(self):
-        price = 30000 + self.audience() * 300
-        if self.audience() > 20:
-            price += (self.audience() - 20) * 500 + 10000
+        price = 30000 + self.audience * 300
+        if self.audience > 20:
+            price += (self.audience - 20) * 500 + 10000
         return price
 
 class Performances:

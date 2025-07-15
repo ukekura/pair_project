@@ -3,8 +3,6 @@ import json
 import os
 import sys
 
-
-
 class Performance:
     def __init__(self, data):
         self.data = data
@@ -51,16 +49,17 @@ class Performance:
         return price
     
     def point(self):
-        self.data["point"] = 0
+        point = 0
         if self.get_type() == "comedy":
-            self.data["point"] += self.comedy_point()
+            point += self.comedy_point()
         if self.get_audience()  > 30:
-            self.data["point"] += self.common_point()
-        return self.data["point"]
+            point += self.common_point()
+        return point
 
 class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]
+        self.invoice_data = invoice_data
 
     def get_performances(self):
         result = []
@@ -73,6 +72,12 @@ class Performances:
         for performance in self.performances:
             performance["type"] = plays[performance["playID"]]["type"]
             performance["name"] = plays[performance["playID"]]["name"]
+
+    def total_price(self):
+        return self.invoice_data["total_price"]
+
+    def set_total_price(self, arg):
+        self.invoice_data["total_price"] = arg
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
@@ -112,7 +117,7 @@ def calc_invoice_data(invoice_data, performances):
             total_price = 0
             for performance in performances.get_performances():
                 total_price += performance.price()
-            invoice_data["total_price"] = total_price
+            performances.set_total_price(calc_total(total_price))
             return invoice_data
             
         def calc_total_point(invoice_data, performances):
@@ -139,7 +144,7 @@ def format_invoice_content(invoice_data, performances):
     invoice_content += invoice_data["customer"] + "\n"
     for performance in performances.get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
-    invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
+    invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
     invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
     return invoice_content
 

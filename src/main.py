@@ -50,7 +50,7 @@ class Performance:
             price = self.comedy_price()
         return price
     
-    def set_point(self):
+    def point(self):
         self.data["point"] = 0
         if self.get_type() == "comedy":
             self.data["point"] += self.comedy_point()
@@ -118,7 +118,7 @@ def calc_invoice_data(invoice_data, performances):
         def calc_total_point(invoice_data, performances):
             total_point = 0
             for performance in performances.get_performances():
-                total_point += performance.set_point()
+                total_point += performance.point()
             invoice_data["total_point"] = total_point
             return invoice_data
         

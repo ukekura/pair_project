@@ -31,16 +31,6 @@ def preperate_invoice_data(invoices, plays):
 
 def calc_invoice_data(invoice_data, performances):
     def calc_price(invoice_data, performances):
-        def clac_tragedy_price():
-            price = 40000
-            if performance.get_audience() > 30:
-                price += (performance.get_audience() - 30) * 1000 
-            return price
-        def clac_comedy_price():
-            price = 30000 + performance.get_audience() * 300
-            if performance.get_audience() > 20:
-                price += (performance.get_audience() - 20) * 500 + 10000
-            return price
         for performance in performances.getPerformances():
             if performance.getType() == "tragedy":
                 price = performance.tragedy_price()

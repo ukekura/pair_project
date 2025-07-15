@@ -41,19 +41,19 @@ class Performance:
         point = (self.audience - 30)
         return point
 
-class Invoice:
+class Performances:
     def __init__(self, invoice_data):
-        self.invoice = invoice_data["performances"]
+        self.performances = invoice_data["performances"]
 
-    def get_invoice(self):
+    def get_performances(self):
         result = []
-        for performance in self.invoice:
+        for performance in self.performances:
             performance_instance = Performance(performance)
             result.append(performance_instance)
         return result
     
     def integrate(self, plays):
-        for performance in self.invoice:
+        for performance in self.performances:
             performance["type"] = plays[performance["playID"]]["type"]
             performance["name"] = plays[performance["playID"]]["name"]
 
@@ -84,11 +84,11 @@ def preperate_invoice_data(invoices, plays):
     return invoice_data
 
 # この括りがそのままクラスに当てはまる？
-def calc_invoice_data(invoice_data, invoice):
+def calc_invoice_data(invoice_data, performances):
 
     # 以下２つの関数定義はどこでするべき？
-    def calc_price(invoice_data, invoice):
-        for performance in invoice.get_invoice():
+    def calc_price(invoice_data, performances):
+        for performance in performances.get_performances():
             if performance.get_type() == "tragedy":
                 price = performance.tragedy_price()
             if performance.get_type() == "comedy":
@@ -96,8 +96,8 @@ def calc_invoice_data(invoice_data, invoice):
             performance.get_performance()["price"] = price
         return invoice_data
     
-    def calc_point(invoice_data, invoice):
-        for performance in invoice.get_invoice():
+    def calc_point(invoice_data, performances):
+        for performance in performances.get_performances():
             performance.get_performance()["point"] = 0
             if performance.get_type() == "comedy":
                 performance.get_performance()["point"] += performance.comedy_point()
@@ -107,49 +107,49 @@ def calc_invoice_data(invoice_data, invoice):
     
     # この関数をどうするべきか悩む
     # もしクラスに移動するならInvoiceクラスだと思
-    def calc_total_price_point(invoice_data, invoice):
-        def calc_total_price(invoice_data, invoice):
+    def calc_total_price_point(invoice_data, performances):
+        def calc_total_price(invoice_data, performances):
             total_price = 0
-            for performance in invoice.get_invoice():
+            for performance in performances.get_performances():
                 total_price += performance.get_performance()["price"]
             invoice_data["total_price"] = total_price
             return invoice_data
             
-        def calc_total_point(invoice_data, invoice):
+        def calc_total_point(invoice_data, performances):
             total_point = 0
-            for performance in invoice.get_invoice():
+            for performance in performances.get_performances():
                 total_point += performance.get_performance()["point"]
             invoice_data["total_point"] = total_point
             return invoice_data
         
         # この呼び出しはどこでするべき？
-        invoice_data = calc_total_price(invoice_data, invoice)
-        invoice_data = calc_total_point(invoice_data, invoice)
+        invoice_data = calc_total_price(invoice_data, performances)
+        invoice_data = calc_total_point(invoice_data, performances)
         
         return invoice_data
 
     # この呼び出し自体はどこでするべき？
-    invoice_data = calc_price(invoice_data, invoice)
-    invoice_data = calc_point(invoice_data, invoice)
-    invoice_data = calc_total_price_point(invoice_data, invoice)
+    invoice_data = calc_price(invoice_data, performances)
+    invoice_data = calc_point(invoice_data, performances)
+    invoice_data = calc_total_price_point(invoice_data, performances)
     return invoice_data
 
 # Invoiceクラスがあってもよさそう
 # そしてら以下２つの関数はInvoiceクラスの責務としてメソッドであるべき？
-def format_invoice_content(invoice_data, invoice):
+def format_invoice_content(invoice_data, performances):
     invoice_content = "請求書\n"
     invoice_content += invoice_data["customer"] + "\n"
-    for performance in invoice.get_invoice():
+    for performance in performances.get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.get_performance()["price"]) + "）\n"
     invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
     invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
     return invoice_content
 
-def format_to_html(invoice_data, invoice):
+def format_to_html(invoice_data, performances):
     invoice_content = "<h1>請求書</h1>"
     invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
     invoice_content += "<ul>"
-    for performance in invoice.get_invoice():
+    for performance in performances.get_performances():
         invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.get_performance()["price"]) + "）</li>"
     invoice_content += "</ul>"
     invoice_content += "<p>" + "合計金額：$" + str(invoice_data["total_price"]) +  "</p>"
@@ -162,13 +162,13 @@ def main():
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
 
-    invoice = Invoice(invoice_data)
-    invoice.integrate(plays)
+    performances = Performances(invoice_data)
+    performances.integrate(plays)
 
-    invoice_material = calc_invoice_data(invoice_data, invoice)
+    invoice_material = calc_invoice_data(invoice_data, performances)
     
-    invoice_content = format_invoice_content(invoice_material, invoice)
-    html_invoice_content = format_to_html(invoice_material, invoice)
+    invoice_content = format_invoice_content(invoice_material, performances)
+    html_invoice_content = format_to_html(invoice_material, performances)
 
     if len(args) == 2:
         if args[1] == "text":

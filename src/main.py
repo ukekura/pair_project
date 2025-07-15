@@ -50,9 +50,6 @@ class Performance:
             price = self.comedy_price()
         return price
     
-    def point(self):
-        return self.data["point"]
-
     def set_point(self):
         self.data["point"] = 0
         if self.get_type() == "comedy":

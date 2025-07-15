@@ -58,11 +58,11 @@ class Performance:
         pass
 
     def new_set_point(self):
-        self.get_performance()["point"] = 0
+        self.data["point"] = 0
         if self.get_type() == "comedy":
-            self.set_point(self.comedy_point())
+            self.data["point"] += self.comedy_point()
         if self.get_audience()  > 30:
-            self.set_point(self.common_point())
+            self.data["point"] += self.common_point()
 
 class Performances:
     def __init__(self, invoice_data):

@@ -9,10 +9,10 @@ class Performance:
         self.type = data["type"]
         self.audience = data["audience"]
 
-    def getPerformance(self):
+    def get_performance(self):
         return self.data
     
-    def getType(self):
+    def get_type(self):
         return self.type
 
     def get_audience(self):
@@ -45,7 +45,7 @@ class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]
 
-    def getPerformances(self):
+    def get_performances(self):
         result = []
         for performance in self.performances:
             performance_instance = Performance(performance)
@@ -88,21 +88,21 @@ def calc_invoice_data(invoice_data, performances):
 
     # 以下２つの関数定義はどこでするべき？
     def calc_price(invoice_data, performances):
-        for performance in performances.getPerformances():
-            if performance.getType() == "tragedy":
+        for performance in performances.get_performances():
+            if performance.get_type() == "tragedy":
                 price = performance.tragedy_price()
-            if performance.getType() == "comedy":
+            if performance.get_type() == "comedy":
                 price = performance.comedy_price()
-            performance.getPerformance()["price"] = price
+            performance.get_performance()["price"] = price
         return invoice_data
     
     def calc_point(invoice_data, performances):
-        for performance in performances.getPerformances():
-            performance.getPerformance()["point"] = 0
-            if performance.getType() == "comedy":
-                performance.getPerformance()["point"] += performance.comedy_point()
+        for performance in performances.get_performances():
+            performance.get_performance()["point"] = 0
+            if performance.get_type() == "comedy":
+                performance.get_performance()["point"] += performance.comedy_point()
             if performance.get_audience()  > 30:
-                performance.getPerformance()["point"] += performance.common_point()
+                performance.get_performance()["point"] += performance.common_point()
         return invoice_data
     
     # この関数をどうするべきか悩む
@@ -110,15 +110,15 @@ def calc_invoice_data(invoice_data, performances):
     def calc_total_price_point(invoice_data, performances):
         def calc_total_price(invoice_data, performances):
             total_price = 0
-            for performance in performances.getPerformances():
-                total_price += performance.getPerformance()["price"]
+            for performance in performances.get_performances():
+                total_price += performance.get_performance()["price"]
             invoice_data["total_price"] = total_price
             return invoice_data
             
         def calc_total_point(invoice_data, performances):
             total_point = 0
-            for performance in performances.getPerformances():
-                total_point += performance.getPerformance()["point"]
+            for performance in performances.get_performances():
+                total_point += performance.get_performance()["point"]
             invoice_data["total_point"] = total_point
             return invoice_data
         
@@ -139,8 +139,8 @@ def calc_invoice_data(invoice_data, performances):
 def format_invoice_content(invoice_data, performances):
     invoice_content = "請求書\n"
     invoice_content += invoice_data["customer"] + "\n"
-    for performance in performances.getPerformances():
-        invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.getPerformance()["price"]) + "）\n"
+    for performance in performances.get_performances():
+        invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.get_performance()["price"]) + "）\n"
     invoice_content += "合計金額：$" + str(invoice_data["total_price"]) +  "\n"
     invoice_content += "獲得ポイント：" + str(invoice_data["total_point"]) + "pt"
     return invoice_content
@@ -149,8 +149,8 @@ def format_to_html(invoice_data, performances):
     invoice_content = "<h1>請求書</h1>"
     invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
     invoice_content += "<ul>"
-    for performance in performances.getPerformances():
-        invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.getPerformance()["price"]) + "）</li>"
+    for performance in performances.get_performances():
+        invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.get_performance()["price"]) + "）</li>"
     invoice_content += "</ul>"
     invoice_content += "<p>" + "合計金額：$" + str(invoice_data["total_price"]) +  "</p>"
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
@@ -169,7 +169,7 @@ def main():
     
     invoice_content = format_invoice_content(invoice_material, performances)
     html_invoice_content = format_to_html(invoice_material, performances)
-    
+
     if len(args) == 2:
         if args[1] == "text":
             print("請求書がテキストファイルで出力されました")

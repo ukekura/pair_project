@@ -99,7 +99,7 @@ def format_to_html(invoice_data, performances):
     invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
     invoice_content += "<ul>"
     for performance in performances.getPerformances():
-        invoice_content = invoice_content + "<li>" + performance.getPerformance()["name"] + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.getPerformance()["price"]) + "）</li>"
+        invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.getPerformance()["price"]) + "）</li>"
     invoice_content += "</ul>"
     invoice_content += "<p>" + "合計金額：$" + str(invoice_data["total_price"]) +  "</p>"
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"

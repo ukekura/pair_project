@@ -52,7 +52,7 @@ def calc_invoice_data(invoice_data, performances):
     def calc_point(invoice_data, performances):
         for performance in performances.getPerformances():
             performance.getPerformance()["point"] = 0
-            if performance.getPerformance()["type"] == "comedy":
+            if performance.getType() == "comedy":
                 point = performance.getPerformance()["audience"] // 5
                 performance.getPerformance()["point"] += point
             if performance.getPerformance()["audience"]  > 30:

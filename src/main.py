@@ -127,7 +127,7 @@ def calc_invoice_data(invoice_data, performances):
         def calc_total_point(invoice_data, performances):
             total_point = 0
             for performance in performances.get_performances():
-                total_point += performance.point()
+                total_point += performance.set_point()
             invoice_data["total_point"] = total_point
             return invoice_data
         

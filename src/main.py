@@ -114,11 +114,7 @@ def calc_invoice_data(invoice_data, performances):
     # 以下２つの関数定義はどこでするべき？
     def calc_point(invoice_data, performances):
         for performance in performances.get_performances():
-            performance.get_performance()["point"] = 0
-            if performance.get_type() == "comedy":
-                performance.set_point(performance.comedy_point())
-            if performance.get_audience()  > 30:
-                performance.set_point(performance.common_point())
+            performance.new_set_point()
         return invoice_data
     
     # この関数をどうするべきか悩む

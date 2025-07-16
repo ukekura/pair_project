@@ -90,6 +90,7 @@ class Performances:
             total_point += performance.point()
         self.__invoice_data["total_point"] = total_point
         self.__total_point = total_point
+        return self.__total_point
 
 
         

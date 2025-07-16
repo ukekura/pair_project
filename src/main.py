@@ -76,8 +76,12 @@ class Performances:
     def total_price(self):
         return self.__total_price
 
-    def set_total_price(self, arg):
-        self.__total_price = pass_total_price(self)
+    def set_total_price(self):
+        total_price = 0
+        for performance in self.get_performances():
+            total_price += performance.price()
+        self.__total_price = total_price
+        self.__total_price
 
 
 
@@ -125,7 +129,7 @@ def calc_invoice_data(invoice_data, performances):
         def calc_total_price(invoice_data, performances):
             
             
-            performances.set_total_price(pass_total_price(performances))
+            performances.set_total_price()
             return invoice_data
             
         def calc_total_point(invoice_data, performances):

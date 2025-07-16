@@ -77,7 +77,7 @@ class Performances:
         return self.__total_price
 
     def set_total_price(self, arg):
-        self.__total_price = arg
+        self.__total_price = pass_total_price(self)
 
 
 
@@ -110,7 +110,11 @@ def preperate_invoice_data(invoices, plays):
     invoice_data = deep_copy(invoices)
     return invoice_data
 
-
+def pass_total_price(performances):
+    total_price = 0
+    for performance in performances.get_performances():
+        total_price += performance.price()
+    return total_price
 
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):
@@ -119,10 +123,9 @@ def calc_invoice_data(invoice_data, performances):
     # もしクラスに移動するならInvoiceクラスだと思
     def calc_total_price_point(invoice_data, performances):
         def calc_total_price(invoice_data, performances):
-            total_price = 0
-            for performance in performances.get_performances():
-                total_price += performance.price()
-            performances.set_total_price(total_price)
+            
+            
+            performances.set_total_price(pass_total_price(performances))
             return invoice_data
             
         def calc_total_point(invoice_data, performances):

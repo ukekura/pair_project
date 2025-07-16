@@ -119,7 +119,7 @@ def preperate_invoice_data(invoices, plays):
 
 # Invoiceクラスがあってもよさそう
 # そしてら以下２つの関数はInvoiceクラスの責務としてメソッドであるべき？
-def format_invoice_content(invoice_data, performances):
+def format_invoice_content(performances):
     invoice_content = "請求書\n"
     invoice_content += performances.customer() + "\n"
     for performance in performances.get_performances():
@@ -128,7 +128,7 @@ def format_invoice_content(invoice_data, performances):
     invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"
     return invoice_content
 
-def format_to_html(invoice_data, performances):
+def format_to_html(performances):
     invoice_content = "<h1>請求書</h1>"
     invoice_content += "<h2>" + performances.customer() + "</h2>"
     invoice_content += "<ul>"
@@ -148,8 +148,8 @@ def main():
     performances = Performances(invoice_data)
     performances.integrate(plays)
     
-    invoice_content = format_invoice_content(invoice_data, performances)
-    html_invoice_content = format_to_html(invoice_data, performances)
+    invoice_content = format_invoice_content(performances)
+    html_invoice_content = format_to_html(performances)
 
     if len(args) == 2:
         if args[1] == "text":

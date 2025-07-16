@@ -110,22 +110,22 @@ class InvoiceFormatter:
 
     def format_invoice_content(self, invoice):
         invoice_content = "請求書\n"
-        invoice_content += invoice.customer() + "\n"
-        for performance in invoice.get_performances_iterator():
+        invoice_content += self.__invoice.customer() + "\n"
+        for performance in self.__invoice.get_performances_iterator():
             invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
-        invoice_content += "合計金額：$" + str(invoice.calc_performances_total_price()) +  "\n"
-        invoice_content += "獲得ポイント：" + str(invoice.calc_performances_total_point()) + "pt"
+        invoice_content += "合計金額：$" + str(self.__invoice.calc_performances_total_price()) +  "\n"
+        invoice_content += "獲得ポイント：" + str(self.__invoice.calc_performances_total_point()) + "pt"
         return invoice_content
 
     def format_to_html(self, invoice):
         invoice_content = "<h1>請求書</h1>"
-        invoice_content += "<h2>" + invoice.customer() + "</h2>"
+        invoice_content += "<h2>" + self.__invoice.customer() + "</h2>"
         invoice_content += "<ul>"
-        for performance in invoice.get_performances_iterator():
+        for performance in self.__invoice.get_performances_iterator():
             invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
         invoice_content += "</ul>"
-        invoice_content += "<p>" + "合計金額：$" + str(invoice.calc_performances_total_price()) +  "</p>"
-        invoice_content += "<p>" + "獲得ポイント：" + str(invoice.calc_performances_total_point()) + "pt</p>"
+        invoice_content += "<p>" + "合計金額：$" + str(self.__invoice.calc_performances_total_price()) +  "</p>"
+        invoice_content += "<p>" + "獲得ポイント：" + str(self.__invoice.calc_performances_total_point()) + "pt</p>"
         return invoice_content
 
 

@@ -117,10 +117,6 @@ def preperate_invoice_data(invoices, plays):
     invoice_data = deep_copy(invoices)
     return invoice_data
 
-# この括りがそのままクラスに当てはまる？
-def calc_invoice_data(invoice_data, performances):
-    return invoice_data
-
 # Invoiceクラスがあってもよさそう
 # そしてら以下２つの関数はInvoiceクラスの責務としてメソッドであるべき？
 def format_invoice_content(invoice_data, performances):
@@ -151,11 +147,9 @@ def main():
 
     performances = Performances(invoice_data)
     performances.integrate(plays)
-
-    invoice_material = calc_invoice_data(invoice_data, performances)
     
-    invoice_content = format_invoice_content(invoice_material, performances)
-    html_invoice_content = format_to_html(invoice_material, performances)
+    invoice_content = format_invoice_content(invoice_data, performances)
+    html_invoice_content = format_to_html(invoice_data, performances)
 
     if len(args) == 2:
         if args[1] == "text":

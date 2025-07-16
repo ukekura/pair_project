@@ -80,12 +80,6 @@ class Performances:
         self.__total_price = total_price
         return self.__total_price
 
-    def set_total_price(self):
-        total_price = 0
-        for performance in self.get_performances():
-            total_price += performance.price()
-        self.__total_price = total_price
-
 
 
 

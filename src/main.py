@@ -117,12 +117,6 @@ def preperate_invoice_data(invoices, plays):
     invoice_data = deep_copy(invoices)
     return invoice_data
 
-def pass_total_price(performances):
-    total_price = 0
-    for performance in performances.get_performances():
-        total_price += performance.price()
-    return total_price
-
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):
 

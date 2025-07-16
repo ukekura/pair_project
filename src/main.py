@@ -84,8 +84,12 @@ class Performances:
         self.__total_point = self.__invoice_data["total_point"]
         return self.__total_point
 
-    def set_total_point(self, arg):
-        self.__total_point = arg
+    def set_total_point(self):
+        total_point = 0
+        for performance in self.get_performances():
+            total_point += performance.point()
+        self.__invoice_data["total_point"] = total_point
+        self.__total_point = total_point
 
 
         
@@ -132,7 +136,7 @@ def calc_invoice_data(invoice_data, performances):
             
         def calc_total_point(invoice_data, performances):
             
-            performances.set_total_point(get_total_point(performances, invoice_data))
+            performances.set_total_point()
             return invoice_data
         
         # この呼び出しはどこでするべき？

@@ -59,7 +59,7 @@ class Performance:
 class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]
-        self.invoice_data = invoice_data
+        self.__total_price = 0
 
     def get_performances(self):
         result = []
@@ -74,10 +74,15 @@ class Performances:
             performance["name"] = plays[performance["playID"]]["name"]
 
     def total_price(self):
-        return self.invoice_data["total_price"]
+        return self.__total_price
 
     def set_total_price(self, arg):
-        self.invoice_data["total_price"] = arg
+        self.__total_price = arg
+
+
+
+
+        
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
@@ -117,7 +122,7 @@ def calc_invoice_data(invoice_data, performances):
             total_price = 0
             for performance in performances.get_performances():
                 total_price += performance.price()
-            performances.set_total_price(calc_total(total_price))
+            performances.set_total_price(total_price)
             return invoice_data
             
         def calc_total_point(invoice_data, performances):
@@ -155,7 +160,7 @@ def format_to_html(invoice_data, performances):
     for performance in performances.get_performances():
         invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
     invoice_content += "</ul>"
-    invoice_content += "<p>" + "合計金額：$" + str(invoice_data["total_price"]) +  "</p>"
+    invoice_content += "<p>" + "合計金額：$" + str(performances.total_price()) +  "</p>"
     invoice_content += "<p>" + "獲得ポイント：" + str(invoice_data["total_point"]) + "pt</p>"
     return invoice_content
 

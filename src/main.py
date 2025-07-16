@@ -126,7 +126,7 @@ def preperate_invoice_data(invoices, plays):
 def format_invoice_content(customer, performances, invoice):
     invoice_content = "請求書\n"
     invoice_content += invoice.customer() + "\n"
-    for performance in performances.get_performances():
+    for performance in invoice.performances().get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
     invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
     invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"

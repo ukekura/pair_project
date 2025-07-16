@@ -108,7 +108,7 @@ class InvoiceFormatter:
     def __init__(self, invoice):
         self.__invoice = invoice
 
-    def format_invoice_content(self, invoice):
+    def format_invoice_content(self):
         invoice_content = "請求書\n"
         invoice_content += self.__invoice.customer() + "\n"
         for performance in self.__invoice.get_performances_iterator():
@@ -117,7 +117,7 @@ class InvoiceFormatter:
         invoice_content += "獲得ポイント：" + str(self.__invoice.calc_performances_total_point()) + "pt"
         return invoice_content
 
-    def format_to_html(self, invoice):
+    def format_to_html(self):
         invoice_content = "<h1>請求書</h1>"
         invoice_content += "<h2>" + self.__invoice.customer() + "</h2>"
         invoice_content += "<ul>"
@@ -167,8 +167,8 @@ def main():
     invoice = Invoice(invoice_data["customer"], performances)
 
     formatter = InvoiceFormatter(invoice)
-    invoice_content = formatter.format_invoice_content(invoice)
-    html_invoice_content = formatter.format_to_html(invoice)
+    invoice_content = formatter.format_invoice_content()
+    html_invoice_content = formatter.format_to_html()
 
     if len(args) == 2:
         if args[1] == "text":

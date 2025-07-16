@@ -81,7 +81,6 @@ class Performances:
         for performance in self.get_performances():
             total_price += performance.price()
         self.__total_price = total_price
-        self.__total_price
 
 
 

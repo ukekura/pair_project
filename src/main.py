@@ -59,7 +59,6 @@ class Performance:
 class Performances:
     def __init__(self, invoice_data):
         self.performances = invoice_data["performances"]
-        self.__total_price = 0
 
     def get_performances(self):
         result = []
@@ -77,8 +76,7 @@ class Performances:
         total_price = 0
         for performance in self.get_performances():
             total_price += performance.price()
-        self.__total_price = total_price
-        return self.__total_price
+        return total_price
 
 
 

@@ -123,8 +123,6 @@ def calc_invoice_data(invoice_data, performances):
     # この関数をどうするべきか悩む
     # もしクラスに移動するならInvoiceクラスだと思
     def calc_total_price_point(invoice_data, performances):
-        def calc_total_price(invoice_data, performances):
-            return invoice_data
             
         def calc_total_point(invoice_data, performances):
             total_point = 0
@@ -134,7 +132,6 @@ def calc_invoice_data(invoice_data, performances):
             return invoice_data
         
         # この呼び出しはどこでするべき？
-        invoice_data = calc_total_price(invoice_data, performances)
         invoice_data = calc_total_point(invoice_data, performances)
         
         return invoice_data

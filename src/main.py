@@ -84,8 +84,16 @@ class Performances:
             total_point += performance.point()
         return total_point
 
+class Invoice:
+    def __init__(self, customer, performances):
+        self.__customer = customer
+        self.__performances = performances
 
-        
+    def customrer(self):
+        return self.__customer
+    
+    def performances(self):
+        return self.__performances
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
@@ -115,9 +123,9 @@ def preperate_invoice_data(invoices, plays):
 
 # Invoiceクラスがあってもよさそう
 # そしてら以下２つの関数はInvoiceクラスの責務としてメソッドであるべき？
-def format_invoice_content(invoice_data, performances):
+def format_invoice_content(customer, performances):
     invoice_content = "請求書\n"
-    invoice_content += invoice_data["customer"] + "\n"
+    invoice_content += customer + "\n"
     for performance in performances.get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
     invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
@@ -144,7 +152,7 @@ def main():
     performances = Performances(invoice_data)
     performances.integrate(plays)
     
-    invoice_content = format_invoice_content(invoice_data, performances)
+    invoice_content = format_invoice_content(invoice_data["customer"], performances)
     html_invoice_content = format_to_html(invoice_data, performances)
 
     if len(args) == 2:

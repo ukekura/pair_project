@@ -132,15 +132,15 @@ def format_invoice_content(invoice):
     invoice_content += "獲得ポイント：" + str(invoice.performances().total_point()) + "pt"
     return invoice_content
 
-def format_to_html(invoice_data, performances):
+def format_to_html(invoice):
     invoice_content = "<h1>請求書</h1>"
-    invoice_content += "<h2>" + invoice_data["customer"] + "</h2>"
+    invoice_content += "<h2>" + invoice.customer() + "</h2>"
     invoice_content += "<ul>"
-    for performance in performances.get_performances():
+    for performance in invoice.performances().get_performances():
         invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
     invoice_content += "</ul>"
-    invoice_content += "<p>" + "合計金額：$" + str(performances.total_price()) +  "</p>"
-    invoice_content += "<p>" + "獲得ポイント：" + str(performances.total_point()) + "pt</p>"
+    invoice_content += "<p>" + "合計金額：$" + str(invoice.performances().total_price()) +  "</p>"
+    invoice_content += "<p>" + "獲得ポイント：" + str(invoice.performances().total_point()) + "pt</p>"
     return invoice_content
 
 def main():
@@ -155,7 +155,7 @@ def main():
     invoice = Invoice(invoice_data["customer"], performances)
 
     invoice_content = format_invoice_content(invoice)
-    html_invoice_content = format_to_html(invoice_data, performances)
+    html_invoice_content = format_to_html(invoice)
 
     if len(args) == 2:
         if args[1] == "text":

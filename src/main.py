@@ -128,6 +128,7 @@ def calc_invoice_data(invoice_data, performances):
             for performance in performances.get_performances():
                 total_point += performance.point()
             invoice_data["total_point"] = total_point
+            performances.set_total_point(total_point)
             return invoice_data
         
         # この呼び出しはどこでするべき？

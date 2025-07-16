@@ -129,8 +129,6 @@ def calc_invoice_data(invoice_data, performances):
     def calc_total_price_point(invoice_data, performances):
             
         def calc_total_point(invoice_data, performances):
-            
-            performances.set_total_point()
             return invoice_data
         
         # この呼び出しはどこでするべき？

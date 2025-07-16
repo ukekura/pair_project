@@ -104,7 +104,10 @@ class Invoice:
     def calc_performances_total_point(self):
         return self.__performances.total_point()
     
-class Formatter:
+class InvoiceFormatter:
+    def __init__(self, invoice):
+        self.__invoice = invoice
+
     def format_invoice_content(self, invoice):
         invoice_content = "請求書\n"
         invoice_content += invoice.customer() + "\n"
@@ -163,7 +166,7 @@ def main():
     
     invoice = Invoice(invoice_data["customer"], performances)
 
-    formatter = Formatter()
+    formatter = InvoiceFormatter(invoice)
     invoice_content = formatter.format_invoice_content(invoice)
     html_invoice_content = formatter.format_to_html(invoice)
 

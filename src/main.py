@@ -130,9 +130,6 @@ def calc_invoice_data(invoice_data, performances):
     # もしクラスに移動するならInvoiceクラスだと思
     def calc_total_price_point(invoice_data, performances):
         def calc_total_price(invoice_data, performances):
-            
-            
-            performances.set_total_price()
             return invoice_data
             
         def calc_total_point(invoice_data, performances):

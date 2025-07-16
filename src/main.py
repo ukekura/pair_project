@@ -89,7 +89,7 @@ class Invoice:
         self.__customer = customer
         self.__performances = performances
 
-    def customrer(self):
+    def customer(self):
         return self.__customer
     
     def performances(self):
@@ -125,7 +125,7 @@ def preperate_invoice_data(invoices, plays):
 # そしてら以下２つの関数はInvoiceクラスの責務としてメソッドであるべき？
 def format_invoice_content(customer, performances, invoice):
     invoice_content = "請求書\n"
-    invoice_content += customer + "\n"
+    invoice_content += invoice.customer() + "\n"
     for performance in performances.get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
     invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"

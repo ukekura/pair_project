@@ -120,13 +120,6 @@ def preperate_invoice_data(invoices, plays):
     invoice_data = deep_copy(invoices)
     return invoice_data
 
-def get_total_point(performances, invoice_data):
-    total_point = 0
-    for performance in performances.get_performances():
-        total_point += performance.point()
-    invoice_data["total_point"] = total_point
-    return total_point
-
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):
 

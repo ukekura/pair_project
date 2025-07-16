@@ -128,8 +128,8 @@ def format_invoice_content(customer, performances, invoice):
     invoice_content += invoice.customer() + "\n"
     for performance in invoice.performances().get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
-    invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
-    invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"
+    invoice_content += "合計金額：$" + str(invoice.performances().total_price()) +  "\n"
+    invoice_content += "獲得ポイント：" + str(invoice.performances().total_point()) + "pt"
     return invoice_content
 
 def format_to_html(invoice_data, performances):

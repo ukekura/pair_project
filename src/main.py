@@ -94,6 +94,16 @@ class Invoice:
     
     def performances(self):
         return self.__performances
+    
+    def get_performances_iterator(self):
+        return self.__performances.get_performances()
+    
+    def calc_performances_total_price(self):
+        return self.__performances.total_price()
+    
+    def calc_performances_total_point(self):
+        return self.__performances.total_point()
+
 
 def load_json():
    with open("input/INVOICES.json", "r", encoding="utf-8") as f:
@@ -126,21 +136,21 @@ def preperate_invoice_data(invoices, plays):
 def format_invoice_content(invoice):
     invoice_content = "請求書\n"
     invoice_content += invoice.customer() + "\n"
-    for performance in invoice.performances().get_performances():
+    for performance in invoice.get_performances_iterator():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
-    invoice_content += "合計金額：$" + str(invoice.performances().total_price()) +  "\n"
-    invoice_content += "獲得ポイント：" + str(invoice.performances().total_point()) + "pt"
+    invoice_content += "合計金額：$" + str(invoice.calc_performances_total_price()) +  "\n"
+    invoice_content += "獲得ポイント：" + str(invoice.calc_performances_total_point()) + "pt"
     return invoice_content
 
 def format_to_html(invoice):
     invoice_content = "<h1>請求書</h1>"
     invoice_content += "<h2>" + invoice.customer() + "</h2>"
     invoice_content += "<ul>"
-    for performance in invoice.performances().get_performances():
+    for performance in invoice.get_performances_iterator():
         invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
     invoice_content += "</ul>"
-    invoice_content += "<p>" + "合計金額：$" + str(invoice.performances().total_price()) +  "</p>"
-    invoice_content += "<p>" + "獲得ポイント：" + str(invoice.performances().total_point()) + "pt</p>"
+    invoice_content += "<p>" + "合計金額：$" + str(invoice.calc_performances_total_price()) +  "</p>"
+    invoice_content += "<p>" + "獲得ポイント：" + str(invoice.calc_performances_total_point()) + "pt</p>"
     return invoice_content
 
 def main():

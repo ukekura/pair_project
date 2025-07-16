@@ -111,10 +111,15 @@ class InvoiceFormatter:
     def to_text(self):
         invoice_content = "請求書\n"
         invoice_content += self.__invoice.customer() + "\n"
-        for performance in self.__invoice.get_performances_iterator():
+        invoice_content = self.__make_text_performance_area(invoice_content, self.__invoice.performances())
+        
+        return invoice_content
+    
+    def __make_text_performance_area(self, invoice_content, performances):
+        for performance in performances.get_performances():
             invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
-        invoice_content += "合計金額：$" + str(self.__invoice.calc_performances_total_price()) +  "\n"
-        invoice_content += "獲得ポイント：" + str(self.__invoice.calc_performances_total_point()) + "pt"
+        invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
+        invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"
         return invoice_content
 
     def to_html(self):

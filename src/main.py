@@ -84,7 +84,8 @@ class Performances:
         self.__total_point = self.__invoice_data["total_point"]
         return self.__total_point
 
-
+    def set_total_point(self, arg):
+        self.__total_point = arg
 
 
         

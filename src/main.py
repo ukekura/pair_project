@@ -79,10 +79,6 @@ class Performances:
         for performance in self.get_performances():
             total_price += performance.price()
         return total_price
-    
-    def total_point(self):
-        self.__total_point = self.__invoice_data["total_point"]
-        return self.__total_point
 
     def set_total_point(self):
         total_point = 0
@@ -123,21 +119,6 @@ def preperate_invoice_data(invoices, plays):
 
 # この括りがそのままクラスに当てはまる？
 def calc_invoice_data(invoice_data, performances):
-
-    # この関数をどうするべきか悩む
-    # もしクラスに移動するならInvoiceクラスだと思
-    def calc_total_price_point(invoice_data, performances):
-            
-        def calc_total_point(invoice_data, performances):
-            return invoice_data
-        
-        # この呼び出しはどこでするべき？
-        invoice_data = calc_total_point(invoice_data, performances)
-        
-        return invoice_data
-
-    # この呼び出し自体はどこでするべき？
-    invoice_data = calc_total_price_point(invoice_data, performances)
     return invoice_data
 
 # Invoiceクラスがあってもよさそう

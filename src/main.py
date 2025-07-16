@@ -80,7 +80,7 @@ class Performances:
             total_price += performance.price()
         return total_price
 
-    def set_total_point(self):
+    def total_point(self):
         total_point = 0
         for performance in self.get_performances():
             total_point += performance.point()
@@ -129,7 +129,7 @@ def format_invoice_content(invoice_data, performances):
     for performance in performances.get_performances():
         invoice_content = invoice_content + "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
     invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
-    invoice_content += "獲得ポイント：" + str(performances.set_total_point()) + "pt"
+    invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"
     return invoice_content
 
 def format_to_html(invoice_data, performances):
@@ -140,7 +140,7 @@ def format_to_html(invoice_data, performances):
         invoice_content = invoice_content + "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
     invoice_content += "</ul>"
     invoice_content += "<p>" + "合計金額：$" + str(performances.total_price()) +  "</p>"
-    invoice_content += "<p>" + "獲得ポイント：" + str(performances.set_total_point()) + "pt</p>"
+    invoice_content += "<p>" + "獲得ポイント：" + str(performances.total_point()) + "pt</p>"
     return invoice_content
 
 def main():

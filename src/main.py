@@ -56,7 +56,7 @@ class Performance:
 class Performances:
     def __init__(self, invoice_data, plays):
         self.__performances = invoice_data["performances"]
-        self.__invoice_data = self.integrate(plays)
+        self.__invoice_data = self.integrate(invoice_data, plays)
 
     def get_performances(self):
         result = []
@@ -65,8 +65,8 @@ class Performances:
             result.append(performance_instance)
         return result
     
-    def integrate(self, plays):
-        for performance in self.__performances:
+    def integrate(self, invoice, plays):
+        for performance in invoice["performances"]:
             performance["type"] = plays[performance["playID"]]["type"]
             performance["name"] = plays[performance["playID"]]["name"]
 
@@ -165,7 +165,7 @@ def main():
     invoice_data = preperate_invoice_data(invoices, plays)
 
     performances = Performances(invoice_data, plays)
-    performances.integrate(plays)
+    performances.integrate(invoice_data, plays)
     
     invoice = Invoice(invoice_data["customer"], performances)
 

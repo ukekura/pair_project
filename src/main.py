@@ -39,15 +39,15 @@ class Performance:
         return point
     
     def price(self, performance):
-        if self.__get_type() == "tragedy":
+        if performance.__get_type() == "tragedy":
             price = self.__calc_tragedy_price()
-        if self.__get_type() == "comedy":
+        if performance.__get_type() == "comedy":
             price = self.__calc_comedy_price()
         return price
     
     def point(self, performance):
         point = 0
-        if self.__get_type() == "comedy":
+        if performance.__get_type() == "comedy":
             point += self.__calc_comedy_point()
         if self.audience()  > 30:
             point += self.__common_point()

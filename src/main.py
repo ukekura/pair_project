@@ -57,6 +57,7 @@ class Performances:
     def __init__(self, invoice_data, plays):
         self.__dict_performances = invoice_data["performances"]
         self.__integrate(plays)
+        self.__performances = self.get_performances()
 
     def get_performances(self):
         result = []

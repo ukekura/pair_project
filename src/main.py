@@ -56,7 +56,6 @@ class Performance:
 class Performances:
     def __init__(self, invoice_data):
         self.__performances = invoice_data["performances"]
-        self.__performance_list = []
 
     def get_performances(self):
         result = []

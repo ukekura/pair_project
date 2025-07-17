@@ -86,8 +86,8 @@ class Performances:
         return total_point
 
 class Invoice:
-    def __init__(self, customer, performances):
-        self.__customer = customer
+    def __init__(self, invoice_data, performances):
+        self.__customer = invoice_data["customer"]
         self.__performances = performances
 
     def customer(self):
@@ -169,7 +169,7 @@ def main():
 
     performances = Performances(invoice_data, plays)
     
-    invoice = Invoice(invoice_data["customer"], performances)
+    invoice = Invoice(invoice_data, performances)
 
     formatter = InvoiceFormatter(invoice)
     invoice_content = formatter.to_text()

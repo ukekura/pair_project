@@ -5,12 +5,12 @@ import sys
 
 class Performance:
     def __init__(self, data):
-        self.type = data["type"]
+        self.__type = data["type"]
         self.audience = data["audience"]
         self.__name = data["name"]
 
     def get_type(self):
-        return self.type
+        return self.__type
 
     def get_audience(self):
         return self.audience

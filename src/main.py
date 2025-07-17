@@ -9,7 +9,7 @@ class Performance:
         self.__audience = data["audience"]
         self.__name = data["name"]
 
-    def __get_type(self):
+    def get_type(self):
         return self.__type
 
     def audience(self):
@@ -38,21 +38,40 @@ class Performance:
         point = (self.__audience - 30)
         return point
     
+    def price(self, new_performance):
+        return new_performance.price()
+    
+    def point(self, new_performance):
+        return new_performance.point()
+    
+class Calculator:
+    def __init__(self, pef_type, audience):
+        self.pef_type = pef_type
+        self.audience = audience
+
     def price(self):
-        if self.__get_type() == "tragedy":
-            price = self.__calc_tragedy_price()
-        if self.__get_type() == "comedy":
-            price = self.__calc_comedy_price()
+        if self.pef_type == "tragedy":
+            price = 40000
+            if self.audience > 30:
+                price += (self.audience - 30) * 1000 
+        if self.pef_type == "comedy":
+            price = 30000 + self.audience * 300
+            if self.audience > 20:
+                price += (self.audience - 20) * 500 + 10000
         return price
     
     def point(self):
         point = 0
-        if self.__get_type() == "comedy":
-            point += self.__calc_comedy_point()
-        if self.audience()  > 30:
-            point += self.__common_point()
+        if self.pef_type == "comedy":
+            point += self.audience // 5
+        if self.audience  > 30:
+            point +=  (self.audience - 30)
         return point
+    
+# class TragedyPerformance:
 
+# class Co
+    
 class Performances:
     def __init__(self, invoice_data, plays):
         self.__performances = self.__create_performances(invoice_data, plays)
@@ -72,13 +91,13 @@ class Performances:
     def total_price(self):
         total_price = 0
         for performance in self.__performances:
-            total_price += performance.price()
+            total_price += performance.price(Calculator(performance.get_type(), performance.audience()))
         return total_price
 
     def total_point(self):
         total_point = 0
         for performance in self.__performances:
-            total_point += performance.point()
+            total_point += performance.point(Calculator(performance.get_type(), performance.audience()))
         return total_point
 
 class Invoice:
@@ -114,7 +133,7 @@ class InvoiceFormatter:
     
     def __make_text_performance_area(self, invoice_content, performances):
         for performance in performances.get_performances():
-            invoice_content = invoice_content + "・" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
+            invoice_content = invoice_content + "・" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price(Calculator(performance.get_type(), performance.audience()))) + "）\n"
         invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
         invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"
         return invoice_content
@@ -124,7 +143,7 @@ class InvoiceFormatter:
         invoice_content += "<h2>" + self.__invoice.customer() + "</h2>"
         invoice_content += "<ul>"
         for performance in self.__invoice.get_performances_iterator():
-            invoice_content = invoice_content + "<li>" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
+            invoice_content = invoice_content + "<li>" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price(Calculator(performance.get_type(), performance.audience()))) + "）</li>"
         invoice_content += "</ul>"
         invoice_content += "<p>" + "合計金額：$" + str(self.__invoice.calc_performances_total_price()) +  "</p>"
         invoice_content += "<p>" + "獲得ポイント：" + str(self.__invoice.calc_performances_total_point()) + "pt</p>"

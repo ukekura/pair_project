@@ -61,7 +61,7 @@ class Performances:
 
     def get_obj_performances(self, invoice_data):
         result = []
-        for performance in self.__dict_performances:
+        for performance in invoice_data["performances"]:
             performance_instance = Performance(performance)
             result.append(performance_instance)
         return result

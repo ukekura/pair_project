@@ -10,9 +10,6 @@ class Performance:
         self.audience = data["audience"]
         self.__name = data["name"]
 
-    def get_performance(self):
-        return self.data
-    
     def get_type(self):
         return self.type
 

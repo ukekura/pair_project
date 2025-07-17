@@ -65,6 +65,9 @@ class Performances:
             result.append(performance_instance)
         return result
     
+    def get_iterable_performances(self):
+        return self.__iterable_peformances
+    
     def integrate(self, invoice, plays):
         for performance in invoice["performances"]:
             performance["type"] = plays[performance["playID"]]["type"]

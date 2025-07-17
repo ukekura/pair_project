@@ -57,9 +57,9 @@ class Performances:
     def __init__(self, invoice_data, plays):
         self.__dict_performances = invoice_data["performances"]
         self.__integrate(invoice_data, plays)
-        self.__performances = self.get_obj_performances()
+        self.__performances = self.get_obj_performances(invoice_data)
 
-    def get_obj_performances(self):
+    def get_obj_performances(self, invoice_data):
         result = []
         for performance in self.__dict_performances:
             performance_instance = Performance(performance)

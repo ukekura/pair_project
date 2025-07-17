@@ -54,8 +54,9 @@ class Performance:
         return point
 
 class Performances:
-    def __init__(self, invoice_data):
+    def __init__(self, invoice_data, plays):
         self.__performances = invoice_data["performances"]
+        self.__invoice_data = self.integrate(plays)
 
     def get_performances(self):
         result = []
@@ -163,7 +164,7 @@ def main():
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices, plays)
 
-    performances = Performances(invoice_data)
+    performances = Performances(invoice_data, plays)
     performances.integrate(plays)
     
     invoice = Invoice(invoice_data["customer"], performances)

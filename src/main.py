@@ -66,6 +66,9 @@ class Performances:
             result.append(performance_instance)
         return result
     
+    def get_performances(self):
+        return self.__performances
+    
     def __integrate(self, plays):
         for performance in self.__dict_performances:
             performance["type"] = plays[performance["playID"]]["type"]

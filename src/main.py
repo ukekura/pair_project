@@ -38,16 +38,16 @@ class Performance:
         point = (self.__audience - 30)
         return point
     
-    def price(self, performance):
-        if performance.__get_type() == "tragedy":
+    def price(self):
+        if self.__get_type() == "tragedy":
             price = self.__calc_tragedy_price()
-        if performance.__get_type() == "comedy":
+        if self.__get_type() == "comedy":
             price = self.__calc_comedy_price()
         return price
     
-    def point(self, performance):
+    def point(self):
         point = 0
-        if performance.__get_type() == "comedy":
+        if self.__get_type() == "comedy":
             point += self.__calc_comedy_point()
         if self.audience()  > 30:
             point += self.__common_point()
@@ -72,13 +72,13 @@ class Performances:
     def total_price(self):
         total_price = 0
         for performance in self.__performances:
-            total_price += performance.price(performance)
+            total_price += performance.price()
         return total_price
 
     def total_point(self):
         total_point = 0
         for performance in self.__performances:
-            total_point += performance.point(performance)
+            total_point += performance.point()
         return total_point
 
 class Invoice:
@@ -114,7 +114,7 @@ class InvoiceFormatter:
     
     def __make_text_performance_area(self, invoice_content, performances):
         for performance in performances.get_performances():
-            invoice_content = invoice_content + "・" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price(performance)) + "）\n"
+            invoice_content = invoice_content + "・" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
         invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
         invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"
         return invoice_content
@@ -124,7 +124,7 @@ class InvoiceFormatter:
         invoice_content += "<h2>" + self.__invoice.customer() + "</h2>"
         invoice_content += "<ul>"
         for performance in self.__invoice.get_performances_iterator():
-            invoice_content = invoice_content + "<li>" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price(performance)) + "）</li>"
+            invoice_content = invoice_content + "<li>" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price()) + "）</li>"
         invoice_content += "</ul>"
         invoice_content += "<p>" + "合計金額：$" + str(self.__invoice.calc_performances_total_price()) +  "</p>"
         invoice_content += "<p>" + "獲得ポイント：" + str(self.__invoice.calc_performances_total_point()) + "pt</p>"

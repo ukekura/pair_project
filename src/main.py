@@ -69,6 +69,7 @@ class Performances:
         for performance in invoice["performances"]:
             performance["type"] = plays[performance["playID"]]["type"]
             performance["name"] = plays[performance["playID"]]["name"]
+        return invoice
 
     def total_price(self):
         total_price = 0

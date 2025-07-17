@@ -102,9 +102,8 @@ class Invoice:
         return self.__performances.total_point()
     
 class InvoiceFormatter:
-    def __init__(self, invoice, performances):
+    def __init__(self, invoice):
         self.__invoice = invoice
-        self.__performances = performances
 
     def to_text(self):
         invoice_content = "請求書\n"
@@ -169,7 +168,7 @@ def main():
     
     invoice = Invoice(invoice_data["customer"], performances)
 
-    formatter = InvoiceFormatter(invoice, performances)
+    formatter = InvoiceFormatter(invoice)
     invoice_content = formatter.to_text()
     html_invoice_content = formatter.to_html()
 

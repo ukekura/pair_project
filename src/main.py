@@ -57,9 +57,9 @@ class Performances:
     def __init__(self, invoice_data, plays):
         self.__dict_performances = invoice_data["performances"]
         self.__integrate(plays)
-        self.__performances = self.get_performances()
+        self.__performances = self.get_obj_performances()
 
-    def get_performances(self):
+    def get_obj_performances(self):
         result = []
         for performance in self.__dict_performances:
             performance_instance = Performance(performance)
@@ -95,7 +95,7 @@ class Invoice:
         return self.__performances
     
     def get_performances_iterator(self):
-        return self.__performances.get_performances()
+        return self.__performances.get_obj_performances()
     
     def calc_performances_total_price(self):
         return self.__performances.total_price()
@@ -115,7 +115,7 @@ class InvoiceFormatter:
         return invoice_content
     
     def __make_text_performance_area(self, invoice_content, performances):
-        for performance in performances.get_performances():
+        for performance in performances.get_obj_performances():
             invoice_content = invoice_content + "・" + performance.name() + "（観客数：" + str(performance.audience()) + "人、金額：$"+ str(performance.price()) + "）\n"
         invoice_content += "合計金額：$" + str(performances.total_price()) +  "\n"
         invoice_content += "獲得ポイント：" + str(performances.total_point()) + "pt"

@@ -30,11 +30,11 @@ class Performance:
             price += (self.__audience - 20) * 500 + 10000
         return price
     
-    def comedy_point(self):
+    def __calc_comedy_point(self):
         point = self.__audience // 5
         return point
 
-    def common_point(self):
+    def __common_point(self):
         point = (self.__audience - 30)
         return point
     
@@ -48,9 +48,9 @@ class Performance:
     def point(self):
         point = 0
         if self.__get_type() == "comedy":
-            point += self.comedy_point()
+            point += self.__calc_comedy_point()
         if self.audience()  > 30:
-            point += self.common_point()
+            point += self.__common_point()
         return point
 
 class Performances:

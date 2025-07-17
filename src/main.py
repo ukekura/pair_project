@@ -73,13 +73,13 @@ class Performances:
 
     def total_price(self):
         total_price = 0
-        for performance in self.get_performances():
+        for performance in self.__performances:
             total_price += performance.price()
         return total_price
 
     def total_point(self):
         total_point = 0
-        for performance in self.get_performances():
+        for performance in self.__performances:
             total_point += performance.point()
         return total_point
 

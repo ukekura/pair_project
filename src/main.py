@@ -64,20 +64,8 @@ class Performances:
             result.append(performance_instance)
         self.__performances = result
 
-    def __get_obj_performances(self, invoice_data):
-        result = []
-        for performance in invoice_data["performances"]:
-            performance_instance = Performance(performance)
-            result.append(performance_instance)
-        return result
-    
     def get_performances(self):
         return self.__performances
-    
-    def __integrate(self, invoice_data, plays):
-        for performance in invoice_data["performances"]:
-            performance["type"] = plays[performance["playID"]]["type"]
-            performance["name"] = plays[performance["playID"]]["name"]
 
     def total_price(self):
         total_price = 0

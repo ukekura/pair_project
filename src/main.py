@@ -166,20 +166,16 @@ def main():
     performances = Performances(invoice_data, plays)
     
     invoice = Invoice(invoice_data["customer"], performances)
-
-    formatter = InvoiceFormatter(invoice)
-    invoice_content = formatter.to_text()
-    html_invoice_content = formatter.to_html()
-
+    
     if len(args) == 2:
         if args[1] == "text":
             print("請求書がテキストファイルで出力されました")
             with open("output/invoice.txt", "w", encoding="utf-8") as f:
-                f.write(invoice_content)
+                f.write(InvoiceFormatter(invoice).to_text())
         elif args[1] == "html":
             print("請求書がHTMLファイルで出力されました")
             with open("output/invoice.html", "w", encoding="utf-8") as f:
-                f.write(html_invoice_content)
+                f.write(InvoiceFormatter(invoice).to_html())
         else:
             print("引数はtextかhtmlを入力してください")
             print("現在の入力：", args[1])

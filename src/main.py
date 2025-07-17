@@ -18,7 +18,7 @@ class Performance:
     def name(self):
         return self.__name
 
-    def tragedy_price(self):
+    def __get_tragedy_price(self):
         price = 40000
         if self.__audience > 30:
             price += (self.__audience - 30) * 1000 
@@ -40,7 +40,7 @@ class Performance:
     
     def price(self):
         if self.__get_type() == "tragedy":
-            price = self.tragedy_price()
+            price = self.__get_tragedy_price()
         if self.__get_type() == "comedy":
             price = self.comedy_price()
         return price

@@ -148,7 +148,7 @@ def output_text(invoice_content):
         f.write(invoice_content)
     print("請求書が正常に出力されました。")
 
-def preperate_invoice_data(invoices, plays):
+def preperate_invoice_data(invoices):
     def format_invoices(invoices):
         invoices = invoices[0]
         return invoices
@@ -165,7 +165,7 @@ def main():
     args = sys.argv
 
     invoices, plays = load_json()
-    invoice_data = preperate_invoice_data(invoices, plays)
+    invoice_data = preperate_invoice_data(invoices)
 
     performances = Performances(invoice_data, plays)
     

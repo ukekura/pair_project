@@ -172,7 +172,7 @@ def main():
     
     invoice = Invoice(invoice_data["customer"], performances)
 
-    formatter = InvoiceFormatter(invoice)
+    formatter = InvoiceFormatter(invoice, performances)
     invoice_content = formatter.to_text()
     html_invoice_content = formatter.to_html()
 

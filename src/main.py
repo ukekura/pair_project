@@ -20,7 +20,7 @@ class Performance:
         return self.audience
     
     def get_name(self):
-        return self.data["name"]
+        return self.__name
 
     def tragedy_price(self):
         price = 40000

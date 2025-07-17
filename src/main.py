@@ -9,7 +9,7 @@ class Performance:
         self.__audience = data["audience"]
         self.__name = data["name"]
 
-    def type(self):
+    def __get_type(self):
         return self.__type
 
     def audience(self):
@@ -39,15 +39,15 @@ class Performance:
         return point
     
     def price(self):
-        if self.type() == "tragedy":
+        if self.__get_type() == "tragedy":
             price = self.tragedy_price()
-        if self.type() == "comedy":
+        if self.__get_type() == "comedy":
             price = self.comedy_price()
         return price
     
     def point(self):
         point = 0
-        if self.type() == "comedy":
+        if self.__get_type() == "comedy":
             point += self.comedy_point()
         if self.audience()  > 30:
             point += self.common_point()

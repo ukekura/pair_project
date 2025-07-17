@@ -6,36 +6,36 @@ import sys
 class Performance:
     def __init__(self, data):
         self.__type = data["type"]
-        self.audience = data["audience"]
+        self.__audience = data["audience"]
         self.__name = data["name"]
 
     def get_type(self):
         return self.__type
 
     def get_audience(self):
-        return self.audience
+        return self.__audience
     
     def get_name(self):
         return self.__name
 
     def tragedy_price(self):
         price = 40000
-        if self.audience > 30:
-            price += (self.audience - 30) * 1000 
+        if self.__audience > 30:
+            price += (self.__audience - 30) * 1000 
         return price
     
     def comedy_price(self):
-        price = 30000 + self.audience * 300
-        if self.audience > 20:
-            price += (self.audience - 20) * 500 + 10000
+        price = 30000 + self.__audience * 300
+        if self.__audience > 20:
+            price += (self.__audience - 20) * 500 + 10000
         return price
     
     def comedy_point(self):
-        point = self.audience // 5
+        point = self.__audience // 5
         return point
 
     def common_point(self):
-        point = (self.audience - 30)
+        point = (self.__audience - 30)
         return point
     
     def price(self):

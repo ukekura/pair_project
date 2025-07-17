@@ -70,7 +70,7 @@ class Performances:
         return self.__performances
     
     def __integrate(self, invoice_data, plays):
-        for performance in self.__dict_performances:
+        for performance in invoice_data["performances"]:
             performance["type"] = plays[performance["playID"]]["type"]
             performance["name"] = plays[performance["playID"]]["name"]
 

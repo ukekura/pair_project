@@ -29,45 +29,51 @@ class Performance:
         
 class Calculator:
     def __init__(self, audience):
-        self.audience = audience
+        self._audience = audience
 
     def price(self):
         raise '子の責務'
     
     def point(self):
         point = 0
-        if self.audience  > 30:
-            point +=  (self.audience - 30)
+        if self._audience  > 30:
+            point +=  (self._audience - 30)
         return point
     
 class TragedyCalculator(Calculator):
+    def __init__(self, audience):
+        self._audience = audience
+
     def price(self):
         price = 40000
-        if self.audience > 30:
-            price += (self.audience - 30) * 1000 
+        if self._audience > 30:
+            price += (self._audience - 30) * 1000 
         return price
 
 class ComedyCalculator(Calculator):
+    def __init__(self, audience):
+        self._audience = audience
+
     def price(self):
-        price = 30000 + self.audience * 300
-        if self.audience > 20:
-            price += (self.audience - 20) * 500 + 10000
+        price = 30000 + self._audience * 300
+        if self._audience > 20:
+            price += (self._audience - 20) * 500 + 10000
         return price
     
     def point(self):
         point = 0
-        point += self.audience // 5
-        if self.audience  > 30:
-            point +=  (self.audience - 30)
+        point += self._audience // 5
+        if self._audience  > 30:
+            point +=  (self._audience - 30)
         return point
     
 class Performances:
-    def __init__(self, invoice_data, plays):
-        self.__performances = self.__create_performances(invoice_data, plays)
+    def __init__(self, performances, plays):
+        self.__performances = self.__create_performances(performances, plays)
 
-    def __create_performances(self, invoice_data, plays):
+    def __create_performances(self, performances, plays):
         result = []
-        for performance in invoice_data["performances"]:
+        for performance in performances:
             performance["type"] = plays[performance["playID"]]["type"]
             performance["name"] = plays[performance["playID"]]["name"]
             performance_instance = Performance(performance)
@@ -90,9 +96,9 @@ class Performances:
         return total_point
 
 class Invoice:
-    def __init__(self, customer, performances):
-        self.__customer = customer
-        self.__performances = performances
+    def __init__(self, invoice_data, plays):
+        self.__customer = invoice_data["customer"]
+        self.__performances = Performances(invoice_data["performances"], plays)
 
     def customer(self):
         return self.__customer
@@ -171,9 +177,7 @@ def main():
     invoices, plays = load_json()
     invoice_data = preperate_invoice_data(invoices)
 
-    performances = Performances(invoice_data, plays)
-    
-    invoice = Invoice(invoice_data["customer"], performances)
+    invoice = Invoice(invoice_data, plays)
     
     if len(args) == 2:
         if args[1] == "text":
@@ -189,6 +193,12 @@ def main():
             print("現在の入力：", args[1])
     else:
         print("引数をひとつだけ入力してください")
+
+    # tragedy_calculator = TragedyCalculator(30)
+    # print("audience-------------", tragedy_calculator._audience)
+
+    # for performance in performances.get_performances():
+    #     print("performance.audience-----------------", performance.audience())
 
 if __name__ == "__main__":
     main()

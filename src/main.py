@@ -9,7 +9,7 @@ class Performance:
         self.__audience = data["audience"]
         self.__name = data["name"]
 
-    def get_type(self):
+    def __get_type(self):
         return self.__type
 
     def audience(self):
@@ -25,16 +25,13 @@ class Performance:
         return self.create_calculator().point()
     
     def create_calculator(self):
-        if self.get_type() == "tragedy":
-            tragedy_calculator = TragedyCalculator(self.get_type(), self.audience())
-            return tragedy_calculator
-        if self.get_type() == "comedy":
-            comedy_calculator = ComedyCalculator(self.get_type(), self.audience())
-            return comedy_calculator
-    
+        if self.__get_type() == "tragedy":
+            return TragedyCalculator(self.audience())
+        if self.__get_type() == "comedy":
+            return ComedyCalculator(self.audience())
+        
 class Calculator:
-    def __init__(self, pef_type, audience):
-        self.pef_type = pef_type
+    def __init__(self, audience):
         self.audience = audience
 
     def price(self):

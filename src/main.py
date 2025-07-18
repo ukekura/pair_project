@@ -26,9 +26,9 @@ class Performance:
         return self.__calculator.point()
     
     def create_calculator(self, parf_type):
-        if self.__get_type() == "tragedy":
+        if parf_type == "tragedy":
             return TragedyCalculator(self.audience())
-        if self.__get_type() == "comedy":
+        if parf_type == "comedy":
             return ComedyCalculator(self.audience())
         
 class Calculator:

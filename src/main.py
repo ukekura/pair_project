@@ -8,7 +8,7 @@ class Performance:
         self.__type = data["type"]
         self.__audience = data["audience"]
         self.__name = data["name"]
-        self.__calculator = self.create_calculator()
+        self.__calculator = self.create_calculator(self.__type)
 
     def __get_type(self):
         return self.__type
@@ -25,7 +25,7 @@ class Performance:
     def point(self):
         return self.__calculator.point()
     
-    def create_calculator(self):
+    def create_calculator(self, parf_type):
         if self.__get_type() == "tragedy":
             return TragedyCalculator(self.audience())
         if self.__get_type() == "comedy":

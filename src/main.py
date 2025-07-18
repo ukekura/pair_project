@@ -20,10 +20,10 @@ class Performance:
         return self.__name
 
     def price(self):
-        return self.create_calculator().price()
+        return self.__calculator.price()
     
     def point(self):
-        return self.create_calculator().point()
+        return self.__calculator.point()
     
     def create_calculator(self):
         if self.__get_type() == "tragedy":

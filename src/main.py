@@ -8,7 +8,7 @@ class Performance:
         self.__type = data["type"]
         self.__audience = data["audience"]
         self.__name = data["name"]
-        self.__calculator = self.create_calculator(self.__type)
+        self.__calculator = self.create_calculator(data["type"])
 
     def audience(self):
         return self.__audience

@@ -26,6 +26,8 @@ class Performance:
             return TragedyCalculator(self.audience())
         if parf_type == "comedy":
             return ComedyCalculator(self.audience())
+        if parf_type == "tragic_comedy":
+            return TragicComedyCalculator(self.audience())
         
 class Calculator:
     def __init__(self, audience):
@@ -65,6 +67,20 @@ class ComedyCalculator(Calculator):
         point += self._audience // 5
         if self._audience  > 30:
             point +=  (self._audience - 30)
+        return point
+    
+class TragicComedyCalculator(Calculator):
+    def __init__(self, audience):
+        self._audience = audience
+
+    def price(self):
+        price = 35000 + self._audience * 500
+        return price
+    
+    def point(self):
+        point = 0
+        if self._audience  > 20:
+            point +=  (self._audience - 20)
         return point
     
 class Performances:

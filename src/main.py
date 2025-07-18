@@ -5,7 +5,6 @@ import sys
 
 class Performance:
     def __init__(self, data):
-        self.__type = data["type"]
         self.__audience = data["audience"]
         self.__name = data["name"]
         self.__calculator = self.create_calculator(data["type"])

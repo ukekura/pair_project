@@ -80,6 +80,18 @@ class Invoice:
         invoice_content += "獲得ポイント：" + str(self.get_performances().calc_total_point()) + "pt"
 
         return invoice_content
+    
+    def output_html_invoice_content(self):
+        invoice_content = "請求書\n"
+        invoice_content += "<h2>" + self.get_customer() + "</h2>"
+        
+        for performance in self.get_performances().get_performances():
+            invoice_content += "・" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）\n"
+
+        invoice_content += "合計金額：$" + str(self.get_performances().calc_total_price()) +  "\n"
+        invoice_content += "獲得ポイント：" + str(self.get_performances().calc_total_point()) + "pt"
+
+        return invoice_content
 
 
 def load_json():

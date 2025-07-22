@@ -27,8 +27,11 @@ class TestOutputHtmlInvoiceContent:
     })
     output = invoice.output_html_invoice_content()
     customer = re.findall("<h2>BigCo</h2>", output)
+
     assert customer == ["<h2>BigCo</h2>"]
     assert re.findall("<h1>請求書</h1>", output) == ["<h1>請求書</h1>"]
+    assert re.findall("<ul>", output) == ["<ul>"]
+    assert re.findall("</ul>", output) == ["</ul>"]
 
     invoice = Invoice({
       "performances": Performances([

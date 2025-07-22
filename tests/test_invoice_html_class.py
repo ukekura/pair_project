@@ -52,5 +52,5 @@ class TestOutputHtmlInvoiceContent:
       "customer": "SmallCo"
     })
     output = invoice.output_html_invoice_content()
-    customer = re.findall("SmallCo", output)
-    assert customer == ["SmallCo"]
+    customer = re.findall("<h2>SmallCo</h2>", output)
+    assert customer == ["<h2>SmallCo</h2>"]

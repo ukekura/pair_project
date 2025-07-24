@@ -80,7 +80,15 @@ class TestCalcPrice:
           "type": "tragic-comedy"
         })
     price = performance.calc_price()
-    assert price == 10000
+    assert price == 50000
+
+    performance = Performance({
+          "name": "Romeo and Juliet",
+          "audience": 21,
+          "type": "tragic-comedy"
+        })
+    price = performance.calc_price()
+    assert price == 45500
 
 
 class TestCalcPoint:

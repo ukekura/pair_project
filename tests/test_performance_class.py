@@ -73,6 +73,15 @@ class TestCalcPrice:
     assert price == 54000
 
 
+  def test_tragic_comedy(self):
+    performance = Performance({
+          "name": "Romeo and Juliet",
+          "audience": 30,
+          "type": "tragic-comedy"
+        })
+    price = performance.calc_price()
+    assert price == 10000
+
 
 class TestCalcPoint:
   def test_comedy_thirty_or_under(self):

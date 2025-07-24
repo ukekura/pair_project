@@ -173,3 +173,10 @@ class TestCalcPoint:
     point = performance.calc_point()
     assert point == 1
     
+    performance = Performance({
+          "name": "Romeo and Juliet",
+          "audience": 40,
+          "type": "tragic-comedy"
+        })
+    point = performance.calc_point()
+    assert point == 20

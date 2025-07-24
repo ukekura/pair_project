@@ -146,7 +146,7 @@ class TestCalcPoint:
     assert point == 0
 
 
-  def test_exception_comedy_thirty_or_under(self):
+  def test_exception_comedy_over_thirty(self):
     performance = Performance({
           "name": "Hamlet",
           "audience": 31,

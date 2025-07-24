@@ -50,10 +50,6 @@ class TestOutputHtmlInvoiceContent:
           "playID" : "as-like",
           "audience" : 35
         },
-        {
-          "playID" : "othello",
-          "audience" : 31
-        }
         ],
         {
           "hamlet" : {"name": "Hamlet", "type": "tragedy"},
@@ -64,4 +60,13 @@ class TestOutputHtmlInvoiceContent:
     })
     output = invoice.output_html_invoice_content()
     customer = re.findall("<h2>SmallCo</h2>", output)
+    
     assert customer == ["<h2>SmallCo</h2>"]
+    assert re.findall("<h1>請求書</h1>", output) == ["<h1>請求書</h1>"]
+    assert re.findall("<ul>", output) == ["<ul>"]
+    assert re.findall("</ul>", output) == ["</ul>"]
+    assert re.findall("<li>", output) == ["<li>", "<li>"]
+    assert re.findall("</li>", output) == ["</li>", "</li>"]
+    assert re.findall("<p>合計金額：", output) == ["<p>合計金額："]
+    assert re.findall("<p>獲得ポイント：", output) == ["<p>獲得ポイント："]
+    assert re.findall("</p>", output) == ["</p>", "</p>"]

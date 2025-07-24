@@ -162,3 +162,14 @@ class TestCalcPoint:
         })
     point = performance.calc_point()
     assert point == 10
+
+
+  def test_tragic_comedy_over_twenty(self):
+    performance = Performance({
+          "name": "Romeo and Juliet",
+          "audience": 21,
+          "type": "tragic-comedy"
+        })
+    point = performance.calc_point()
+    assert point == 1
+    

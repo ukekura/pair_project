@@ -34,7 +34,10 @@ class TestOutputHtmlInvoiceContent:
     assert re.findall("</ul>", output) == ["</ul>"]
     assert re.findall("<li>", output) == ["<li>", "<li>", "<li>"]
     assert re.findall("</li>", output) == ["</li>", "</li>", "</li>"]
-    assert re.findall("合計金額：", output) == ["合計金額："]
+    assert re.findall("<p>合計金額：", output) == ["<p>合計金額："]
+    assert re.findall("<p>獲得ポイント：", output) == ["<p>獲得ポイント："]
+    assert re.findall("</p>", output) == ["</p>", "</p>"]
+
 
 
     invoice = Invoice({

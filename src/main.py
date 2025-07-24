@@ -90,8 +90,8 @@ class Invoice:
             invoice_content += "<li>" + performance.get_name() + "（観客数：" + str(performance.get_audience()) + "人、金額：$"+ str(performance.calc_price()) + "）</li>"
 
         invoice_content += "</ul>"
-        invoice_content += "合計金額：$" + str(self.get_performances().calc_total_price()) +  "\n"
-        invoice_content += "獲得ポイント：" + str(self.get_performances().calc_total_point()) + "pt"
+        invoice_content += "<p>合計金額：$" + str(self.get_performances().calc_total_price()) +  "</p>"
+        invoice_content += "<p>獲得ポイント：" + str(self.get_performances().calc_total_point()) + "pt</p>"
 
         return invoice_content
 

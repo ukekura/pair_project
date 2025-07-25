@@ -72,6 +72,16 @@ class Performance:
             point += (self.get_audience() - 30)
         return point
 
+
+class Comedy(Performance):
+    pass
+
+class Tragedy(Performance):
+    pass
+
+class TragicComedy(Performance):
+    pass
+
 class Invoice:
     def __init__(self, data):
         self.performances = data["performances"]

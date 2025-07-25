@@ -82,7 +82,12 @@ class Performance:
 
 
 class Comedy(Performance):
-    pass
+    def calc_price(self):
+        price = 30000 + self.get_audience() * 300
+        if self.get_audience() > 20:
+            price += (self.get_audience() - 20) * 500 + 10000
+        return price
+
 
 class Tragedy(Performance):
     pass

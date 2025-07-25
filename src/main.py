@@ -4,7 +4,11 @@ import sys
 
 class Performances:
     def __init__(self, data, plays):
-        self.performances = [Performance(self._format_obj(performance, plays)) for performance in data]
+        self.performances = [self.__create_performance(performance, plays) for performance in data]
+
+    def __create_performance(self, performance, plays):
+        perf_type = plays[performance["playID"]]["type"]
+        return Performance(self._format_obj(performance, plays))
 
     def get_performances(self):
         return self.performances

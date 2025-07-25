@@ -90,10 +90,17 @@ class Comedy(Performance):
 
 
 class Tragedy(Performance):
-    pass
+    def calc_price(self):
+        price = 40000
+        if self.get_audience() > 30:
+            price += (self.get_audience() - 30) * 1000 
+        return price
+
 
 class TragicComedy(Performance):
-    pass
+    def calc_price(self):
+        price = 35000 + self.get_audience() * 500
+        return price
 
 class Invoice:
     def __init__(self, data):

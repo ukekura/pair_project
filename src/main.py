@@ -8,7 +8,15 @@ class Performances:
 
     def __create_performance(self, performance, plays):
         perf_type = plays[performance["playID"]]["type"]
-        return Performance(self._format_obj(performance, plays))
+        data = self._format_obj(performance, plays)
+        if perf_type == "comedy":
+            return Comedy(data)
+        elif perf_type == "tragedy":
+            return Tragedy(data)
+        elif perf_type == "tragic-comedy":
+            return TragicComedy(data)
+        else:
+            return Performance(data)
 
     def get_performances(self):
         return self.performances

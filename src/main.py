@@ -62,7 +62,7 @@ class Performance:
 
         if self.get_type() == "tragic-comedy":
             if self.get_audience() > 20:
-                point += (self.get_audience() - 20)
+                point += min((self.get_audience() - 20), 10)
             
         if self.get_audience() > 30:
             point += (self.get_audience() - 30)

@@ -39,7 +39,7 @@ class Performances:
 
 
 
-class Performance(ABC):
+class Performance:
     def __init__(self, data):
         self.name = data["name"]
         self.audience = data["audience"]

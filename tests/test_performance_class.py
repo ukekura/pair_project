@@ -1,4 +1,4 @@
-from src.main import Performance, Tragedy
+from src.main import Performance, Tragedy, Comedy, TragicComedy
 
 class TestCalcPrice:
   def test_tragedy_thirty_or_under(self):
@@ -20,74 +20,74 @@ class TestCalcPrice:
 
 
   def test_tragedy_over_thirty(self):
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 31,
           "type": "tragedy"
         })
-    price = performance.calc_price()
+    price = tragedy.calc_price()
     assert price == 41000
 
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 40,
           "type": "tragedy"
         })
-    price = performance.calc_price()
+    price = tragedy.calc_price()
     assert price == 50000
 
 
   def test_comedy_twenty_or_under(self):
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 20,
           "type": "comedy"
         })
-    price = performance.calc_price()
+    price = comedy.calc_price()
     assert price == 36000
 
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 10,
           "type": "comedy"
         })
-    price = performance.calc_price()
+    price = comedy.calc_price()
     assert price == 33000
 
 
   def test_comedy_over_twenty(self):
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 21,
           "type": "comedy"
         })
-    price = performance.calc_price()
+    price = comedy.calc_price()
     assert price == 46800
 
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 30,
           "type": "comedy"
         })
-    price = performance.calc_price()
+    price = comedy.calc_price()
     assert price == 54000
 
 
   def test_tragic_comedy(self):
-    performance = Performance({
+    tragic_comedy = TragicComedy({
           "name": "Romeo and Juliet",
           "audience": 30,
           "type": "tragic-comedy"
         })
-    price = performance.calc_price()
+    price = tragic_comedy.calc_price()
     assert price == 50000
 
-    performance = Performance({
+    tragic_comedy = TragicComedy({
           "name": "Romeo and Juliet",
           "audience": 21,
           "type": "tragic-comedy"
         })
-    price = performance.calc_price()
+    price = tragic_comedy.calc_price()
     assert price == 45500
 
 

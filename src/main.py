@@ -94,11 +94,26 @@ class Tragedy(Performance):
             price += (self.get_audience() - 30) * 1000 
         return price
 
+    def calc_point(self):
+        point = 0
+        if self.get_audience() > 30:
+            point += self.get_audience() - 30
+        return point
+
 
 class TragicComedy(Performance):
     def calc_price(self):
         price = 35000 + self.get_audience() * 500
         return price
+    
+    def calc_point(self):
+        point = 0
+        if self.get_audience() > 20:
+            point += self.get_audience() - 20
+        return point
+
+
+
 
 class Invoice:
     def __init__(self, data):

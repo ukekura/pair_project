@@ -1,21 +1,21 @@
-from src.main import Performance
+from src.main import Performance, Tragedy
 
 class TestCalcPrice:
   def test_tragedy_thirty_or_under(self):
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 30,
           "type": "tragedy"
         })
-    price = performance.calc_price()
+    price = tragedy.calc_price()
     assert price == 40000
 
-    performance = Performance({
+    tragedy = Tragedy({
       "name": "Hamlet",
       "audience": 23,
       "type": "tragedy"
     })
-    price = performance.calc_price()
+    price = tragedy.calc_price()
     assert price == 40000
 
 

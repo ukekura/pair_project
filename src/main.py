@@ -52,20 +52,7 @@ class Performance:
         return self.type
     
     def calc_price(self):
-        if self.get_type() == "tragedy":
-            price = 40000
-            if self.get_audience() > 30:
-                price += (self.get_audience() - 30) * 1000 
-        
-        if self.get_type() == "comedy":
-            price = 30000 + self.get_audience() * 300
-            if self.get_audience() > 20:
-                price += (self.get_audience() - 20) * 500 + 10000
-        
-        if self.get_type() == "tragic-comedy":
-            price = 35000 + self.get_audience() * 500
-        
-        return price
+        raise NotImplementedError("このメソッドはオーバーライドされていません。")
     
     def calc_point(self):
         point = 0

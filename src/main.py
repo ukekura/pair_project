@@ -39,7 +39,7 @@ class Performances:
 
 
 
-class Performance:
+class Performance(ABC):
     def __init__(self, data):
         self.name = data["name"]
         self.audience = data["audience"]
@@ -56,6 +56,7 @@ class Performance:
     def calc_price(self):
         raise NotImplementedError("このメソッドはオーバーライドされていません。")
     
+    @abstractmethod
     def calc_point(self):
         raise NotImplementedError("このメソッドはオーバーライドされていません。")
 

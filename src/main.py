@@ -57,17 +57,7 @@ class Performance:
         raise NotImplementedError("このメソッドはオーバーライドされていません。")
     
     def calc_point(self):
-        point = 0
-        if self.get_type() == "comedy":
-            point = self.get_audience() // 5
-
-        if self.get_type() == "tragic-comedy":
-            if self.get_audience() > 20:
-                point += min((self.get_audience() - 20), 10)
-            
-        if self.get_audience() > 30:
-            point += (self.get_audience() - 30)
-        return point
+        raise NotImplementedError("このメソッドはオーバーライドされていません。")
 
 
 class Comedy(Performance):

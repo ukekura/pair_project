@@ -93,20 +93,20 @@ class TestCalcPrice:
 
 class TestCalcPoint:
   def test_comedy_thirty_or_under(self):
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 30,
           "type": "comedy"
         })
-    point = performance.calc_point()
+    point = comedy.calc_point()
     assert point == 6
 
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 20,
           "type": "comedy"
         })
-    point = performance.calc_point()
+    point = comedy.calc_point()
     assert point == 4
 
 

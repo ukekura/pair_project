@@ -77,6 +77,15 @@ class Comedy(Performance):
             price += (self.get_audience() - 20) * 500 + 10000
         return price
 
+    def calc_point(self):
+        point = 0
+        point += self.get_audience() // 5
+        if self.get_audience() > 30:
+            point += (self.get_audience() - 30)
+        return point
+
+
+
 
 class Tragedy(Performance):
     def calc_price(self):

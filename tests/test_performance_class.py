@@ -111,89 +111,89 @@ class TestCalcPoint:
 
 
   def test_comedy_over_thirty(self):
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 31,
           "type": "comedy"
         })
-    point = performance.calc_point()
+    point = comedy.calc_point()
     assert point == 7
 
-    performance = Performance({
+    comedy = Comedy({
           "name": "As You Like It",
           "audience": 40,
           "type": "comedy"
         })
-    point = performance.calc_point()
+    point = comedy.calc_point()
     assert point == 18
 
 
   def test_exception_comedy_thirty_or_under(self):
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 30,
           "type": "tragedy"
         })
-    point = performance.calc_point()
+    point = tragedy.calc_point()
     assert point == 0
 
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 20,
           "type": "tragedy"
         })
-    point = performance.calc_point()
+    point = tragedy.calc_point()
     assert point == 0
 
 
   def test_exception_comedy_over_thirty(self):
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 31,
           "type": "tragedy"
         })
-    point = performance.calc_point()
+    point = tragedy.calc_point()
     assert point == 1
 
-    performance = Performance({
+    tragedy = Tragedy({
           "name": "Hamlet",
           "audience": 40,
           "type": "tragedy"
         })
-    point = performance.calc_point()
+    point = tragedy.calc_point()
     assert point == 10
 
 
   def test_tragic_comedy_over_twenty(self):
-    performance = Performance({
+    tragic_comedy = TragicComedy({
           "name": "Romeo and Juliet",
           "audience": 21,
           "type": "tragic-comedy"
         })
-    point = performance.calc_point()
+    point = tragic_comedy.calc_point()
     assert point == 1
     
-    performance = Performance({
+    tragic_comedy = TragicComedy({
           "name": "Romeo and Juliet",
           "audience": 40,
           "type": "tragic-comedy"
         })
-    point = performance.calc_point()
+    point = tragic_comedy.calc_point()
     assert point == 20
 
 
   def test_tragic_comedy_twenty_or_under(self):
-    performance = Performance({
+    tragic_comedy = TragicComedy({
           "name": "Romeo and Juliet",
           "audience": 20,
           "type": "tragic-comedy"
         })
-    point = performance.calc_point()
+    point = tragic_comedy.calc_point()
     assert point == 0
-    performance = Performance({
+    tragic_comedy = TragicComedy({
           "name": "Romeo and Juliet",
           "audience": 10,
           "type": "tragic-comedy"
         })
-    point = performance.calc_point()
+    point = tragic_comedy.calc_point()
     assert point == 0

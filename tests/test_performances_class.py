@@ -1,4 +1,5 @@
 from src.main import Performances
+import pytest
 
 class TestCalcTotalPrice:
   def test_calc_total_price(self):
@@ -82,3 +83,11 @@ class TestCalcTotalPoint:
     })
     total_point = performances.calc_total_point()
     assert total_point == 13
+
+class TestCreatePerformance:
+  def test_invalid_performance_type(self):
+    test_performance = {"playID": "invaild-play", "audience": 31}
+    test_plays = {"invaild-play": {"name": "Invaild Play", "type": "invaild-type"}}
+    with pytest.raises(ValueError) as e:
+      Performances([test_performance], test_plays)
+    assert e.value.args == ("Invalid performance type:", "invaild-type")

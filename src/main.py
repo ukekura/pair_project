@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+from abc import ABC, abstractmethod
 
 class Performances:
     def __init__(self, data, plays):
@@ -16,8 +17,8 @@ class Performances:
         elif perf_type == "tragic-comedy":
             return TragicComedy(data)
         else:
-            return Performance(data)
-
+            raise ValueError("Invalid performance type:", perf_type)
+        
     def get_performances(self):
         return self.performances
     def _format_obj(self, performance, plays):
@@ -38,7 +39,7 @@ class Performances:
 
 
 
-class Performance:
+class Performance(ABC):
     def __init__(self, data):
         self.name = data["name"]
         self.audience = data["audience"]
@@ -51,6 +52,7 @@ class Performance:
     def get_type(self):
         return self.type
     
+    @abstractmethod
     def calc_price(self):
         raise NotImplementedError("このメソッドはオーバーライドされていません。")
     

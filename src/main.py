@@ -17,12 +17,6 @@ class Performance:
     
     def name(self):
         return self.__name
-
-    def __calc_comedy_price(self):
-        price = 30000 + self.__audience * 300
-        if self.__audience > 20:
-            price += (self.__audience - 20) * 500 + 10000
-        return price
     
     def __calc_comedy_point(self):
         point = self.__audience // 5
@@ -38,7 +32,9 @@ class Performance:
             if self.__audience > 30:
                 price += (self.__audience - 30) * 1000 
         if self.__get_type() == "comedy":
-            price = self.__calc_comedy_price()
+            price = 30000 + self.__audience * 300
+            if self.__audience > 20:
+                price += (self.__audience - 20) * 500 + 10000
         return price
     
     def point(self):

@@ -17,10 +17,6 @@ class Performance:
     
     def name(self):
         return self.__name
-    
-    def __calc_comedy_point(self):
-        point = self.__audience // 5
-        return point
 
     def __common_point(self):
         point = (self.__audience - 30)

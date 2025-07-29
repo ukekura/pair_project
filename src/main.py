@@ -19,14 +19,14 @@ class Performance:
         return self.__name
     
     def price(self):
-        price = SomethingToCalculate().calc_price(self.__type, self.__audience)
+        price = Calculator().calc_price(self.__type, self.__audience)
         return price
     
     def point(self):
-        point = SomethingToCalculate().calc_point(self.__type, self.__audience)
+        point = Calculator().calc_point(self.__type, self.__audience)
         return point
     
-class SomethingToCalculate:
+class Calculator:
 
     def calc_price(self, performance_type, performance_audience):
         if performance_type == "tragedy":

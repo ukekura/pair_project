@@ -36,6 +36,14 @@ class Performance:
         if self.audience()  > 30:
             point += (self.__audience - 30)
         return point
+    
+    class SomethingToCalculate:
+
+        def calc_price():
+            pass
+
+        def calc_point():
+            pass
 
 class Performances:
     def __init__(self, invoice_data, plays):

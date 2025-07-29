@@ -20,11 +20,11 @@ class Performance:
         return self.__name
     
     def price(self):
-        price = Calculator().calc_price(self.__type, self.__audience)
+        price = self.__calculater.calc_price(self.__type, self.__audience)
         return price
     
     def point(self):
-        point = Calculator().calc_point(self.__type, self.__audience)
+        point = self.__calculater.calc_point(self.__type, self.__audience)
         return point
     
 class Calculator:

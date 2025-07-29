@@ -37,26 +37,26 @@ class Performance:
             point += (self.__audience - 30)
         return point
     
-    class SomethingToCalculate:
+class SomethingToCalculate:
 
-        def calc_price(performance_type, performance_audience):
-            if performance_type == "tragedy":
-                price = 40000
-                if performance_audience > 30:
-                    price += (performance_audience - 30) * 1000 
-            if performance_type == "comedy":
-                price = 30000 + performance_audience * 300
-                if performance_audience > 20:
-                    price += (performance_audience - 20) * 500 + 10000
-            return price
+    def calc_price(performance_type, performance_audience):
+        if performance_type == "tragedy":
+            price = 40000
+            if performance_audience > 30:
+                price += (performance_audience - 30) * 1000 
+        if performance_type == "comedy":
+            price = 30000 + performance_audience * 300
+            if performance_audience > 20:
+                price += (performance_audience - 20) * 500 + 10000
+        return price
 
-        def calc_point(performance_type, performance_audience):
-            point = 0
-            if performance_type == "comedy":
-                point += performance_audience // 5
-            if performance_audience  > 30:
-                point += (performance_audience - 30)
-            return point
+    def calc_point(performance_type, performance_audience):
+        point = 0
+        if performance_type == "comedy":
+            point += performance_audience // 5
+        if performance_audience  > 30:
+            point += (performance_audience - 30)
+        return point
 
 class Performances:
     def __init__(self, invoice_data, plays):

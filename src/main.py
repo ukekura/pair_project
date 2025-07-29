@@ -39,11 +39,24 @@ class Performance:
     
     class SomethingToCalculate:
 
-        def calc_price():
-            pass
+        def calc_price(self):
+            if self.__get_type() == "tragedy":
+                price = 40000
+                if self.__audience > 30:
+                    price += (self.__audience - 30) * 1000 
+            if self.__get_type() == "comedy":
+                price = 30000 + self.__audience * 300
+                if self.__audience > 20:
+                    price += (self.__audience - 20) * 500 + 10000
+            return price
 
-        def calc_point():
-            pass
+        def calc_point(self):
+            point = 0
+            if self.__get_type() == "comedy":
+                point += self.__audience // 5
+            if self.audience()  > 30:
+                point += (self.__audience - 30)
+            return point
 
 class Performances:
     def __init__(self, invoice_data, plays):

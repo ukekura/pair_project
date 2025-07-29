@@ -23,11 +23,7 @@ class Performance:
         return price
     
     def point(self):
-        point = 0
-        if self.__get_type() == "comedy":
-            point += self.__audience // 5
-        if self.audience()  > 30:
-            point += (self.__audience - 30)
+        point = SomethingToCalculate().calc_point(self.__type, self.__audience)
         return point
     
 class SomethingToCalculate:

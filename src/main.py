@@ -105,12 +105,12 @@ class TragicComedy(Performance):
 
 class Invoice:
     def __init__(self, data):
-        self.performances = data["performances"]
-        self.customer = data["customer"]
+        self.__performances = data["performances"]
+        self.__customer = data["customer"]
     def get_performances(self):
-        return self.performances
+        return self.__performances
     def get_customer(self):
-        return self.customer
+        return self.__customer
     
     def output_invoice_content(self):
         invoice_content = "請求書\n"

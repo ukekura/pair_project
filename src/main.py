@@ -40,7 +40,7 @@ class Performance:
     def point(self):
         point = 0
         if self.__get_type() == "comedy":
-            point += self.__calc_comedy_point()
+            point += self.__audience // 5
         if self.audience()  > 30:
             point += self.__common_point()
         return point

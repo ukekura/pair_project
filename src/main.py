@@ -42,12 +42,12 @@ class Performances:
 class Performance(ABC):
     def __init__(self, data):
         self.__name = data["name"]
-        self.audience = data["audience"]
+        self.__audience = data["audience"]
 
     def get_name(self):
         return self.__name
     def get_audience(self):
-        return self.audience
+        return self.__audience
     
     @abstractmethod
     def calc_price(self):

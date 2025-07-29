@@ -43,14 +43,11 @@ class Performance(ABC):
     def __init__(self, data):
         self.name = data["name"]
         self.audience = data["audience"]
-        self.type = data["type"]
 
     def get_name(self):
         return self.name
     def get_audience(self):
         return self.audience
-    def get_type(self):
-        return self.type
     
     @abstractmethod
     def calc_price(self):

@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 
 class Performances:
     def __init__(self, data, plays):
-        self.performances = [self.__create_performance(performance, plays) for performance in data]
+        self.__performances = [self.__create_performance(performance, plays) for performance in data]
 
     def __create_performance(self, performance, plays):
         perf_type = plays[performance["playID"]]["type"]
@@ -20,7 +20,7 @@ class Performances:
             raise ValueError("Invalid performance type:", perf_type)
         
     def get_performances(self):
-        return self.performances
+        return self.__performances
     def _format_obj(self, performance, plays):
         return {"playID":performance["playID"], "audience":performance["audience"], "name":plays[performance["playID"]]["name"], "type":plays[performance["playID"]]["type"]}
 

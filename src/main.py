@@ -17,10 +17,6 @@ class Performance:
     
     def name(self):
         return self.__name
-
-    def __common_point(self):
-        point = (self.__audience - 30)
-        return point
     
     def price(self):
         if self.__get_type() == "tragedy":
@@ -38,7 +34,7 @@ class Performance:
         if self.__get_type() == "comedy":
             point += self.__audience // 5
         if self.audience()  > 30:
-            point += self.__common_point()
+            point += (self.__audience - 30)
         return point
 
 class Performances:

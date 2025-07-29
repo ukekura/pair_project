@@ -41,11 +41,11 @@ class Performances:
 
 class Performance(ABC):
     def __init__(self, data):
-        self.name = data["name"]
+        self.__name = data["name"]
         self.audience = data["audience"]
 
     def get_name(self):
-        return self.name
+        return self.__name
     def get_audience(self):
         return self.audience
     
